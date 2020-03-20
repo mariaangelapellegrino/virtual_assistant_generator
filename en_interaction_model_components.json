@@ -1,0 +1,309 @@
+{
+	"intents": {
+		"getAllResultsPreviousQuery" : {
+		    "name": "getAllResultsPreviousQuery",
+		    "samples": [
+		        "can you repeat the previous reply",
+		        "can you list the results of the previous query",
+		        "give me all the results"                      
+		    ]
+		},
+		"getQueryExplanation" : {
+		    "name": "getQueryExplanation",
+		    "samples": [
+		        "why did you reply in this way",
+		        "can you explain me your reasoning approach",
+		        "why did you say that"  
+		    ]
+		},
+		"getFurtherDetails" : {
+		    "name": "getFurtherDetails",
+		    "samples": [
+		        "can you provide me further details",
+		        "give me further details"                        
+		    ]
+		},
+		"getPropertyObject" : {
+		    "name": "getPropertyObject",
+		    "slots": [
+		        {
+		            "name": "property",
+		            "type": "property"
+		        },
+		        {
+		            "name": "entity",
+		            "type": "entity"
+		        }
+		    ],
+		    "samples": [
+		        "what is the {property} of {entity}",
+		        "which is the {property} of {entity}",
+		        "what is the {property} of entity {entity}",
+		        "what is the value of {property} attached to {entity}",
+		        "what is the value of {property} related to {entity}",
+		        "By focusing on {entity} what is its {property}",
+		        "If we focus on {entity} what is its {property}",
+		        "If we talk about {entity} what is its {property}",
+		        "By focusing on {entity} who is its {property}",
+		        "If we focus on {entity} who is its {property}",
+		        "If we talk about {entity} who is its {property}",
+
+		        "when is the {property} of {entity}",
+		        "who is the {property} of {entity}"
+		        
+		    ]
+		},
+		"getDescription" : {
+		    "name": "getDescription",
+		    "slots": [
+		        {
+		            "name": "entity",
+		            "type": "entity"
+		        }
+		    ],
+		    "samples": [
+		        "who is {entity}",
+		        "what is {entity}",
+		        "can you define {entity}",
+		        "can you provide me the definition of {entity}",
+		        "what is the definition of {entity}",
+		        "how can you define {entity}"
+		    ]
+		},
+		"getNumericFilter" : {
+		    "name": "getNumericFilter",
+		    "slots": [
+		        {
+		            "name": "property",
+		            "type": "property"
+		        },
+		        {
+		            "name": "symbol",
+		            "type": "symbol"
+		        },
+		        {
+		            "name": "value",
+		            "type": "AMAZON.NUMBER"
+		        }
+		    ],
+		    "samples": [
+		        "which entity has {property} {symbol} {value}",
+		        "what entity has {property} {symbol} {value}",
+		        "what does it have {property} {symbol} {value}"
+		    ]
+		},
+		"getNumericFilterByClass" : {
+		    "name": "getNumericFilterByClass",
+		    "slots": [
+		        {
+		            "name": "class",
+		            "type": "entity"
+		        },
+		        {
+		            "name": "property",
+		            "type": "property"
+		        },
+		        {
+		            "name": "symbol",
+		            "type": "symbol"
+		        },
+		        {
+		            "name": "value",
+		            "type": "AMAZON.NUMBER"
+		        }
+		    ],
+		    "samples": [
+		        "which {class} has {property} {symbol} {value}"
+		    ]
+		},
+		"getClassInstances" : {
+		    "name": "getClassInstances",
+		    "slots": [
+		        {
+		            "name": "class",
+		            "type": "entity"
+		        }
+		    ],
+		    "samples": [
+		        "can you list entities belonging to the class {class}",
+		        "can you list instances of {class}",
+		        "what are the instances of {class}",
+		        "provide me examples of {class}",
+		        "list me elements of {class}",
+		        "what are instances of {class}",
+		        "how many instances of {class} are there",
+		        "list me instances of {class}"
+		    ]
+		},
+		"getTripleVerification" : {
+		    "name": "getTripleVerification",
+		    "slots": [
+		        {
+		            "name": "subj",
+		            "type": "entity"
+		        },
+		        {
+		            "name": "property",
+		            "type": "property"
+		        },
+		        {
+		            "name": "obj",
+		            "type": "entity"
+		        }
+		    ],
+		    "samples": [
+		        "is it true that {subj} has {obj} as {property}",
+		        "can you verify if {subj} has {obj} as {property}",
+		        "{subj} has {obj} as {property}",
+		        "can you check if {subj} has {obj} as {property}"
+		    ]
+		},
+		"getLocation" : {
+		    "name": "getLocation",
+		    "slots": [
+		        {
+		            "name": "entity",
+		            "type": "entity"
+		        }
+		    ],
+		    "samples": [
+		        "where is {entity}",
+		        "where is the {entity}"
+		    ]
+		},
+		"getSuperlative" : {
+		    "name": "getSuperlative",
+		    "slots": [
+		        {
+		            "name": "entity",
+		            "type": "entity"
+		        },
+		        {
+		            "name": "property",
+		            "type": "property"
+		        },
+		        {
+		            "name": "superlative",
+		            "type": "superlative"
+		        }                        
+		    ],
+		    "samples": [
+		        "what is the {entity} with {superlative} {property}"                    ] 
+		},
+		"getPropertySubjectByClass" : {
+		    "name": "getPropertySubjectByClass",
+		    "slots": [
+		        {
+		            "name": "class",
+		            "type": "entity"
+		        },
+		        {
+		            "name": "property",
+		            "type": "property"
+		        },
+		        {
+		            "name": "entity",
+		            "type": "entity"
+		        }
+		    ],
+		    "samples": [
+		        "how many {class} has {property} like {entity}",
+		        "which {class} has {property} like {entity}",
+		        "which {class} has {entity} as {property}",
+		        "how many {class} has {entity} as {property}"
+		    ]
+		},
+		"getImg" : {
+		    "name": "getImg",
+		    "slots": [
+		        {
+		            "name": "entity",
+		            "type": "entity"
+		        }
+		    ],
+		    "samples": [
+		        "show me the {entity}",
+		        "show me an {entity}",
+		        "show me a {entity}",
+		        "show me {entity}"
+		    ]
+		},
+		"getPropertySubject" : {
+		    "name": "getPropertySubject",
+		    "slots": [
+		        {
+		            "name": "property",
+		            "type": "property"
+		        },
+		        {
+		            "name": "entity",
+		            "type": "entity"
+		        }
+		    ],
+		    "samples": [
+		        "which entity has {entity} as {property}",
+		        "what have {entity} as {property}",
+		        "what has {entity} as {property}",
+		        "how many entities have {entity} as {property}",
+		        "how many entities have {property} like {entity}"
+		    ]
+		}
+	},
+	"slots" : {
+		"superlative" : {
+	        "name": "superlative",
+	        "values": [
+	            {
+	                "name": {
+	                    "value": "most",
+	                    "synonyms" : [
+	                        "maximum",
+	                        "highest"
+	                    ]
+	                }
+	            },
+	            {
+	                "name": {
+	                    "value": "less",
+	                    "synonyms" : [
+	                        "minimum",
+	                        "lowest"
+	                    ]
+	                }
+	            }
+	        ]
+	    },
+	    "symbol" : {
+	        "name": "symbol",
+	        "values": [
+	            {
+	                "name": {
+	                    "value": ">",
+	                    "synonyms" : [
+	                        "more",
+	                        "more than"
+	                    ]
+	                }
+	            },
+	            {
+	                "name": {
+	                    "value": "<",
+	                    "synonyms" : [
+	                        "less",
+	                        "less than"
+	                    ]
+	                }
+	            },
+	            {
+	                "name": {
+	                    "value": "=",
+	                    "synonyms" : [
+	                        "equals",
+	                        "equals to"
+	                    ]
+	                }
+	            }
+	        ]
+	    }
+	}
+}

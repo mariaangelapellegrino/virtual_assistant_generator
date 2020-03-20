@@ -1,0 +1,354 @@
+{
+	"intents" : {
+		"getAllResultsPreviousQuery" : {
+            "name": "getAllResultsPreviousQuery",
+            "samples": [
+                "dammi tutti i risultati precedenti"                      
+            ]
+        },
+		"getQueryExplanation": {
+            "name": "getQueryExplanation",
+            "samples": [
+                "mi puoi spiegare il tuo ragionamento"  
+            ]
+        },
+        "getFurtherDetails" : {
+            "name": "getFurtherDetails",
+            "samples": [
+                "dammi ulteriori dettagli"                        
+            ]
+        },
+        "getPropertyObject" : {
+            "name": "getPropertyObject",
+            "slots": [
+                {
+                    "name": "property",
+                    "type": "property"
+                },
+                {
+                    "name": "entity",
+                    "type": "entity"
+                }
+            ],
+            "samples": [                        
+                "dammi la {property} di {entity}",
+                "dammi la {property} della {entity}",
+                "dammi la {property} del {entity}",
+                "dammi la {property} dello {entity}",
+
+                "dammi il {property} di {entity}",
+                "dammi il {property} della {entity}",
+                "dammi il {property} del {entity}",
+                "dammi il {property} dello {entity}",
+
+                "dammi l {property} di {entity}",
+                "dammi l {property} della {entity}",
+                "dammi l {property} del {entity}",
+                "dammi l {property} dello {entity}",
+
+                "dammi lo {property} di {entity}",
+                "dammi lo {property} della {entity}",
+                "dammi lo {property} del {entity}",
+                "dammi lo {property} dello {entity}",
+
+                "dammi la {property} dell entità {entity}",
+                "dammi il {property} dell entità {entity}",
+                "dammi l {property} dell entità {entity}",
+                "dammi lo {property} dell entità {entity}",
+
+                "dammi il valore della {property} associato a {entity}",
+                "dammi il valore della {property} associato alla {entity}",
+                "dammi il valore della {property} associato all {entity}",
+                "dammi il valore della {property} associato allo {entity}",
+                "dammi il valore della {property} associato al {entity}",
+
+                "dammi il valore dell {property} associato a {entity}",
+                "dammi il valore dell {property} associato alla {entity}",
+                "dammi il valore dell {property} associato all {entity}",
+                "dammi il valore dell {property} associato allo {entity}",
+                "dammi il valore dell {property} associato al {entity}",
+
+                "dammi il valore del {property} associato a {entity}",
+                "dammi il valore del {property} associato alla {entity}",
+                "dammi il valore del {property} associato all {entity}",
+                "dammi il valore del {property} associato allo {entity}",
+                "dammi il valore del {property} associato al {entity}",
+
+                "dammi il valore dello {property} associato a {entity}",
+                "dammi il valore dello {property} associato alla {entity}",
+                "dammi il valore dello {property} associato all {entity}",
+                "dammi il valore dello {property} associato allo {entity}",
+                "dammi il valore dello {property} associato al {entity}",
+
+                "dammi il valore della {property} relativo a {entity}",
+                "dammi il valore della {property} relativo alla {entity}",
+                "dammi il valore della {property} relativo all {entity}",
+                "dammi il valore della {property} relativo allo {entity}",
+                "dammi il valore della {property} relativo al {entity}",
+
+                "dammi il valore dell {property} relativo a {entity}",
+                "dammi il valore dell {property} relativo alla {entity}",
+                "dammi il valore dell {property} relativo all {entity}",
+                "dammi il valore dell {property} relativo allo {entity}",
+                "dammi il valore dell {property} relativo al {entity}",
+
+                "dammi il valore del {property} relativo a {entity}",
+                "dammi il valore del {property} relativo alla {entity}",
+                "dammi il valore del {property} relativo all {entity}",
+                "dammi il valore del {property} relativo allo {entity}",
+                "dammi il valore del {property} relativo al {entity}",
+
+                "dammi il valore dello {property} relativo a {entity}",
+                "dammi il valore dello {property} relativo alla {entity}",
+                "dammi il valore dello {property} relativo all {entity}",
+                "dammi il valore dello {property} relativo allo {entity}",
+                "dammi il valore dello {property} relativo al {entity}",
+
+                "quando e {property} di {entity}",
+                "quando e la {property} della {entity}",
+                "quando e la {property} del {entity}",
+                "quando e la {property} dello {entity}",
+
+                "chi e la {property} di {entity}",
+                "chi e la {property} della {entity}",
+                "chi e la {property} del {entity}",
+                "chi e la {property} dello {entity}"
+                
+            ]
+        },
+        "getDescription" : {
+            "name": "getDescription",
+            "slots": [
+                {
+                    "name": "entity",
+                    "type": "entity"
+                }
+            ],
+            "samples": [
+                "puoi definirmi {entity}",
+                "chi e {entity}",
+                "cosa e {entity}"
+            ]
+        },
+        "getNumericFilter" : {
+            "name": "getNumericFilter",
+            "slots": [
+                {
+                    "name": "property",
+                    "type": "property"
+                },
+                {
+                    "name": "symbol",
+                    "type": "symbol"
+                },
+                {
+                    "name": "value",
+                    "type": "AMAZON.NUMBER"
+                }
+            ],
+            "samples": [
+                "cosa ha {property} {symbol} {value}",
+                "chi ha {property} {symbol} {value}"
+            ]
+        },
+        "getNumericFilterByClass" : {
+            "name": "getNumericFilterByClass",
+            "slots": [
+                {
+                    "name": "class",
+                    "type": "entity"
+                },
+                {
+                    "name": "property",
+                    "type": "property"
+                },
+                {
+                    "name": "symbol",
+                    "type": "symbol"
+                },
+                {
+                    "name": "value",
+                    "type": "AMAZON.NUMBER"
+                }
+            ],
+            "samples": [
+                "quale {class} ha {property} {symbol} {value}"
+            ]
+        },
+        "getClassInstances" : {
+	        "name": "getClassInstances",
+	        "slots": [
+	            {
+	                "name": "class",
+	                "type": "entity"
+	            }
+	        ],
+	        "samples": [
+	            "dammi le instanze di {class}"
+	        ]
+	    },
+	    "getTripleVerification" : {
+            "name": "getTripleVerification",
+            "slots": [
+                {
+                    "name": "subj",
+                    "type": "entity"
+                },
+                {
+                    "name": "property",
+                    "type": "property"
+                },
+                {
+                    "name": "obj",
+                    "type": "entity"
+                }
+            ],
+            "samples": [
+                "{subj} ha {obj} come {property}"
+            ]
+        },
+        "getLocation" : {
+            "name": "getLocation",
+            "slots": [
+                {
+                    "name": "entity",
+                    "type": "entity"
+                }
+            ],
+            "samples": [
+                "dove si trova {entity}"
+            ]
+        },
+        "getSuperlative" : {
+            "name": "getSuperlative",
+            "slots": [
+                {
+                    "name": "entity",
+                    "type": "entity"
+                },
+                {
+                    "name": "property",
+                    "type": "property"
+                },
+                {
+                    "name": "superlative",
+                    "type": "superlative"
+                }                        
+            ],
+            "samples": [
+                "dammi l {entity} con {property} {superlative}",
+                "dammi il {entity} con {property} {superlative}",
+                "dammi la {entity} con {property} {superlative}",
+                "dammi lo {entity} con {property} {superlative}"                   ] 
+        },
+        "getPropertySubjectByClass" : {
+            "name": "getPropertySubjectByClass",
+            "slots": [
+                {
+                    "name": "class",
+                    "type": "entity"
+                },
+                {
+                    "name": "property",
+                    "type": "property"
+                },
+                {
+                    "name": "entity",
+                    "type": "entity"
+                }
+            ],
+            "samples": [
+                "quanti {class} ha {entity} come {property}"
+            ]
+        },
+        "getImg" : {
+            "name": "getImg",
+            "slots": [
+                {
+                    "name": "entity",
+                    "type": "entity"
+                }
+            ],
+            "samples": [
+                "mostami {entity}",
+                "mostrami un {entity}",
+                "mostrami uno {entity}",
+                "mostrami una {entity}",
+                "mostrami la {entity}",
+                "mostrami il {entity}",
+                "mostrami lo {entity}",
+                "mostrami l {entity}"
+            ]
+        },
+        "getPropertySubject" : {
+            "name": "getPropertySubject",
+            "slots": [
+                {
+                    "name": "property",
+                    "type": "property"
+                },
+                {
+                    "name": "entity",
+                    "type": "entity"
+                }
+            ],
+            "samples": [
+                "cosa ha {entity} come {property}"
+            ]
+        }
+	},
+	"slots": {
+		"superlative": {
+		    "name": "superlative",
+		    "values": [
+		        {
+		            "name": {
+		                "value": "maggiore",
+		                "synonyms" : [
+		                    "massima",
+		                    "superiore"
+		                ]
+		            }
+		        },
+		        {
+		            "name": {
+		                "value": "minore",
+		                "synonyms" : [
+		                    "minima",
+		                    "inferiore"
+		                ]
+		            }
+		        }
+		    ]
+		},
+        "symbol" : {
+	        "name": "symbol",
+	        "values": [
+	            {
+	                "name": {
+	                    "value": ">",
+	                    "synonyms" : [
+	                        "maggiore di"
+	                    ]
+	                }
+	            },
+	            {
+	                "name": {
+	                    "value": "<",
+	                    "synonyms" : [
+	                        "minore di"
+	                    ]
+	                }
+	            },
+	            {
+	                "name": {
+	                    "value": "=",
+	                    "synonyms" : [
+	                        "uguale a"
+	                    ]
+	                }
+	            }
+	        ]
+	    }
+	}
+}

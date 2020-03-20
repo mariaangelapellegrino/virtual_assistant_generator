@@ -1,0 +1,24 @@
+{
+  "name": "skill-sample-nodejs-fact-i18n",
+  "version": "2.0.0",
+  "description": "I18n version of fact skill.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "alexa",
+    "skill",
+    "fact"
+  ],
+  "author": "Amazon.com",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "ask-sdk": "^2.0.0",
+    "dbpedia-spotlight": "^0.5.28",
+    "gh-got": "^5.0.0",
+    "got": "10.4.0",
+    "sync-request": "^6.1.0",
+    "wikibase-sdk": "^7.1.2"
+  }
+}
