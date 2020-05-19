@@ -135,214 +135,9 @@ const AMAZON_NavigateHomeIntent_Handler =  {
     },
 };
 
-const test_Handler = {
-    canHandle(handlerInput) {
-        const request = handlerInput.requestEnvelope.request;
-        return request.type === 'IntentRequest' && request.intent.name === 'test' ;
-    },
-    /*async handle(handlerInput) {
-        const response = await dbpedia_test();
-        
-        console.log(response);
-
-        return handlerInput.responseBuilder
-                .speak("Okay. Here is what I got back from my request. ")
-                .reprompt("What would you like?")
-                .getResponse();
-    },
-    */
-    handle(handlerInput){
-        const request = handlerInput.requestEnvelope.request;
-        const responseBuilder = handlerInput.responseBuilder;
-
-        const url = "http://api.dbpedia-spotlight.org/en/annotate?text=Harry%20Potter&confidence=0.2&support=20";
-
-        var sync_request = require('sync-request');
-        var res = sync_request('GET', url, {
-            headers: {
-                'Accept':'application/json'//,
-                //'content-type':'application/x-www-form-urlencoded'
-            },
-        });
-
-        var json_res = JSON.parse(res.body.toString());
-
-        console.log(json_res.Resources[0]["@URI"]);
 
 
 
-        return responseBuilder
-            .speak("test finished")
-            .reprompt(LanguageManager['reprompt'](lang))
-            .getResponse();
-    }
-};
-
-function async_dbpedia_test(){
-    return new Promise(((resolve, reject) => {
-        input="Paris";
-    
-        const request = mlspotlight.annotate(input,function(output){
-            resolve(output);
-        });
-        request.end();             
-  }));   
-}
-
-
-const getFurtherDetails_Handler = {
-  canHandle(handlerInput) {
-    const request = handlerInput.requestEnvelope.request;
-    return request.type === 'IntentRequest' && request.intent.name === 'getFurtherDetails' ;
-  },
-  handle(handlerInput) {
-    const request = handlerInput.requestEnvelope.request;
-    const responseBuilder = handlerInput.responseBuilder;
-    let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-
-    var intentName = request.intent.name;
-
-    /*
-      var last_request = {
-          'intent' : '',
-          'sparql' : '',
-          'slots' : {
-              'actual_values': {},
-              'resolved_values' : {}
-          },
-          'results' : {},
-          'response' : '',
-          'success':false
-      };
-    */
-    console.log(last_request)
-    var reply = '';
-    if(last_request.success){
-      switch(last_request.intent){
-        case 'getNumericFilter':
-        case 'getDateFilter':
-        case 'getNumericFilterByClass':
-        case 'getDateFilterByClass':
-        case 'getSuperlative':
-            var subjects = last_request.results.uri;
-            var property = last_request.slots.resolved_values.property;
-
-            var subjects_label = last_request.results.label;
-            var property_label = last_request.slots.actual_values.property;
-
-            reply += getFurtherDetailsSubjectQuery(subjects, subjects_label, property, property_label);
-            break;
-
-        case 'getPropertySubject':
-        case 'getPropertySubjectByClass':
-        case 'getClassInstances':
-            var subjects = last_request.results.uri;
-            var property = last_request.slots.resolved_values.property;
-            var object = last_request.slots.resolved_values.entity;
-
-            var subjects_label = last_request.results.label;
-            var property_label = last_request.slots.actual_values.property;
-            var object = last_request.slots.resolved_values.entity;
-
-            reply += getFurtherDetailsSubjectQuery(subjects, subjects_label, property, property_label, object, object_label);
-            break;
-
-        case 'getImg':
-            var subject = last_request.slots.resolved_values.entity;
-            var property = last_request.slots.resolved_values.property;
-            var objects = last_request.results.uri;
-
-            var subject_label = last_request.slots.actual_values.entity;
-            var property_label = last_request.slots.actual_values.property;
-            var object_label = last_request.results.label;
-
-            var modified_objects = [];
-            for(var object of objects)
-                if(object.includes("//"))
-                    modified_objects.push("<"+object+">");
-                else
-                    modified_objects.push(object);
-
-            reply += getFurtherDetailsObjectQuery(subject, subject_label, property, property_label, modified_objects, object_label);
-            break;
-
-        case 'getLocation':
-            var subjects = last_request.slots.resolved_values.entity; 
-            var property = last_request.slots.resolved_values.property;
-            var object = last_request.results.uri[0]; //best location
-            if(object.includes("//"))
-                object = "<"+object+">";
-
-            var subjects_label = last_request.slots.resolved_values.entity;
-            var property_label = last_request.slots.actual_values.property;
-            var object_label = last_request.results.label[0]; //best location
-
-            reply += getFurtherDetailsObjectQuery(subjects, subjects_label, property, property_label, [object], object_label);
-            break;
-
-        
-        case 'getPropertyObject':
-          var subject = last_request.slots.resolved_values.entity;
-          var property = last_request.slots.resolved_values.property;
-          var objects = last_request.results.uri;
-
-          var subject_label = last_request.slots.actual_values.entity;
-          var property_label = last_request.slots.actual_values.property;
-          var object_label = last_request.results.label;
-
-          var modified_objects = [];
-          for(var object of objects)
-            if(object.includes("//"))
-                modified_objects.push("<"+object+">");
-            else
-                modified_objects.push(object);
-
-          reply += getFurtherDetailsObjectQuery(subject, subject_label, property, property_label, modified_objects, object_label);
-          break;
-
-        case 'getTripleVerification':
-          console.log(last_request)
-          var subject = last_request.slots.resolved_values.subject;
-          var property = last_request.slots.resolved_values.property;
-          var object = last_request.slots.resolved_values.object;
-
-          var subject_label = last_request.slots.actual_values.subject;
-          var property_label = last_request.slots.actual_values.property;
-          var object_label = last_request.slots.actual_values.object;
-
-          console.log(subject)
-          console.log(property)
-          console.log(object)
-
-          console.log(subject_label)
-          console.log(property_label)
-          console.log(object_label)
-
-
-          reply += getFurtherDetailsObjectQuery(subject, subject_label, property, property_label, [object], object_label);
-          break; 
-        case 'getDescription':
-        default:
-          reply = LanguageManager[intentName+"_noResults"](lang);
-
-      }
-
-      reply += " " + LanguageManager["more_questions"](lang);
-
-      return responseBuilder
-          .speak(reply)
-          .reprompt(LanguageManager["reprompt_more_questions"](lang))
-          .getResponse();
-    }
-    else{
-      var reply = LanguageManager[intentName+"_noResults"](lang) + " " + LanguageManager["more_questions"](lang);
-      return responseBuilder
-        .speak(reply)
-        .reprompt(LanguageManager["reprompt_more_questions"](lang))
-        .getResponse();
-    }
-  },
-};
 
 const getPropertyObject_Handler =  {
     canHandle(handlerInput) {
@@ -1000,33 +795,6 @@ const getAllResultsPreviousQuery_Handler = {
           .getResponse();
   },
 };
-/*
-const getQueryExplanation_Handler = {
-  canHandle(handlerInput) {
-      const request = handlerInput.requestEnvelope.request;
-      return request.type === 'IntentRequest' && request.intent.name === 'getAllResultsPreviousQuery' ;
-  },
-  handle(handlerInput) {
-    const request = handlerInput.requestEnvelope.request;
-    const responseBuilder = handlerInput.responseBuilder;
-    let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-
-      
-        var last_request = {
-            'intent' : '',
-            'sparql' : '',
-            'slots' : {
-                'actual_values': {},
-                'resolved_values' : {}
-            },
-            'results' : [],
-            'response' : '',
-            'success':false
-        };
-      
-};
-*/
-
 
 const SessionEndedHandler =  {
     canHandle(handlerInput) {
@@ -1103,87 +871,6 @@ function getDisplay(response, attributes, image_url, display_type){
   return response
 }
 
-
-
-
-//Queries execution
-/*
-var endpointName = 'wikidata'
-
-function getLocationPredicates(endpointName){
-  switch(endpointName){
-    case 'wikidata':
-      return ["wdt:P276", "wdt:P6375", "wdt:P131", "wdt:P17"];
-  }
-
-  return [];
-}
-
-function getInstancesPredicates(endpointName){
-  switch(endpointName){
-    case 'wikidata':
-      return ["wdt:P31", "wdt:P39", "wdt:P106"];
-  }
-
-  return [];
-}
-
-function getImgPredicates(endpointName){
-  switch(endpointName){
-    case 'wikidata':
-      return ["wdt:P18"];
-  }
-
-  return [];
-}
-
-function runSelectQuery(endpointName, sparql){
-  switch(endpointName){
-    case 'wikidata':
-      return wikidata_runSelectQuery(sparql);
-  }
-
-  return null;
-}
-
-function runAskQuery(endpointName, sparql){
-  switch(endpointName){
-    case 'wikidata':
-      return wikidata_runAskQuery(sparql);
-  }
-
-  return null;
-}
-
-function wikidata_runSelectQuery(sparql){
-    console.log(sparql);
-  const url = wbk.sparqlQuery(sparql);
-
-    var request = require('sync-request');
-    var res = request('GET', url, {
-        headers: {
-            'user-agent': 'example-user-agent',
-        },
-    });
-
-    var b = JSON.parse(res.getBody());
-    return b.results.bindings;
-}
-
-function wikidata_runAskQuery(sparql){
-  const url = wbk.sparqlQuery(sparql);
-
-    var request = require('sync-request');
-    var res = request('GET', url, {
-        headers: {
-            'user-agent': 'example-user-agent',
-        },
-    });
-
-    var b = JSON.parse(res.getBody());
-    return b.boolean;
-}*/
-
 function getAllResults(results_obj){
   if(results_obj==null)
     return null;
@@ -1232,329 +919,19 @@ function trimResults(results, limit = limitResults){
     return trimmed_results;
 }
 
-function getFurtherDetailsSubjectQuery(subjects, subjects_label, property, property_label, object = null, object_label = null){
-    var response = '';
-
-    var property_without_prefix = property.split(":")[1];
-    if(property_without_prefix.includes("//")){
-        var parts = property_without_prefix.split("/");
-        property_without_prefix = parts[parts.length-1];
-    }
-
-    var modified_subjects = [];
-    for(var subject of subjects)
-        modified_subjects.push("<"+subject+">");
-
-    var limit = 20;
-    if(modified_subjects.length<limit)
-        limit = modified_subjects.length;
-
-    var sparql = "";
-
-    for(var subj_counter=0; subj_counter<limit; subj_counter++){
-        var subject = modified_subjects[subj_counter];
-
-        var sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-            "SELECT DISTINCT * WHERE {"+
-            "VALUES ?subject {"+subject+"} " +
-            "?subject p:"+property_without_prefix+" ?st. ";
-        if(object!==null){
-            sparql+="VALUES ?obj {"+object+"} " +
-            "?st ps:" + property_without_prefix+" ?obj. ";
-        }
-        sparql += "OPTIONAL{?st pq:P580 ?start_date.} "+ //start time
-            "OPTIONAL{?st pq:P582 ?end_date.} "+ //end time
-            "OPTIONAL{?st pq:P585 ?date.} "+ //point in time
-
-            "OPTIONAL{?subject rdfs:label ?sub_label. FILTER(lang(?sub_label)='"+lang+"')}" +
-       "}";
-
-        console.log(sparql);
-        var results = custom_functions.runSelectQuery(sparql);
-        var count = Object.keys(results).length;
-        console.log(results)
-            
-        if(count > 0){
-            for(var i=0; i<count; i++){ 
-                if(anyQualifierDetail(results[i])){    
-                    var subject_label = results[i].subject.value;
-                    if('sub_label' in results[i])
-                        subject_label = results[i].sub_label.value;
-
-                    response += LanguageManager["getFurtherDetails_subject"](lang, subject_label);
-    
-                    response += retrieveQualifierDetails(results[i]);
-                }
-            }     
-        }
-
-        sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-            "SELECT DISTINCT * WHERE {"+
-            "VALUES ?subject {"+subject+"} "+
-            "?subject p:"+property_without_prefix+" ?st. ";
-        if(object!==null){
-            sparql+="VALUES ?obj {"+object+"} "+
-            "?st ps:" + property_without_prefix+" ?obj. " ;
-        }
-        sparql+= "?st prov:wasDerivedFrom ?ref_node. " + 
-            "OPTIONAL{?ref_node pr:P813|pr:P577 ?ref_date.} "+ // retrieved | pub_date
-            "OPTIONAL{?ref_node pr:P1433|pr:P248|pr:P3452 ?ref_source. ?ref_source rdfs:label ?ref_label. FILTER(lang(?ref_label)='"+lang+"')} "+ // published in | stated in | inferred from
-            "OPTIONAL{?ref_node pr:P1640 ?ref_curator.} "+ // curator
-            //"OPTIONAL{?ref_node pr:P854 ?ref_url.}"+ // ref_URL
-
-            "OPTIONAL{?subject rdfs:label ?sub_label. FILTER(lang(?sub_label)='"+lang+"')}" +
-       "}";
-
-       console.log(sparql);
-        results = custom_functions.runSelectQuery(sparql);
-        count = Object.keys(results).length;
-        console.log(results)
-            
-        if(count > 0){
-            for(var i=0; i<count; i++){ 
-                if(anyReferenceDetail(results[i])){    
-                    var subject_label = results[i].subject.value;
-                    if('sub_label' in results[i])
-                        subject_label = results[i].sub_label.value;
-
-                    response += LanguageManager["getFurtherDetails_subject"](lang, subject_label);
-    
-                    response += retrieveReferenceDetails(results[i]);
-                }
-            }     
-        }
-    }
-
-    if(response==="")
-        response = LanguageManager["getFurtherDetails_noFurtherDetails"](lang);
-
-    return response;
-}
-
-function getFurtherDetailsObjectQuery(subject, subject_label, property, property_label, objects, object_label){
-
-    var response = "";
-
-    var property_without_prefix = property.split(":")[1];
-    if(property_without_prefix.includes("//")){
-        var parts = property_without_prefix.split("/");
-        property_without_prefix = parts[parts.length-1];
-    }
-    console.log(property_without_prefix)
-
-    var limit = 20;
-    if(objects.length<limit)
-        limit = objects.length;
-
-    var sparql = "";
-
-    for(var obj_counter=0; obj_counter<limit; obj_counter++){
-        var object = objects[obj_counter];
-
-        if(object.includes("//")||object.includes("wd:"))
-            sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-                "SELECT DISTINCT * WHERE {"+
-                "VALUES ?obj {"+object+"} "+
-                subject +" p:"+property_without_prefix+" ?st. " + 
-                "?st ps:" + property_without_prefix+" ?obj. " +
-
-                "OPTIONAL{?st pq:P580 ?start_date.} "+ //start time
-                "OPTIONAL{?st pq:P582 ?end_date.} "+ //end time
-                "OPTIONAL{?st pq:P585 ?date.} "+ //point in time
-
-                "OPTIONAL{?obj rdfs:label ?obj_label. FILTER(lang(?obj_label)='"+lang+"')} " + 
-           "}";
-        else if(isNaN(object)){
-            sparql="SELECT DISTINCT * WHERE {"+
-                subject +" p:"+property_without_prefix+" ?st. " + 
-                "?st ps:" + property_without_prefix+" ?obj. " +
-                "FILTER(contains(?obj, '"+object+"')) "+
-
-                "OPTIONAL{?st pq:P580 ?start_date.} "+ //start time
-                "OPTIONAL{?st pq:P582 ?end_date.} "+ //end time
-                "OPTIONAL{?st pq:P585 ?date.} "+ //point in time
-           "}";
-        }
-        else {
-            sparql="SELECT DISTINCT * WHERE {"+
-                subject +" p:"+property_without_prefix+" ?st. " + 
-                "?st ps:" + property_without_prefix+" ?obj. " +
-                "FILTER(?obj="+object+")"+
-
-                "OPTIONAL{?st pq:P580 ?start_date.} "+ //start time
-                "OPTIONAL{?st pq:P582 ?end_date.} "+ //end time
-                "OPTIONAL{?st pq:P585 ?date.} "+ //point in time
-           "}";
-        }
-
-        console.log(sparql);
-        var results = custom_functions.runSelectQuery(sparql);
-        var count = Object.keys(results).length;
-        console.log(results)
-            
-        if(count > 0){
-            for(var i=0; i<count; i++){ 
-                if(anyQualifierDetail(results[i])){    
-                    var object_label = results[i].obj.value;
-                    if('obj_label' in results[i])
-                        object_label = results[i].obj_label.value;
-
-                    response += LanguageManager["getQualifierDetails_triple"](lang, subject_label, property_label, object_label);
-    
-                    response += retrieveQualifierDetails(results[i]);
-                }
-            }     
-        }
-console.log("object" + object)
-       if(object.includes("//"))
-            sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-                "SELECT DISTINCT * WHERE {"+
-                "VALUES ?obj {"+object+"} "+
-                subject +" p:"+property_without_prefix+" ?st. " + 
-                "?st ps:" + property_without_prefix+" ?obj. " +
-
-                "?st prov:wasDerivedFrom ?ref_node. " + 
-                "OPTIONAL{?ref_node pr:P813|pr:P577 ?ref_date.} "+ // retrieved | pub_date
-                "OPTIONAL{?ref_node pr:P1433|pr:P248|pr:P3452 ?ref_source. ?ref_source rdfs:label ?ref_label. FILTER(lang(?ref_label)='"+lang+"')} "+ // published in | stated in | inferred from
-                "OPTIONAL{?ref_node pr:P1640 ?ref_curator.} "+ // curator
-                //"OPTIONAL{?ref_node pr:P854 ?ref_url.}"+ // ref_URL
-
-                //"OPTIONAL{"+subject+" rdfs:label ?sub_label. FILTER(lang(?sub_label)='"+lang+"')} " + 
-                //"OPTIONAL{"+property+" rdfs:label ?prop_label. FILTER(lang(?prop_label)='"+lang+"')} " + 
-                "OPTIONAL{?obj rdfs:label ?obj_label. FILTER(lang(?obj_label)='"+lang+"')} " + 
-           "}";
-        else if(isNaN(object)){
-            sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-                "SELECT DISTINCT * WHERE {"+
-                subject +" p:"+property_without_prefix+" ?st. " + 
-                "?st ps:" + property_without_prefix+" ?obj. " +
-                "FILTER(contains(?obj, '"+object+"')) "+
-
-                "?st prov:wasDerivedFrom ?ref_node. " + 
-                "OPTIONAL{?ref_node pr:P813|pr:P577 ?ref_date.} "+ // retrieved | pub_date
-                "OPTIONAL{?ref_node pr:P1433|pr:P248|pr:P3452 ?ref_source. ?ref_source rdfs:label ?ref_label. FILTER(lang(?ref_label)='"+lang+"')} "+ // published in | stated in | inferred from
-                "OPTIONAL{?ref_node pr:P1640 ?ref_curator.} "+ // curator
-                //"OPTIONAL{?ref_node pr:P854 ?ref_url.}"+ // ref_URL
-
-                //"OPTIONAL{"+subject+" rdfs:label ?sub_label. FILTER(lang(?sub_label)='"+lang+"')} " + 
-                //"OPTIONAL{"+property+" rdfs:label ?prop_label. FILTER(lang(?prop_label)='"+lang+"')} " + 
-                "OPTIONAL{?obj rdfs:label ?obj_label. FILTER(lang(?obj_label)='"+lang+"')} " + 
-           "}";
-        }
-        else {
-            sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-                "SELECT DISTINCT * WHERE {"+
-                subject +" p:"+property_without_prefix+" ?st. " + 
-                "?st ps:" + property_without_prefix+" ?obj. " +
-                "FILTER(?obj="+object+")"+
-
-                "?st prov:wasDerivedFrom ?ref_node. " + 
-                "OPTIONAL{?ref_node pr:P813|pr:P577 ?ref_date.} "+ // retrieved | pub_date
-                "OPTIONAL{?ref_node pr:P1433|pr:P248|pr:P3452 ?ref_source. ?ref_source rdfs:label ?ref_label. FILTER(lang(?ref_label)='"+lang+"')} "+ // published in | stated in | inferred from
-                "OPTIONAL{?ref_node pr:P1640 ?ref_curator.} "+ // curator
-                //"OPTIONAL{?ref_node pr:P854 ?ref_url.}"+ // ref_URL
-
-                //"OPTIONAL{"+subject+" rdfs:label ?sub_label. FILTER(lang(?sub_label)='"+lang+"')} " + 
-                //"OPTIONAL{"+property+" rdfs:label ?prop_label. FILTER(lang(?prop_label)='"+lang+"')} " + 
-                "OPTIONAL{?obj rdfs:label ?obj_label. FILTER(lang(?obj_label)='"+lang+"')} " + 
-           "}";
-        }
-
-
-       console.log(sparql);
-        results = custom_functions.runSelectQuery(sparql);
-        count = Object.keys(results).length;
-        console.log(results)
-            
-        if(count > 0){
-            for(var i=0; i<count; i++){ 
-                if(anyReferenceDetail(results[i])){    
-                    var object_label = results[i].obj.value;
-                    if('obj_label' in results[i])
-                        object_label = results[i].obj_label.value;
-
-                    response += LanguageManager["getReferenceDetails_triple"](lang, subject_label, property_label, object_label);
-    
-                    response += retrieveReferenceDetails(results[i]);
-                }
-            }     
-        }
-
-    }
-
-    if(response==="")
-        response = LanguageManager["getFurtherDetails_noFurtherDetails"](lang);
-
-    return response;
-}
-
-function anyQualifierDetail(results){
-  var furtherDetails = false;
-
-  var details = ['start_date', 'end_date', 'date'];
-
-  for(var detail of details){
-    if(detail in results){
-      return furtherDetails = true;
-    }
-  }
-
-  return furtherDetails;
-}
-
-
-function anyReferenceDetail(results){
-  var furtherDetails = false;
-
-  var details = ['ref_date', 'ref_source', 'ref_curator'];
-
-  for(var detail of details){
-    if(detail in results){
-      return furtherDetails = true;
-    }
-  }
-
-  return furtherDetails;
-}
-
-function retrieveQualifierDetails(results){
-  var response = '';
-
-  if('start_date' in results)
-    response += LanguageManager["getFurtherDetails_startDate"](lang, new Date(results.start_date.value).getFullYear());
-  if('end_date' in results)
-    response += LanguageManager["getFurtherDetails_endDate"](lang, new Date(results.end_date.value).getFullYear());
-  if('date' in results)
-    response += LanguageManager["getFurtherDetails_date"](lang, new Date(results.date.value).getFullYear());
-  
-  return response;
-}
-
-function retrieveReferenceDetails(results){
-  var response = '';
-
-  if('ref_date' in results)
-    response += LanguageManager["getFurtherDetails_pubDate"](lang, new Date(results.ref_date.value).toLocaleDateString());
-  if('ref_label' in results)
-    response += LanguageManager["getFurtherDetails_refSource"](lang, results.ref_label.value);
-  else if('ref_source' in results)
-    response += LanguageManager["getFurtherDetails_refSource"](lang, results.ref_source.value);
-  if('ref_curator' in results)
-    response += LanguageManager["getFurtherDetails_refCurator"](lang, results.ref_curator.value);
-  
-  return response;
-}
 
 function getNumericFilterQuery(properties, symbol_label, value){
   //create query
   var symbol = LanguageManager["resolveAsMathSymbol"](lang, symbol_label);
 
+  var label_predicates = custom_functions.getLabelPredicates();
+  var label_predicates_as_string = label_predicates.join(" ");
   for(var i=0; i<properties.length; i++){
-    var sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-    "SELECT DISTINCT ?result ?label WHERE {"+
+    var sparql="SELECT DISTINCT ?result ?label WHERE {"+
+    "VALUES ?property_label {"+label_predicates_as_string+"} "+
     "?result "+properties[i]+ " ?value." + 
     "FILTER(?value "+symbol+" "+value+" )" + 
-    "OPTIONAL{?result rdfs:label ?label. FILTER(lang(?label)='"+lang+"')}}";
+    "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
 
     //run query
     var results = custom_functions.runSelectQuery(sparql);
@@ -1586,12 +963,15 @@ function getDateFilterQuery(properties, symbol_label, value){
   //create query
   var symbol = LanguageManager["resolveAsMathSymbol"](lang, symbol_label);
 
+  var label_predicates = custom_functions.getLabelPredicates();
+  var label_predicates_as_string = label_predicates.join(" ");
+
   for(var i=0; i<properties.length; i++){
-    var sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-      "SELECT DISTINCT ?result ?label WHERE {"+
+    var sparql="SELECT DISTINCT ?result ?label WHERE {"+
+      "VALUES ?property_label {"+label_predicates_as_string+"} "+
       "?result "+properties[i]+ " ?value." + 
       "FILTER(year(?value) "+symbol+" "+value+" )" + 
-      "OPTIONAL{?result rdfs:label ?label. FILTER(lang(?label)='"+lang+"')}}";
+      "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
 
     //run query
     var results = custom_functions.runSelectQuery(sparql)
@@ -1629,6 +1009,7 @@ function getDateFilterQuery(properties, symbol_label, value){
 
     storeBackEndLastIntent(parameters, sparql, results, response, false);  
     return response;
+  }
 
 }
 
@@ -1641,15 +1022,18 @@ function getNumericFilterByClassQuery(entities, properties, symbol_label, value)
   var instances_predicates = custom_functions.getInstancesPredicates();
   var instances_predicates_as_string = instances_predicates.join(" ");
 
+  var label_predicates = custom_functions.getLabelPredicates();
+  var label_predicates_as_string = label_predicates.join(" ");
+
   for(var i=0; i<entities.length; i++){
     for(var j=0; j<properties.length; j++){
-      sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-      "SELECT DISTINCT ?result ?label ?property_instance WHERE {"+
+      sparql="SELECT DISTINCT ?result ?label ?property_instance WHERE {"+
       "VALUES ?property_instance {"+instances_predicates_as_string+"} "+
+      "VALUES ?property_label {"+label_predicates_as_string+"} "+
       "?result ?property_instance "+entities[i]+"." + 
       "?result "+properties[j]+ " ?value." + 
       "FILTER(?value "+symbol+" "+value+" )" + 
-      "OPTIONAL{?result rdfs:label ?label. FILTER(lang(?label)='"+lang+"')}}";
+      "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
 
       //run query
       var results = custom_functions.runSelectQuery(sparql)
@@ -1687,15 +1071,18 @@ function getDateFilterByClassQuery(entities, properties, symbol_label, value){
   var instances_predicates = custom_functions.getInstancesPredicates();
   var instances_predicates_as_string = instances_predicates.join(" ");
 
+  var label_predicates = custom_functions.getLabelPredicates();
+  var label_predicates_as_string = label_predicates.join(" ");
+
   for(var i=0; i<entities.length; i++){
     for(var j=0; j<properties.length; j++){
-      sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-      "SELECT DISTINCT ?result ?label ?property_instance WHERE {"+
+      sparql="SELECT DISTINCT ?result ?label ?property_instance WHERE {"+
       "VALUES ?property_instance {"+instances_predicates_as_string+"} "+
+      "VALUES ?property_label {"+label_predicates_as_string+"} "+
       "?result ?property_instance "+entities[i]+"." + 
       "?result "+property+ " ?value." + 
       "FILTER(year(?value) "+symbol+" "+value+" )" + 
-      "OPTIONAL{?result rdfs:label ?label. FILTER(lang(?label)='"+lang+"')}}";
+      "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
 
       //run query
       results = custom_functions.runSelectQuery(sparql);
@@ -1741,13 +1128,16 @@ function getPropertyObjectQuery(entities, properties){
   var sparql = '';
   var results = null;
 
+  var label_predicates = custom_functions.getLabelPredicates();
+  var label_predicates_as_string = label_predicates.join(" ");
+
   for(var i=0; i<entities.length; i++){
     for(var j=0; j<properties.length; j++){
       //create query
-      sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-        "SELECT ?result ?label WHERE {"+
+      sparql="SELECT ?result ?label WHERE {"+
+        "VALUES ?property_label {"+label_predicates_as_string+"} "+
         entities[i]+"  "+properties[j]+" ?result. " + 
-        "OPTIONAL{?result rdfs:label ?label. FILTER(lang(?label)='"+lang+"')}}";
+        "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
 
       //run query
       results = custom_functions.runSelectQuery(sparql);
@@ -1832,13 +1222,16 @@ function getTripleVerificationQuery(subjects, properties, objects){
 function getPropertySubjectQuery(entities, properties){
   var sparql = '';
   var results = null;
+
+  var label_predicates = custom_functions.getLabelPredicates();
+  var label_predicates_as_string = label_predicates.join(" ");
   for(var i=0; i<entities.length; i++){
     for(var j=0; j<properties.length; j++){
       //create query
-      sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-        "SELECT ?result ?label WHERE {"+
+      sparql="SELECT ?result ?label WHERE {"+
+        "VALUES ?property_label {"+label_predicates_as_string+"} "+
         "?result "+properties[j]+" "+entities[i]+". "+
-        "OPTIONAL{?result rdfs:label ?label. FILTER(lang(?label)='"+lang+"')}}";
+        "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
 
       //run query
       results = custom_functions.runSelectQuery(sparql)
@@ -1883,14 +1276,17 @@ function getPropertySubjectByClassQuery(classes, properties, entities){
   var instances_predicates = custom_functions.getInstancesPredicates();
   var instances_predicates_as_string = instances_predicates.join(" ");
 
+  var label_predicates = custom_functions.getLabelPredicates();
+  var label_predicates_as_string = label_predicates.join(" ");
+
   for(var i=0; i<classes.length; i++){
     for(var j=0; j<properties.length; j++){
-      sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-      "SELECT DISTINCT ?result ?label ?property_instance WHERE {"+
+      sparql="SELECT DISTINCT ?result ?label ?property_instance WHERE {"+
       "VALUES ?property_instance {"+instances_predicates_as_string+"} "+
+      "VALUES ?property_label {"+label_predicates_as_string+"} "+
       "?result ?property_instance "+classes[i]+"; " + 
                properties[j]+" "+entities[0]+". "+
-      "OPTIONAL{?result rdfs:label ?label. FILTER(lang(?label)='"+lang+"')}}";
+      "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
 
       //run query
       results = custom_functions.runSelectQuery(sparql);
@@ -1937,17 +1333,21 @@ function getSuperlativeQuery(entities, properties, superlative){
 
   var instances_predicates = custom_functions.getInstancesPredicates();
   var instances_predicates_as_string = instances_predicates.join(" ");
+
+  var label_predicates = custom_functions.getLabelPredicates();
+  var label_predicates_as_string = label_predicates.join(" ");
+
   for(var i=0; i<entities.length; i++){
     for(var j=0; j<properties.length; j++){
       //create query
-      sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-              "SELECT ?result ?label ?property_instance WHERE{"+
+      sparql="SELECT ?result ?label ?property_instance WHERE{"+
               "VALUES ?class {"+entities[i]+"} "+
               "VALUES ?property {"+properties[j]+"} "+
               "VALUES ?property_instance {"+instances_predicates_as_string+"} "+
+              "VALUES ?property_label {"+label_predicates_as_string+"} "+
               "?result ?property_instance ?class. "+
               "?result ?property ?value. "+
-              "OPTIONAL{?result rdfs:label ?label. FILTER(lang(?label)='"+lang+"')}}" + 
+              "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}" + 
               "ORDER BY "+order+"(?value)"+
               "LIMIT 1";
 
@@ -2073,13 +1473,15 @@ function getClassInstancesQuery(entities){
     var instances_predicates = custom_functions.getInstancesPredicates();
     var instances_predicates_as_string = instances_predicates.join(" ");
 
+    var label_predicates = custom_functions.getLabelPredicates();
+    var label_predicates_as_string = label_predicates.join(" ");
     for(var i=0; i<entities.length; i++){
       //create query
-      sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-      "SELECT ?result ?label ?property_instance WHERE {"+
+      sparql="SELECT ?result ?label ?property_instance WHERE {"+
       "VALUES ?property_instance {"+instances_predicates_as_string+"} "+
+      "VALUES ?property_label {"+label_predicates_as_string+"} "+
       "?result  ?property_instance "+entities[i]+". "+
-      "OPTIONAL{?result rdfs:label ?label. FILTER(lang(?label)='"+lang+"')}} "+
+      "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}} "+
       "LIMIT 1000";
 
         //run query
@@ -2120,15 +1522,16 @@ function getLocationQuery(entities){
   var results = null;
 
   var location_predicates = custom_functions.getLocationPredicates();
-    var location_predicates_as_string = location_predicates.join(" ");
-
+  var location_predicates_as_string = location_predicates.join(" ");
+  var label_predicates = custom_functions.getLabelPredicates();
+  var label_predicates_as_string = label_predicates.join(" ");
   for(var i=0; i<entities.length; i++){
     //create query
-    sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-      "SELECT ?result ?label ?property_location WHERE { " + 
+    sparql="SELECT ?result ?label ?property_location WHERE { " + 
       "VALUES ?property_location {"+location_predicates_as_string+"} "+
+      "VALUES ?property_label {"+label_predicates_as_string+"} "+
       entities[i]+" ?property_location ?result." + 
-      "OPTIONAL{?result rdfs:label ?label. FILTER(lang(?label)='"+lang+"')}}" + 
+      "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}" + 
       "ORDER BY DESC(?result)"; 
 
       //run query
@@ -3165,6 +2568,21 @@ LanguageManager.getPropertyObject_request = function(current_lang, entity, prope
   return response;
 }
 
+LanguageManager.getDescription_request = function(current_lang, entity){
+  var response; 
+  switch(current_lang){
+    case "it":
+      response = "Sto cercando la descrizion relativa all'entità " + entity +".";
+      break;
+    case "en":
+    default:
+      response = 'I looked for the description of ' + entity +".";
+      break;
+  }
+    response = removeSpecialCharacters(response);
+  return response;
+}
+
 LanguageManager.reprompt = function(current_lang){
   var response; 
 
@@ -3364,9 +2782,7 @@ exports.handler = skillBuilder
         getTripleVerification_Handler,
         LaunchRequest_Handler, 
         SessionEndedHandler,
-        getAllResultsPreviousQuery_Handler,
-        getFurtherDetails_Handler,
-        test_Handler
+        getAllResultsPreviousQuery_Handler
     )
     .addErrorHandlers(ErrorHandler)
     .addRequestInterceptors(InitMemoryAttributesInterceptor)

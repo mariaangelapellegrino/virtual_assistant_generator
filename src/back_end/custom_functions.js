@@ -4,8 +4,6 @@ class custom_functions{
         require("./conf.json")
         this.conf_file = JSON.parse(fs.readFileSync('./conf.json').toString());
 
-        console.log(this.conf_file)
-
         this.entities = {}
         if("entity" in this.conf_file)
             this.entities = this.conf_file["entity"]
@@ -70,13 +68,6 @@ class custom_functions{
     }
 
     runSelectQuery (sparql){
-        /*const wbk = require('wikibase-sdk')({
-            instance: 'https://www.wikidata.org',
-            sparqlEndpoint: 'https://query.wikidata.org/sparql'
-        });
-
-        const url = wbk.sparqlQuery(sparql);
-        */
         const url = this.endpoint+"?query="+ encodeURIComponent(sparql) +"&format=json";
         console.log(url)
 
@@ -92,13 +83,6 @@ class custom_functions{
     }
 
     runAskQuery (sparql){
-        /*const wbk = require('wikibase-sdk')({
-            instance: 'https://www.wikidata.org',
-            sparqlEndpoint: 'https://query.wikidata.org/sparql'
-        });
-
-        const url = wbk.sparqlQuery(sparql);
-        */
         const url = this.endpoint+"?query="+ encodeURIComponent(sparql) +"&format=json";
 
         var request = require('sync-request');
@@ -126,6 +110,10 @@ class custom_functions{
 
     getDescriptionPredicates (){
         return this.getProperty("description")
+    }
+
+    getLabelPredicates(){
+        return this.getProperty("label")
     }
 }
 

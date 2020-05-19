@@ -1,6 +1,13 @@
 from SPARQLWrapper import SPARQLWrapper
 import json
 
+class AbstractValidator:
+	def __init__(self):
+		pass
+
+	def validate(self, conf):
+		pass
+
 class Validator:
 	def __init__(self):
 		self.mandatory_fields = ["invocation_name", "lang", "intents", "endpoint"] #, "result_limit"]
@@ -9,11 +16,15 @@ class Validator:
 			'getDescription' : ['description'],
 			'getLocation' : ['location'],
 			'getImg' : ['img'],
-			'getClassInstancesQuery' : ['instanceOf'],
+			'getClassInstancesQuery' : ['instanceOf', 'label'],
+			'getNumericFilterQuery' : ['label'],
 			'getNumericFilterByClassQuery' : ['instanceOf'],
-			'getDateFilterByClassQuery' : ['instanceOf'],
-			'getPropertySubjectByClassQuery' : ['instanceOf'],
-			'getSuperlativeQuery' : ['instanceOf']
+			'getDateFilterQuery' : ['label'],
+			'getDateFilterByClassQuery' : ['instanceOf', 'label'],
+			'getPropertySubjectByClassQuery' : ['instanceOf', 'label'],
+			'getSuperlativeQuery' : ['instanceOf', 'label'],
+			'getPropertyObjectQuery' : ['label'],
+			'getPropertySubjectQuery' : ['label']
 		}
 
 	def validate(self, conf):
