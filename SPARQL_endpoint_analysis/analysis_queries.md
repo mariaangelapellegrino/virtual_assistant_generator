@@ -1,8 +1,8 @@
-CLASSES
--------
+# CLASSES
 
-# used classes queries
+### used classes queries
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
 SELECT DISTINCT ?class ?label WHERE { 
 	?s a ?class. 
 	OPTIONAL{
@@ -13,10 +13,11 @@ SELECT DISTINCT ?class ?label WHERE {
 	}
 }
 
-# owl:Classes
+### owl:Classes
 PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+
 SELECT ?s ?label WHERE { 
 	?s rdf:type owl:Class. 
 	OPTIONAL{
@@ -27,8 +28,9 @@ SELECT ?s ?label WHERE {
 	}
 }
 
-# skos:Concept
+### skos:Concept
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+
 SELECT ?concept ?label WHERE {
   ?concept a skos:Concept.
   OPTIONAL{
@@ -38,7 +40,7 @@ SELECT ?concept ?label WHERE {
 	}
 } 
 
-# rdfs:Class
+### rdfs:Class
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT DISTINCT ?class ?label WHERE { 
@@ -50,14 +52,12 @@ SELECT DISTINCT ?class ?label WHERE {
 		}
 	}
 } 
-
-
  
-PROPERTIES
-----------
+# PROPERTIES
 
-# used properties
+### used properties
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
 SELECT DISTINCT ?p ?label WHERE { 
 	?s ?p ?o. 
 	OPTIONAL{
@@ -68,10 +68,11 @@ SELECT DISTINCT ?p ?label WHERE {
 	}
 } 
 
-# owl:datatype properties
+### owl:datatype properties
 PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+
 SELECT ?p ?label WHERE { 
 	?p rdf:type owl:DatatypeProperty. 
 	OPTIONAL{
@@ -82,10 +83,11 @@ SELECT ?p ?label WHERE {
 	}
 }
 
-# owl:object properties
+### owl:object properties
 PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+
 SELECT ?p ?label WHERE { 
 	?p rdf:type owl:ObjectProperty. 
 	OPTIONAL{
@@ -96,7 +98,7 @@ SELECT ?p ?label WHERE {
 	}
 }
 
-# rdf:property
+### rdf:property
 PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 SELECT DISTINCT ?p ?label WHERE { 
@@ -109,12 +111,9 @@ SELECT DISTINCT ?p ?label WHERE {
 	} 
 }
 
+# RESOURCES
 
-
-RESOURCES
----------
-
-# triple subjects
+### triple subjects
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT DISTINCT ?s ?label WHERE { 
 	?s ?p ?o. 
