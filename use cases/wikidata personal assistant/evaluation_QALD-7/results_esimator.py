@@ -5,11 +5,6 @@ def wikidata_comparison():
 	system_replies = "wikidata_skill_replies.json"
 	compare_results(gold_standard, system_replies)
 	
-def dbpedia_comparison():
-	gold_standard = "qald-9-test-en-wikidata.json"
-	system_replies = "dbpedia_skill_replies.json"
-	compare_results(gold_standard, system_replies)
-
 def compare_results(gold_standard, system_replies):
 	# it reads gold standard file and stores the correct replies
 	with open(gold_standard, 'r', encoding = "utf-8") as json_file:

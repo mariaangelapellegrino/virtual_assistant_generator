@@ -1,13 +1,5 @@
 import json
 
-def wikidata_comparison():
-	gold_standard = "qald-7-train-en-wikidata.json"
-	system_replies = "wikidata_skill_replies.json"
-	
-	print("WIKIDATA test on QALD-7 training set")
-	
-	compare_results(gold_standard, system_replies)
-	
 def dbpedia_comparison():
 	gold_standard = "qald-9-test-multilingual.json"
 	system_replies = "dbpedia_skill_replies.json"
