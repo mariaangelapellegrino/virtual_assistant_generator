@@ -1,0 +1,210 @@
+{
+	
+	"invocation_name" : "wordnet personal assistant",
+	"intents" : ["getPropertySubject", "getPropertyObject", "getDescription"],
+	"lang" : "en",
+	"result_limit" : 5,
+	"endpoint" : "http://wordnet.rkbexplorer.com/sparql/",	
+
+	"entity" : {
+        "living thing": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-living_thing-noun-1>"
+            ]
+        },
+        "organism": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-organism-noun-1>"
+            ]
+        },
+        "benthos": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-benthos-noun-2>"
+            ]
+        },
+        "heterotroph": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-heterotroph-noun-1>"
+            ]
+        },
+        "life": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-life-noun-11>"
+            ]
+        },
+        "biont": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-biont-noun-1>"
+            ]
+        },
+        "cell": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-cell-noun-2>"
+            ]
+        },
+        "causal agent": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-causal_agent-noun-1>"
+            ]
+        },
+        "person": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-person-noun-1>"
+            ]
+        },
+        "animal": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-animal-noun-1>"
+            ]
+        },
+        "plant": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-plant-noun-2>"
+            ]
+        },
+        "object": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-object-noun-1>"
+            ]
+        },
+        "natural object": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-natural_object-noun-1>"
+            ]
+        },
+        "substance": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-substance-noun-1>"
+            ]
+        },
+        "food": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-food-noun-1>"
+            ]
+        },
+        "artifact": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-artifact-noun-1>"
+            ]
+        },
+        "article": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-article-noun-2>"
+            ]
+        },
+        "psychological feature": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-psychological_feature-noun-1>"
+            ]
+        },
+        "abstraction": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-abstraction-noun-6>"
+            ]
+        },
+        "cognition": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-cognition-noun-1>"
+            ]
+        },
+        "motivation": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-motivation-noun-1>"
+            ]
+        },
+        "feeling": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-feeling-noun-1>"
+            ]
+        },
+        "location": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-location-noun-1>"
+            ]
+        },
+        "shape": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-shape-noun-2>"
+            ]
+        },
+        "time": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-time-noun-5>"
+            ]
+        },
+        "space": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-space-noun-1>"
+            ]
+        },
+        "absolute space": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-absolute_space-noun-1>"
+            ]
+        },
+        "phase space": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-phase_space-noun-1>"
+            ]
+        },
+        "state": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-state-noun-4>"
+            ]
+        },
+        "event": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-event-noun-1>"
+            ]
+        },
+        "act": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-act-noun-2>"
+            ]
+        },
+        "group": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-group-noun-1>"
+            ]
+        },
+        "possession": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-possession-noun-2>"
+            ]
+        },
+        "attribute": {
+            "urls": [
+                "<http://wordnet.rkbexplorer.com/id/synset-attribute-noun-2>"
+            ]
+        }   
+    },
+	"property" : {
+		"meronym" : {
+			"urls" : ["<http://www.w3.org/2006/03/wn/wn20/schema/memberMeronymOf>"]
+		},
+		"antonym" : {
+			"urls" : ["<http://www.w3.org/2006/03/wn/wn20/schema/antonymOf>"]
+		},
+		"similar to": {
+			"urls": ["<http://www.w3.org/2006/03/wn/wn20/schema/similarTo>"]
+		},
+		"hyponym" : {
+			"urls" : ["<http://www.w3.org/2006/03/wn/wn20/schema/hyponymOf>"]
+		},
+		"description" : {
+			"urls" : ["<http://www.w3.org/2006/03/wn/wn20/schema/gloss>"]
+		},
+        "gloss" : {
+            "urls" : ["<http://www.w3.org/2006/03/wn/wn20/schema/gloss>"]
+        },
+        "definition" : {
+            "urls" : ["<http://www.w3.org/2006/03/wn/wn20/schema/gloss>"]
+        },
+        "derivationally related": {
+            "urls" : ["<http://www.w3.org/2006/03/wn/wn20/schema/derivationallyRelated>"]
+        },
+        "classified by topic ": {
+            "urls" : ["<http://www.w3.org/2006/03/wn/wn20/schema/classifiedByTopic>"]
+        }
+	}
+}

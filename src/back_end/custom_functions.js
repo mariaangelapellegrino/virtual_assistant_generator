@@ -101,7 +101,7 @@ class custom_functions{
     }
 
     getInstancesPredicates (){
-        return this.getProperty("instanceOf")
+        return this.getProperty("instanceof")
     }
 
     getImgPredicates (){

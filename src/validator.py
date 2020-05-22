@@ -16,15 +16,15 @@ class Validator:
 			'getDescription' : ['description'],
 			'getLocation' : ['location'],
 			'getImg' : ['img'],
-			'getClassInstancesQuery' : ['instanceOf', 'label'],
-			'getNumericFilterQuery' : ['label'],
-			'getNumericFilterByClassQuery' : ['instanceOf'],
-			'getDateFilterQuery' : ['label'],
-			'getDateFilterByClassQuery' : ['instanceOf', 'label'],
-			'getPropertySubjectByClassQuery' : ['instanceOf', 'label'],
-			'getSuperlativeQuery' : ['instanceOf', 'label'],
-			'getPropertyObjectQuery' : ['label'],
-			'getPropertySubjectQuery' : ['label']
+			'getClassInstances' : ['instanceof', 'label'],
+			'getNumericFilter' : ['label'],
+			'getNumericFilterByClass' : ['instanceof'],
+			'getDateFilter' : ['label'],
+			'getDateFilterByClass' : ['instanceof', 'label'],
+			'getPropertySubjectByClass' : ['instanceof', 'label'],
+			'getSuperlative' : ['instanceof', 'label'],
+			'getPropertyObject' : ['label'],
+			'getPropertySubject' : ['label']
 		}
 
 	def validate(self, conf):

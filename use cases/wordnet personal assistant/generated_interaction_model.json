@@ -1,0 +1,357 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "wordnet personal assistant",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.MoreIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateSettingsIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NextIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PageUpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PageDownIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PreviousIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollRightIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollDownIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollLeftIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollUpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "getPropertySubject",
+                    "slots": [
+                        {
+                            "name": "property",
+                            "type": "property"
+                        },
+                        {
+                            "name": "entity",
+                            "type": "entity"
+                        }
+                    ],
+                    "samples": [
+                        "which entity has {entity} as {property}",
+                        "what have {entity} as {property}",
+                        "what has {entity} as {property}",
+                        "how many entities have {entity} as {property}",
+                        "how many entities have {property} like {entity}"
+                    ]
+                },
+                {
+                    "name": "getPropertyObject",
+                    "slots": [
+                        {
+                            "name": "property",
+                            "type": "property"
+                        },
+                        {
+                            "name": "entity",
+                            "type": "entity"
+                        }
+                    ],
+                    "samples": [
+                        "what is the {property} of {entity}",
+                        "which is the {property} of {entity}",
+                        "what is the {property} of entity {entity}",
+                        "what is the value of {property} attached to {entity}",
+                        "what is the value of {property} related to {entity}",
+                        "By focusing on {entity} what is its {property}",
+                        "If we focus on {entity} what is its {property}",
+                        "If we talk about {entity} what is its {property}",
+                        "By focusing on {entity} who is its {property}",
+                        "If we focus on {entity} who is its {property}",
+                        "If we talk about {entity} who is its {property}",
+                        "when is the {property} of {entity}",
+                        "who is the {property} of {entity}"
+                    ]
+                },
+                {
+                    "name": "getDescription",
+                    "slots": [
+                        {
+                            "name": "entity",
+                            "type": "entity"
+                        }
+                    ],
+                    "samples": [
+                        "who is {entity}",
+                        "what is {entity}",
+                        "can you define {entity}",
+                        "can you provide me the definition of {entity}",
+                        "what is the definition of {entity}",
+                        "how can you define {entity}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "entity",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "living thing"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "organism"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "benthos"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "heterotroph"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "life"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "biont"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "cell"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "causal agent"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "person"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "animal"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "plant"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "object"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "natural object"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "substance"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "food"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "artifact"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "article"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "psychological feature"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "abstraction"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "cognition"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "motivation"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "feeling"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "location"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "shape"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "time"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "space"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "absolute space"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "phase space"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "state"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "event"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "act"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "group"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "possession"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "attribute"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "property",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "meronym"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "antonym"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "similar to"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "hyponym"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "description"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "gloss"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "definition"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "derivationally related"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "classified by topic "
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
