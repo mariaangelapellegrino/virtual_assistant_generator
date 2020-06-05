@@ -58,18 +58,18 @@ The implemented intents, an example of provided utterance and the queried triple
 
 | Intent name                                          | Utterance                         | Triple                                                                  |
 |------------------------------------------------------|-----------------------------------|-------------------------------------------------------------------------|
-| getPropertyObject                                    | What is the {p} of {e}?           | <e> <p> ?                                                               |
-| getDescription                                       | What/Who is {e}?                  | <e> <definition> ?                                                      |
-| getLocation                                          | Where is {e}?                     | <e> <location> ?                                                        |
-| getImg                                               | Show me <e>                       | <e> <img> ?                                                             |
-| getPropertyObjectByClass                             | Which {c} is the {p} of {e}?      | <e> <p> ?. ? <instanceof> <c>                                           |
-| getPropertySubject                                   | What has {e} as {p}?              | ? <p> <e>                                                               |
-| getClassInstances                                    | What are the instances of {e}?    | ? <instanceof> <e>                                                      |
-| getPropertySubjectByClass                            | Which {c} has {e} as {p}?         | ? <instanceof> <c>.<br>? <p> <e>.                                       |
-| getNumericFilter                                     | What has {p} {symbol} {val}?      | ? <p> ?o. <br>\texttt{FILTER}(?o <symbol> <val>)                        |
-| getNumeriFilterByClass                               | Which {c} has {p} {symbol} {val}? | <br>? <instanceof> <c>.? <p> ?o. <br>\texttt{FILTER}(?o <symbol> <val>) |
-| getSuperlative                                       | What is the {c} with {sup} {p}?   | ? <p> ?o.<br>\texttt{ORDER BY} (?o).<br>\texttt{LIMIT} 1                |
-| getTripleVerification                                | {s} has {o} as {p}                | ASK <s> <p> <o>                                                         |
+| getPropertyObject                                    | What is the {p} of {e}?           | &lt;e&gt; &lt;p&gt; ?                                                               |
+| getDescription                                       | What/Who is {e}?                  | &lt;e&gt; &lt;definition&gt; ?                                                      |
+| getLocation                                          | Where is {e}?                     | &lt;e&gt; &lt;location&gt; ?                                                        |
+| getImg                                               | Show me &lt;e&gt;                 | &lt;e&gt; &lt;img&gt; ?                                                             |
+| getPropertyObjectByClass                             | Which {c} is the {p} of {e}?      | &lt;e&gt; &lt;p&gt; ?. ? &lt;instanceof&gt; &lt;c&gt;                                           |
+| getPropertySubject                                   | What has {e} as {p}?              | ? &lt;p&gt; &lt;e&gt;                                                               |
+| getClassInstances                                    | What are the instances of {e}?    | ? &lt;instanceof&gt; &lt;e&gt;                                                      |
+| getPropertySubjectByClass                            | Which {c} has {e} as {p}?         | ? &lt;instanceof&gt; &lt;c&gt;.&lt;br&gt;? &lt;p&gt; &lt;e&gt;.                                       |
+| getNumericFilter                                     | What has {p} {symbol} {val}?      | ? &lt;p&gt; ?o. &lt;br&gt; FILTER(?o &lt;symbol&gt; &lt;val&gt;)                        |
+| getNumeriFilterByClass                               | Which {c} has {p} {symbol} {val}? | &lt;br&gt;? &lt;instanceof&gt; &lt;c&gt;.? &lt;p&gt; ?o. &lt;br&gt; FILTER(?o &lt;symbol&gt; &lt;val&gt;) |
+| getSuperlative                                       | What is the {c} with {sup} {p}?   | ? &lt;p&gt; ?o.&lt;br&gt; ORDER BY (?o).&lt;br&gt; LIMIT 1                |
+| getTripleVerification                                | {s} has {o} as {p}                | ASK &lt;s&gt; &lt;p&gt; &lt;o&gt;                                                         |
 | getAllResultsPreviousQuery                           | Give me all the results           | -                                                                       |
 
 ### Configuration file format
@@ -102,7 +102,7 @@ To generate the Alexa skill, you have:
 ### Results storage
 
 The Alexa skill will be stored on the local path. The generator will create:
-- a folder named as the <INVOCATION_NAME> provided in the configuration file, containing    
+- a folder named as the &lt;INVOCATION_NAME&gt; provided in the configuration file, containing    
     - generated_interaction_model.json that is the interaction model as expected by the [Alexa Developer Console](https://developer.amazon.com/alexa/console)
     - a back_end.zip file containing the back end (implemented in JavaScript) that can be directly uploaded on [Amazon AWS](https://aws.amazon.com/).
 
