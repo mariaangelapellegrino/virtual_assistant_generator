@@ -77,19 +77,19 @@ The implemented intents, an example of provided utterance and the queried triple
 In its actual implementation, we require a JSON file with the following format:
 
 {
-    "invocation_name" : <INVOCATION NAME>,
-    "endpoint" : <SPARQL endpoint>,
-    "intents" : <LIST OF THE DESIRED INTENTS>,
-    "lang" : <EN|IT>,
-    "entities" : {...},
-    "properties" : {...}
+	"invocation_name" : INVOCATION NAME,
+	"endpoint" : SPARQL endpoint,
+	"intents" : LIST OF THE DESIRED INTENTS,
+	"lang" : EN|IT,
+	"entities" : {...},
+	"properties" : {...}
 }
 
 Entities and properties are modelled as dictionaries with the following format:
 
-<LABEL> : {
-    urls : <LIST OF URLs> [,
-    "synonyms" : <LIST OF SYNONYMS>]
+LABEL : {
+    "urls" : LIST OF URLs [,
+    "synonyms" : LIST OF SYNONYMS]
 }
 
 ### Running details
