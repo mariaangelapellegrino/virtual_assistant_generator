@@ -11,7 +11,7 @@ The generator is maintained by the [ISISLab](https://www.isislab.it/) of the Uni
 
 Our generator can create a VA extension according to the configuration file provided by the user. It takes as input a conf.json file, checks its syntax correctness and semantic validity and, finally, creates the VA extension. Each phase is kept separate by satisfying the modularity requirement, and it is implemented as an abstract module. The architecture of our general-purpose and multi speaking languages VA extension generator is reported in the figure below.
 
-![generator](/images/generator_schema.png)
+![generator](/img/generator_schema.png)
 
 The *Vocal Assistant Generator* module takes as input a configuration file to personalize the generated VA extension and conducts the entire generation workflow, i.e., it 1) checks the syntactical correctness of the configuration file by the *Syntax checker*; 2) validates the semantic correctness of the configuration by the *Validator*; 3) creates the interaction_model.json by the *Interaction Model Generator* containing configured intents, its utterances and the slot values personalized by the user; iv) generates the back-end code by the *Back-end generator* and it produces the zip file containing the intent implementation. 
 
