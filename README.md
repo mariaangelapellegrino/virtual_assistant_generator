@@ -67,7 +67,7 @@ The implemented intents, an example of provided utterance and the queried triple
 | getClassInstances                                    | What are the instances of {e}?    | ? &lt;instanceof&gt; &lt;e&gt;                                                      |
 | getPropertySubjectByClass                            | Which {c} has {e} as {p}?         | ? &lt;instanceof&gt; &lt;c&gt;.&lt;br&gt;? &lt;p&gt; &lt;e&gt;.                                       |
 | getNumericFilter                                     | What has {p} {symbol} {val}?      | ? &lt;p&gt; ?o. &lt;br&gt; FILTER(?o &lt;symbol&gt; &lt;val&gt;)                        |
-| getNumeriFilterByClass                               | Which {c} has {p} {symbol} {val}? | &lt;br&gt;? &lt;instanceof&gt; &lt;c&gt;.? &lt;p&gt; ?o. &lt;br&gt; FILTER(?o &lt;symbol&gt; &lt;val&gt;) |
+| getNumeriFilterByClass                               | Which {c} has {p} {symbol} {val}? | ? &lt;instanceof&gt; &lt;c&gt;.? &lt;p&gt; ?o. &lt;br&gt; FILTER(?o &lt;symbol&gt; &lt;val&gt;) |
 | getSuperlative                                       | What is the {c} with {sup} {p}?   | ? &lt;p&gt; ?o.&lt;br&gt; ORDER BY (?o).&lt;br&gt; LIMIT 1                |
 | getTripleVerification                                | {s} has {o} as {p}                | ASK &lt;s&gt; &lt;p&gt; &lt;o&gt;                                                         |
 | getAllResultsPreviousQuery                           | Give me all the results           | -                                                                       |
