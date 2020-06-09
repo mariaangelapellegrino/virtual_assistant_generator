@@ -5,13 +5,16 @@ The implemented mechanism to move from NL to SPARQL queries is KG-independent. T
 It simplifies the skill generation both for technical and lay-users. 
 The effort is strictly related to the provision of queriable entities and predicates, while the generation of the Alexa skill is as simple as the call of a command.
 
+We provide the generator as a command-line tool and as [API](https://pypi.org/project/virtual-assistant-generator/).
+
+
 The generator is maintained by the [ISISLab](https://www.isislab.it/) of the University of Salerno.
 
 ## Generator structure and extension points
 
 Our generator can create a VA extension according to the configuration file provided by the user. It takes as input a conf.json file, checks its syntax correctness and semantic validity and, finally, creates the VA extension. Each phase is kept separate by satisfying the modularity requirement, and it is implemented as an abstract module. The architecture of our general-purpose and multi speaking languages VA extension generator is reported in the figure below.
 
-![generator](/img/generator_schema.png)
+![generator](https://drive.google.com/file/d/1ZBMyxsji6cbwwwQQRx8S2LAXHjoIfoJd/view?usp=sharing)
 
 The *Vocal Assistant Generator* module takes as input a configuration file to personalize the generated VA extension and conducts the entire generation workflow, i.e., it 1) checks the syntactical correctness of the configuration file by the *Syntax checker*; 2) validates the semantic correctness of the configuration by the *Validator*; 3) creates the interaction_model.json by the *Interaction Model Generator* containing configured intents, its utterances and the slot values personalized by the user; iv) generates the back-end code by the *Back-end generator* and it produces the zip file containing the intent implementation. 
 
@@ -24,8 +27,8 @@ Due to the modularity of the implementation, the extensions point are:
 
 ## Repository structure
 
-- **src** contains
-    - **pa_generator.py** containing both the Abstract PersonalAssistantGenerator and the Alexa implementation,
+- **va_generator** contains
+    - **generator.py** containing both the Abstract PersonalAssistantGenerator and the Alexa implementation,
     - **syntax_checker.py** containing both the AbstractSyntaxChecker and the JSONSyntaxChecker,
     - **validator.py** containing both the AbstracValidator and the actual Validator,
     - **interaction_model_generator.py** containing both the InteractionModel abstract class and the AlexaInteractionModel,

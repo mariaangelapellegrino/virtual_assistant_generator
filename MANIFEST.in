@@ -1,0 +1,2 @@
+global-include va_generator/*.json va_generator/*.js va_generator/*.d.ts va_generator/*.js.map
+global-exclude use_cases/* SPARQL_endpoint_analysis/* example/* slot_entities/classes.json slot_entities/resources.json slot_properties/properties.json

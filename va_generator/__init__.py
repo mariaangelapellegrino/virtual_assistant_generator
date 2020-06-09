@@ -1,0 +1,1 @@
+from va_generator.generator import AlexaSkillGenerator 
