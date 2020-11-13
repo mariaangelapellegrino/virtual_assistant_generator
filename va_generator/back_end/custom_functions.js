@@ -37,19 +37,35 @@ class custom_functions{
     }
 
     getProperty(property){
-        console.log(property)
-        console.log(this.properties[property].urls)
+        var t0 = new Date().getTime();
+        //console.log(property)
+        //console.log(this.properties[property].urls)
+
+        var result = null;
         if (property in this.properties){
-            return this.properties[property].urls;
+            result = this.properties[property].urls;
         }
+
+        var t1 = new Date().getTime();
+        console.log("Call to resolve "+ property + " as " + result + " took " + (t1 - t0) + " milliseconds.")
+
+        return result
     }
 
     getEntity(entity){
-        console.log(entity)
-        console.log(this.entities[entity].urls)
+        var t0 = new Date().getTime();
+        //console.log(entity)
+        //console.log(this.entities[entity].urls)
+
+        var result = null;
         if (entity in this.entities){
-            return this.entities[entity].urls;
+            result = this.entities[entity].urls;
         }
+
+        var t1 = new Date().getTime();
+        console.log("Call to resolve "+ entity + " as " + result + " took " + (t1 - t0) + " milliseconds.")
+
+        return result
     }
 
     extractLabel(url){
@@ -68,8 +84,9 @@ class custom_functions{
     }
 
     runSelectQuery (sparql){
+        var t0 = new Date().getTime();
         const url = this.endpoint+"?query="+ encodeURIComponent(sparql) +"&format=json";
-        console.log(url)
+        //console.log(url)
 
         var request = require('sync-request');
         var res = request('GET', url, {
@@ -79,10 +96,16 @@ class custom_functions{
         });
 
         var b = JSON.parse(res.getBody());
-        return b.results.bindings;
+        var result =  b.results.bindings;
+
+        var t1 = new Date().getTime();
+        console.log("Call to runSelectQuery took " + (t1 - t0) + " milliseconds.")
+
+        return result
     }
 
     runAskQuery (sparql){
+        var t0 = new Date().getTime();
         const url = this.endpoint+"?query="+ encodeURIComponent(sparql) +"&format=json";
 
         var request = require('sync-request');
@@ -93,7 +116,12 @@ class custom_functions{
         });
 
         var b = JSON.parse(res.getBody());
-        return b.boolean;
+        var result = b.boolean;
+
+        var t1 = new Date().getTime();
+        console.log("Call to runAskQuery took " + (t1 - t0) + " milliseconds.")
+
+        return result
     }
 
     getLocationPredicates (){
