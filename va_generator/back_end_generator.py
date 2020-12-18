@@ -1,5 +1,6 @@
-from zipfile import ZipFile 
+import zipfile 
 import os
+import zlib
 
 class BackEndGenerator():
 	def __init__(self):
@@ -20,7 +21,7 @@ class AlexaBackEndGenerator(BackEndGenerator):
 		self.source_path = os.path.join(script_dir, rel_path)
 
 	def generate_back_end(self, conf_file, dest_path):
-		zipObj = ZipFile(dest_path + 'back_end.zip', 'w')
+		zipObj = zipfile.ZipFile(dest_path + 'back_end.zip', 'w', compression=zipfile.ZIP_DEFLATED, compresslevel = 9)
 
 		zipObj.write(conf_file, 'conf.json')
 		

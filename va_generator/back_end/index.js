@@ -145,12 +145,16 @@ const getPropertyObject_Handler =  {
         return request.type === 'IntentRequest' && request.intent.name === 'getPropertyObject' ;
     },
     handle(handlerInput) {
-      const request = handlerInput.requestEnvelope.request;
+        console.log("getPropertyObject")
+
+        const request = handlerInput.requestEnvelope.request;
         const responseBuilder = handlerInput.responseBuilder;
         let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
         var intentName = request.intent.name;
         let slotValues = getSlotValues(request.intent.slots); 
+
+        console.log(slotValues)
         
         let slotStatus = '';
 
@@ -172,11 +176,16 @@ const getPropertyObject_Handler =  {
         var resolved_properties = custom_functions.getProperty(property);
         console.log(resolved_properties);
 
-        console.log(property)
+        console.log(entity);
         var resolved_entities = custom_functions.getEntity(entity);
         console.log(resolved_entities);
 
-        const result_reply = getPropertyObjectQuery(resolved_entities, resolved_properties);
+        var result_reply = null;
+
+        if(resolved_entities)
+          result_reply = getPropertyObjectQuery(resolved_entities, resolved_properties);
+        else
+          result_reply = getPropertyObjectByLabelQuery(entity, resolved_properties);
 
         //verbalization
         var request_verbalization = LanguageManager[intentName+"_request"](lang, entity, property);
@@ -229,7 +238,12 @@ const getPropertySubject_Handler =  {
         //query execution
         var resolved_entities = custom_functions.getEntity(entity);
         var resolved_properties = custom_functions.getProperty(property);
-        const result_reply = getPropertySubjectQuery(resolved_entities, resolved_properties);
+
+        var result_reply = null;
+        if(resolved_entities)
+          result_reply = getPropertySubjectQuery(resolved_entities, resolved_properties);
+        else
+          result_reply = getPropertySubjectLabelQuery(entity, resolved_properties);
         
         //verbalization
         var request_verbalization = LanguageManager[intentName+"_request"](lang, entity, property);
@@ -274,8 +288,14 @@ const getDescription_Handler =  {
 
       //query execution
       var resolved_entities = custom_functions.getEntity(entity);
-      const result_reply = getDescriptionQuery(resolved_entities);
+      var result_reply = null;
 
+      if(resolved_entities){
+        getDescriptionQuery(resolved_entities);
+      } 
+      else{
+        getDescriptionByLabelQuery(entity);
+      }
       //verbalization
       var request_verbalization = LanguageManager[intentName+"_request"](lang, entity);
       var reply = request_verbalization + " " + result_reply;
@@ -364,7 +384,11 @@ const getImg_Handler =  {
 
       //query execution
       var resolved_entities = custom_functions.getEntity(entity);
-      const image_url = getImgQuery(resolved_entities);
+      var image_url = null;
+      if(resolved_entities)
+       image_url = getImgQuery(resolved_entities);
+      else
+        image_url = getImgByLabelQuery(entity);
 
       //verbalization
       var reply = LanguageManager[intentName+"_request"](lang, entity);
@@ -499,7 +523,16 @@ const getTripleVerification_Handler = {
         var resolved_subjects = custom_functions.getEntity(subject);
         var resolved_properties = custom_functions.getProperty(property);
         var resolved_objects = custom_functions.getEntity(object);
-        const result_reply = getTripleVerificationQuery(resolved_subjects, resolved_properties, resolved_objects);
+
+        var result_reply = null;
+        if(resolved_subjects && resolved_objects)
+            result_reply = getTripleVerificationQuery(resolved_subjects, resolved_properties, resolved_objects);
+        else if(resolved_subjects && !resolved_objects)
+            result_reply = getTripleVerificationByObjectLabelQuery(resolved_subjects, resolved_properties, object);
+        else if(!resolved_subjects && resolved_objects)
+           result_reply = getTripleVerificationBySubjectLabelQuery(subject, resolved_properties, resolved_objects);
+        else
+           result_reply = getTripleVerificationBySubjectAndObjectLabelQuery(subject, resolved_properties, object);
 
         //verbalization
         var request_verbalization = LanguageManager[intentName+"_request"](lang, subject, property, object);
@@ -669,7 +702,12 @@ const getLocation_Handler =  {
 
         //query execution
         var resolved_entities = custom_functions.getEntity(entity);
-        const result_reply = getLocationQuery(resolved_entities);
+
+        var result_reply = null;
+        if(resolved_entities)
+          result_reply = getLocationQuery(resolved_entities);
+        else
+          result_reply = getLocationByLabelQuery(entity);
 
         //verbalization
         var request_verbalization = LanguageManager[intentName+"_request"](lang, entity);
@@ -729,7 +767,12 @@ const getPropertySubjectByClass_Handler =  {
         var resolved_classes = custom_functions.getEntity(class_value);
         var resolved_properties = custom_functions.getProperty(property);
         var resolved_entities = custom_functions.getEntity(entity);
-        const result_reply = getPropertySubjectByClassQuery(resolved_classes, resolved_properties, resolved_entities);
+
+        var result_reply = null;
+        if(resolved_entities)
+          result_reply = getPropertySubjectByClassQuery(resolved_classes, resolved_properties, resolved_entities);
+        else
+          result_reply = getPropertySubjectByClassAndEntityLabelQuery(resolved_classes, resolved_properties, entity);
 
         //verbalization
         var request_verbalization = LanguageManager[intentName+"_request"](lang, class_value, entity, property);
@@ -1125,10 +1168,13 @@ function getDateFilterByClassQuery(entities, properties, symbol_label, value){
 }
 
 function getPropertyObjectQuery(entities, properties){
+
   var sparql = '';
   var results = null;
 
   var label_predicates = custom_functions.getLabelPredicates();
+
+  console.log(label_predicates)
   var label_predicates_as_string = label_predicates.join(" ");
 
   for(var i=0; i<entities.length; i++){
@@ -1136,12 +1182,16 @@ function getPropertyObjectQuery(entities, properties){
       //create query
       sparql="SELECT ?result ?label WHERE {"+
         "VALUES ?property_label {"+label_predicates_as_string+"} "+
-        entities[i]+"  "+properties[j]+" ?result. " + 
+        entities[i]+" "+properties[j]+" ?result. " + 
         "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
+
+        console.log(sparql)
 
       //run query
       results = custom_functions.runSelectQuery(sparql);
+      console.log(results)
       var trimmed_results = trimResults(results);
+      console.log(trimmed_results)
       
       if(trimmed_results!=null && trimmed_results.length>0){
         var count = Object.keys(results).length;
@@ -1158,8 +1208,13 @@ function getPropertyObjectQuery(entities, properties){
         storeBackEndLastIntent(parameters, sparql, getAllResults(results), response, true);  
         return response; 
       }
+      
     }
   }
+
+  var temp_results = getPropertySubjectQuery(entities, properties);
+  if(temp_results.success)
+    return temp_results;
 
   //verbalize response
   var response = LanguageManager['results_response'](lang, 0, results);
@@ -1167,6 +1222,99 @@ function getPropertyObjectQuery(entities, properties){
   //store last request parameters
   var parameters = {
     'entity':entities,
+    'property': properties
+  };
+
+  storeBackEndLastIntent(parameters, sparql, results, response, false);  
+  return response; 
+}
+
+function getPropertyObjectByLabelQuery(entityLabel, properties){
+  var sparql = '';
+  var results = null;
+
+  var label_predicates = custom_functions.getLabelPredicates();
+  console.log(label_predicates)
+  var label_predicates_as_string = label_predicates.join(" ");
+
+  // perfect matching
+  for(var j=0; j<properties.length; j++){
+    //create query
+    sparql="SELECT DISTINCT ?result ?label WHERE {"+
+      "VALUES ?property_label {"+label_predicates_as_string+"} "+
+      "?entity  "+properties[j]+" ?result. " + 
+      "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'^" + entityLabel + "$', 'i'))" + 
+      "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
+
+      console.log(sparql)
+
+    //run query
+    results = custom_functions.runSelectQuery(sparql);
+    console.log(results)
+    var trimmed_results = trimResults(results);
+    console.log(trimmed_results)
+    if(trimmed_results!=null && trimmed_results.length>0){
+      var count = Object.keys(results).length;
+
+      //verbalize response
+      var response = LanguageManager['results_response'](lang, count, trimmed_results);
+
+      //store last request parameters
+      var parameters = {
+        'entity':entityLabel,
+        'property': properties[j]
+      };
+
+      storeBackEndLastIntent(parameters, sparql, getAllResults(results), response, true);  
+      return response; 
+    }
+    
+  }
+
+  //relaxed query
+  for(var j=0; j<properties.length; j++){
+    //create query
+    sparql="SELECT ?result ?label WHERE {"+
+      "VALUES ?property_label {"+label_predicates_as_string+"} "+
+      "?entity  "+properties[j]+" ?result. " + 
+      "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'" + entityLabel + "', 'i'))" + 
+      "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
+
+      console.log(sparql)
+
+    //run query
+    results = custom_functions.runSelectQuery(sparql);
+    var trimmed_results = trimResults(results);
+    
+    if(trimmed_results!=null && trimmed_results.length>0){
+      var count = Object.keys(results).length;
+
+      //verbalize response
+      var response = LanguageManager['results_response'](lang, count, trimmed_results);
+
+      //store last request parameters
+      var parameters = {
+        'entity':entityLabel,
+        'property': properties[j]
+      };
+
+      storeBackEndLastIntent(parameters, sparql, getAllResults(results), response, true);  
+      return response; 
+    }
+    
+  }
+
+  var temp_results = getPropertySubjectLabelQuery(entityLabel, properties);
+  if(temp_results.success)
+    return temp_results;
+
+
+  //verbalize response
+  var response = LanguageManager['results_response'](lang, 0, results);
+
+  //store last request parameters
+  var parameters = {
+    'entity':entityLabel,
     'property': properties
   };
 
@@ -1216,6 +1364,305 @@ function getTripleVerificationQuery(subjects, properties, objects){
   };
 
   storeBackEndLastIntent(parameters, sparql, result, response, false);  
+  return response; 
+}
+
+function getTripleVerificationByObjectLabelQuery(subjects, properties, objectLabel){
+  var sparql = '';
+  var result = null;
+
+  for(var i=0; i<subjects.length; i++){
+    for(var k=0; k<properties.length; k++){
+        sparql="ASK {"+
+          subjects[i] +" "+properties[k]+" ?object. "
+          "?object rdfs:label ?objectLabel. FILTER(lang(?objectLabel)='"+lang+"') FILTER(regex(?objectLabel,'^" + objectLabel + "$', 'i'))" + 
+          "}";
+              
+        //run query
+        result = custom_functions.runAskQuery(sparql);
+              
+        if(result){
+          //verbalize response
+          var response = LanguageManager['boolean_response'](lang, result);
+
+          //store last request parameters
+          var parameters = {
+            'subject':subjects[i],
+            'property': properties[k],
+            'object':objectLabel
+          };
+
+          storeBackEndLastIntent(parameters, sparql, result, response, true);  
+          return response;
+        } 
+        else{
+          for(var i=0; i<subjects.length; i++){
+            for(var k=0; k<properties.length; k++){
+              sparql="ASK {"+
+                subjects[i] +" "+properties[k]+" ?object. " +
+                "?object rdfs:label ?objectLabel. FILTER(lang(?objectLabel)='"+lang+"') FILTER(regex(?objectLabel,'" + objectLabel + "', 'i'))" + 
+                "}";
+                    
+              //run query
+              result = custom_functions.runAskQuery(sparql);
+                    
+              if(result){
+                //verbalize response
+                var response = LanguageManager['boolean_response'](lang, result);
+
+                //store last request parameters
+                var parameters = {
+                  'subject':subjects[i],
+                  'property': properties[k],
+                  'object':objectLabel
+                };
+
+                storeBackEndLastIntent(parameters, sparql, result, response, true);  
+                return response;
+              } 
+            }    
+          }
+        }
+      }
+    }
+  
+  //verbalize response
+  var response = LanguageManager['boolean_response'](lang, false);
+
+  //store last request parameters
+  var parameters = {
+    'subject':subjects,
+    'property': properties,
+    'object':objectLabel
+  };
+
+  storeBackEndLastIntent(parameters, sparql, result, response, false);  
+  return response; 
+}
+
+function getTripleVerificationBySubjectLabelQuery(subjectLabel, properties, objects){
+  var sparql = '';
+  var result = null;
+
+  for(var k=0; k<properties.length; k++){
+      for(var i=0; i<objects.length; i++){
+        sparql="ASK {"+
+          "?subject "+properties[k]+" " + objects[i] + ". "+
+          "?subject rdfs:label ?subjectLabel. FILTER(lang(?subjectLabel)='"+lang+"') FILTER(regex(?subjectLabel,'^" + subjectLabel + "$', 'i'))" + 
+          "}";
+              
+        //run query
+        result = custom_functions.runAskQuery(sparql);
+              
+        if(result){
+          //verbalize response
+          var response = LanguageManager['boolean_response'](lang, result);
+
+          //store last request parameters
+          var parameters = {
+            'subject':subjectLabel,
+            'property': properties[k],
+            'object':objects[i]
+          };
+
+          storeBackEndLastIntent(parameters, sparql, result, response, true);  
+          return response;
+        } 
+      }
+    }
+
+    for(var i=0; i<subjects.length; i++){
+      for(var k=0; k<properties.length; k++){
+        sparql="ASK {"+
+          "?subject "+properties[k]+" " + objects[i] + ". "+
+          "?subject rdfs:label ?subjectLabel. FILTER(lang(?subjectLabel)='"+lang+"') FILTER(regex(?subjectLabel,'" + subjectLabel + "', 'i'))" + 
+          "}";
+              
+        //run query
+        result = custom_functions.runAskQuery(sparql);
+              
+        if(result){
+          //verbalize response
+          var response = LanguageManager['boolean_response'](lang, result);
+
+          //store last request parameters
+          var parameters = {
+            'subject':subjectLabel,
+            'property': properties[k],
+            'object':objects[i]
+          };
+
+          storeBackEndLastIntent(parameters, sparql, result, response, true);  
+          return response;
+        } 
+      }    
+    }
+  
+  //verbalize response
+  var response = LanguageManager['boolean_response'](lang, false);
+
+  //store last request parameters
+  var parameters = {
+    'subject':subjectLabel,
+    'property': properties,
+    'object':objects
+  };
+
+  storeBackEndLastIntent(parameters, sparql, result, response, false);  
+  return response; 
+}
+
+function getTripleVerificationBySubjectAndObjectLabelQuery(subjectLabel, properties, objectLabel){
+  var sparql = '';
+  var result = null;
+
+  for(var k=0; k<properties.length; k++){
+    sparql="ASK {"+
+      "?subject "+properties[k]+" ?object. "+
+      "?subject rdfs:label ?subjectLabel. FILTER(lang(?subjectLabel)='"+lang+"') FILTER(regex(?subjectLabel,'^" + subjectLabel + "$', 'i'))" + 
+      "?object rdfs:label ?objectLabel. FILTER(lang(?objectLabel)='"+lang+"') FILTER(regex(?objectLabel,'^" + objectLabel + "$', 'i'))" + 
+      "}";
+          
+    //run query
+    result = custom_functions.runAskQuery(sparql);
+          
+    if(result){
+      //verbalize response
+      var response = LanguageManager['boolean_response'](lang, result);
+
+      //store last request parameters
+      var parameters = {
+        'subject':subjectLabel,
+        'property': properties[k],
+        'object':objectLabel
+      };
+
+      storeBackEndLastIntent(parameters, sparql, result, response, true);  
+      return response;
+    }     
+   }
+   for(var i=0; i<subjects.length; i++){
+      for(var k=0; k<properties.length; k++){
+        sparql="ASK {"+
+          subjects[i] +" "+properties[k]+" ?object. "+
+          "?subject "+properties[k]+" ?object. "+
+          "?subject rdfs:label ?subjectLabel. FILTER(lang(?subjectLabel)='"+lang+"') FILTER(regex(?subjectLabel,'" + subjectLabel + "', 'i'))" + 
+          "?object rdfs:label ?objectLabel. FILTER(lang(?objectLabel)='"+lang+"') FILTER(regex(?objectLabel,'" + objectLabel + "', 'i'))" + 
+          "}";
+              
+        //run query
+        result = custom_functions.runAskQuery(sparql);
+              
+        if(result){
+          //verbalize response
+          var response = LanguageManager['boolean_response'](lang, result);
+
+          //store last request parameters
+          var parameters = {
+            'subject':subjectLabel,
+            'property': properties[k],
+            'object':objectLabel
+          };
+
+          storeBackEndLastIntent(parameters, sparql, result, response, true);  
+          return response;
+        } 
+      }    
+    }
+
+  
+  //verbalize response
+  var response = LanguageManager['boolean_response'](lang, false);
+
+  //store last request parameters
+  var parameters = {
+    'subject':subjects,
+    'property': properties,
+    'object':objectLabel
+  };
+
+  storeBackEndLastIntent(parameters, sparql, result, response, false);  
+  return response; 
+}
+
+function getPropertySubjectLabelQuery(entityLabel, properties){
+  var sparql = '';
+  var results = null;
+
+  var label_predicates = custom_functions.getLabelPredicates();
+  var label_predicates_as_string = label_predicates.join(" ");
+  for(var j=0; j<properties.length; j++){
+    //create query
+    sparql="SELECT ?result ?label WHERE {"+
+      "VALUES ?property_label {"+label_predicates_as_string+"} "+
+      "?result "+properties[j]+" ?entity. "+
+      "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'^" + entityLabel + "$', 'i'))" + 
+      "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
+
+    //run query
+    results = custom_functions.runSelectQuery(sparql)
+    var trimmed_results = trimResults(results);
+    
+    if(trimmed_results!=null && trimmed_results.length>0){
+      var count = Object.keys(results).length;
+
+      //verbalize response
+      response = LanguageManager['results_response'](lang, count, trimmed_results);
+
+        //store last request parameters
+      var parameters = {
+        'entity':entityLabel,
+        'property': properties[j]
+      };
+
+      storeBackEndLastIntent(parameters, sparql, getAllResults(results), response, true);  
+      return response; 
+    }
+    
+    
+  }
+
+  for(var j=0; j<properties.length; j++){
+    //create query
+    sparql="SELECT ?result ?label WHERE {"+
+      "VALUES ?property_label {"+label_predicates_as_string+"} "+
+      "?result "+properties[j]+" ?entity. "+
+      "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'" + entityLabel + "', 'i'))" + 
+      "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
+
+    //run query
+    results = custom_functions.runSelectQuery(sparql)
+    var trimmed_results = trimResults(results);
+    
+    if(trimmed_results!=null && trimmed_results.length>0){
+      var count = Object.keys(results).length;
+
+      //verbalize response
+      response = LanguageManager['results_response'](lang, count, trimmed_results);
+
+        //store last request parameters
+      var parameters = {
+        'entity':entityLabel,
+        'property': properties[j]
+      };
+
+      storeBackEndLastIntent(parameters, sparql, getAllResults(results), response, true);  
+      return response; 
+    }
+    
+    
+  }
+
+  //verbalize response
+  var response = LanguageManager['results_response'](lang, 0, results);
+
+    //store last request parameters
+  var parameters = {
+    'entity':entityLabel,
+    'property': properties
+  };
+
+  storeBackEndLastIntent(parameters, sparql, results, response, false);  
   return response; 
 }
 
@@ -1326,6 +1773,98 @@ function getPropertySubjectByClassQuery(classes, properties, entities){
   return response; 
 }
 
+function getPropertySubjectByClassAndEntityLabelQuery(classes, properties, entityLabel){
+  var sparql = '';
+  var results = null;
+
+  var instances_predicates = custom_functions.getInstancesPredicates();
+  var instances_predicates_as_string = instances_predicates.join(" ");
+
+  var label_predicates = custom_functions.getLabelPredicates();
+  var label_predicates_as_string = label_predicates.join(" ");
+
+  for(var i=0; i<classes.length; i++){
+    for(var j=0; j<properties.length; j++){
+      sparql="SELECT DISTINCT ?result ?label ?property_instance WHERE {"+
+      "VALUES ?property_instance {"+instances_predicates_as_string+"} "+
+      "VALUES ?property_label {"+label_predicates_as_string+"} "+
+      "?result ?property_instance "+classes[i]+"; " + 
+               properties[j]+" ?entity. "+
+      "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'^" + entityLabel + "$', 'i'))" + 
+      "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
+
+      //run query
+      results = custom_functions.runSelectQuery(sparql);
+      var trimmed_results = trimResults(results);
+      
+      if(trimmed_results!=null && trimmed_results.length>0){
+        var count = Object.keys(results).length;
+
+        //verbalize response
+        var response = LanguageManager['results_response'](lang, count, trimmed_results);
+
+          //store last request parameters
+        var parameters = {
+          'class':classes[i],
+          'property': properties[j],
+          'entity':entityLabel
+        };
+
+        storeBackEndLastIntent(parameters, sparql, getAllResults(results), response, true);  
+        return response; 
+      }
+    }
+    
+  }
+
+  for(var i=0; i<classes.length; i++){
+    for(var j=0; j<properties.length; j++){
+      sparql="SELECT DISTINCT ?result ?label WHERE {"+
+      "VALUES ?property_instance {"+instances_predicates_as_string+"} "+
+      "VALUES ?property_label {"+label_predicates_as_string+"} "+
+      "?result ?property_instance "+classes[i]+"; " + 
+               properties[j]+" ?entity. "+
+      "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'" + entityLabel + "', 'i'))" + 
+      "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
+
+      //run query
+      results = custom_functions.runSelectQuery(sparql);
+      var trimmed_results = trimResults(results);
+      
+      if(trimmed_results!=null && trimmed_results.length>0){
+        var count = Object.keys(results).length;
+
+        //verbalize response
+        var response = LanguageManager['results_response'](lang, count, trimmed_results);
+
+          //store last request parameters
+        var parameters = {
+          'class':classes[i],
+          'property': properties[j],
+          'entity':entityLabel
+        };
+
+        storeBackEndLastIntent(parameters, sparql, getAllResults(results), response, true);  
+        return response; 
+      }
+    }
+    
+  }
+
+  //verbalize response
+  var response = LanguageManager['results_response'](lang, 0, results);
+
+    //store last request parameters
+  var parameters = {
+    'class':classes,
+    'property': properties,
+    'entity':entityLabel
+  };
+
+  storeBackEndLastIntent(parameters, sparql, results, response, false);  
+  return response; 
+}
+
 function getSuperlativeQuery(entities, properties, superlative){
   var order = LanguageManager["resolveAsOrder"](lang, superlative);
   var results = null; 
@@ -1430,6 +1969,75 @@ function getImgQuery(entities){
   return;
 }
 
+function getImgByLabelQuery(entityLabel){
+  var sparql = '';
+  var results = null;
+
+  var img_predicates = custom_functions.getImgPredicates();
+  var img_predicates_as_string = img_predicates.join(" ");
+
+  //create query
+  sparql="SELECT ?result ?label ?property_img WHERE { " + 
+    "VALUES ?property_img {"+img_predicates_as_string+"} "+
+    "?entity ?property_img ?result." +
+    "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'^" + entityLabel + "$', 'i'))}"  ;
+
+
+  var results = custom_functions.runSelectQuery(sparql);
+  var count = Object.keys(results).length;
+
+  if(count>0){
+    //var single_image = [results[0].result.value];
+    //var response = LanguageManager['img_response'](lang, single_image);
+
+    var property_img = results[0].property_img.value;
+    //store last request parameters
+    var parameters = {
+      'entity':entityLabel,
+      'property':property_img
+    };
+
+    storeBackEndLastIntent(parameters, sparql, results[0].result.value, results[0].result.value, true);  
+    return results[0].result.value;
+  }
+
+  sparql="SELECT ?result ?label ?property_img WHERE { " + 
+    "VALUES ?property_img {"+img_predicates_as_string+"} "+
+    "?entity ?property_img ?result." +
+    "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'" + entityLabel + "', 'i'))}"  ;
+
+
+  var results = custom_functions.runSelectQuery(sparql);
+  var count = Object.keys(results).length;
+
+  if(count>0){
+    //var single_image = [results[0].result.value];
+    //var response = LanguageManager['img_response'](lang, single_image);
+
+    var property_img = results[0].property_img.value;
+    //store last request parameters
+    var parameters = {
+      'entity':entityLabel,
+      'property':property_img
+    };
+
+    storeBackEndLastIntent(parameters, sparql, results[0].result.value, results[0].result.value, true);  
+    return results[0].result.value;
+  }
+  
+
+  var response = LanguageManager['img_response'](lang, results);
+
+  var parameters = {
+    'entity':entities
+  };
+  
+  storeBackEndLastIntent(parameters, sparql, results, response, false);  
+  //LanguageManager.ErrorHandler(lang);
+  results[0].result.value;
+  return;
+}
+
 function getDescriptionQuery(entities){
 
   var sparql = '';
@@ -1466,23 +2074,68 @@ function getDescriptionQuery(entities){
   return response; 
 }
 
+function getDescriptionByLabelQuery(entityLabel){
+
+  var sparql = '';
+  var descriptions = [];
+
+  var description_predicates = custom_functions.getDescriptionPredicates();
+  var description_predicates_as_string = description_predicates.join(" ");       
+
+  sparql="SELECT ?description WHERE {"+
+    "VALUES ?property_description {"+description_predicates_as_string+"} "+
+    "?entity ?property_description ?description. "+
+    "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'^" + entityLabel + "$', 'i'))" + 
+    "OPTIONAL{FILTER(lang(?description)='"+lang+"')}}";
+
+  var results = custom_functions.runSelectQuery(sparql);
+  if(results.length>0)
+    descriptions.push(results[0].description.value); 
+  else{
+    sparql="SELECT ?description WHERE {"+
+    "VALUES ?property_description {"+description_predicates_as_string+"} "+
+    "?entity ?property_description ?description. "+
+    "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'" + entityLabel + "', 'i'))" + 
+    "OPTIONAL{FILTER(lang(?description)='"+lang+"')}}";
+
+    var results = custom_functions.runSelectQuery(sparql);
+    if(results.length>0)
+      descriptions.push(results[0].description.value); 
+  }
+
+  //verbalize response
+  var response = LanguageManager['getDescription_response'](lang, descriptions);
+
+  //store last request parameters
+  var parameters = {
+    'entity':entityLabel
+  };
+
+  var success = false;
+  if(descriptions.length>0)
+    success = true;
+
+  storeBackEndLastIntent(parameters, sparql, descriptions, response, success);  
+  return response; 
+}
+
 function getClassInstancesQuery(entities){
   var sparql = '';
     var results = null;
 
     var instances_predicates = custom_functions.getInstancesPredicates();
-    var instances_predicates_as_string = instances_predicates.join(" ");
+    //var instances_predicates_as_string = instances_predicates.join(" ");
 
     var label_predicates = custom_functions.getLabelPredicates();
     var label_predicates_as_string = label_predicates.join(" ");
     for(var i=0; i<entities.length; i++){
-      //create query
-      sparql="SELECT ?result ?label ?property_instance WHERE {"+
-      "VALUES ?property_instance {"+instances_predicates_as_string+"} "+
-      "VALUES ?property_label {"+label_predicates_as_string+"} "+
-      "?result  ?property_instance "+entities[i]+". "+
-      "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}} "+
-      "LIMIT 1000";
+      for(var j=0; j<instances_predicates.length; j++){
+        //create query
+        sparql="SELECT DISTINCT ?result ?label WHERE {"+
+        "VALUES ?property_label {"+label_predicates_as_string+"} "+
+        "?result " + instances_predicates[j] +" "+entities[i]+". "+
+        "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}} "; 
+        //+ "LIMIT 1000";
 
         //run query
         results = custom_functions.runSelectQuery(sparql);
@@ -1494,15 +2147,15 @@ function getClassInstancesQuery(entities){
           var response = LanguageManager['results_response'](lang, count, trimmed_results);
 
           //store last request parameters
-            var property_instance = results[0].property_instance.value;
-          var parameters = {
+            var parameters = {
             'entity':entities[i],
-                    'property':property_instance
+            'property':instances_predicates[j]
           };
 
           storeBackEndLastIntent(parameters, sparql, getAllResults(results), response, true);  
           return response; 
         }
+      }
     }
 
     //verbalize response
@@ -1554,6 +2207,86 @@ function getLocationQuery(entities){
         return response; 
       }
   }
+
+  //verbalize response
+  var response = LanguageManager['results_response'](lang, 0, results);
+
+    //store last request parameters
+  var parameters = {
+    'property':location_predicates,
+    'entity':entities
+  };
+
+  storeBackEndLastIntent(parameters, sparql, results, response, false);  
+  return response; 
+}
+
+function getLocationByLabelQuery(entityLabel){
+  var sparql;
+  var results = null;
+
+  var location_predicates = custom_functions.getLocationPredicates();
+  var location_predicates_as_string = location_predicates.join(" ");
+  var label_predicates = custom_functions.getLabelPredicates();
+  var label_predicates_as_string = label_predicates.join(" ");
+
+  //create query
+  sparql="SELECT ?result ?label ?property_location WHERE { " + 
+    "VALUES ?property_location {"+location_predicates_as_string+"} "+
+    "VALUES ?property_label {"+label_predicates_as_string+"} "+
+    "?entity ?property_location ?result." + 
+    "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'^" + entityLabel + "$', 'i'))" + 
+    "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}" + 
+    "ORDER BY DESC(?result)"; 
+
+    //run query
+    results = custom_functions.runSelectQuery(sparql);
+    var trimmed_results = trimResults(results, 1);
+    var count = Object.keys(results).length;
+
+    if(trimmed_results!=null && trimmed_results.length>0){
+      //verbalize response
+      var response = LanguageManager['results_response'](lang, count, trimmed_results);
+
+      //store last request parameters
+      var property_location = results[0].property_location.value;
+      var parameters = {
+        'property':property_location,
+        'entity':entities[i]
+      };
+
+      storeBackEndLastIntent(parameters, sparql, getAllResults(results), response, true);  
+      return response; 
+    }
+
+  sparql="SELECT ?result ?label ?property_location WHERE { " + 
+    "VALUES ?property_location {"+location_predicates_as_string+"} "+
+    "VALUES ?property_label {"+label_predicates_as_string+"} "+
+    "?entity ?property_location ?result." + 
+    "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'" + entityLabel + "', 'i'))" + 
+    "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}" + 
+    "ORDER BY DESC(?result)"; 
+
+    //run query
+    results = custom_functions.runSelectQuery(sparql);
+    var trimmed_results = trimResults(results, 1);
+    var count = Object.keys(results).length;
+
+    if(trimmed_results!=null && trimmed_results.length>0){
+      //verbalize response
+      var response = LanguageManager['results_response'](lang, count, trimmed_results);
+
+      //store last request parameters
+      var property_location = results[0].property_location.value;
+      var parameters = {
+        'property':property_location,
+        'entity':entities[i]
+      };
+
+      storeBackEndLastIntent(parameters, sparql, getAllResults(results), response, true);  
+      return response; 
+    }
+  
 
   //verbalize response
   var response = LanguageManager['results_response'](lang, 0, results);
@@ -1922,43 +2655,46 @@ function resolveSlot(intentName, parameterName, slotValues){
     'slotStatus' : ''
   }
 
+
   if (slotValues[parameterName].heardAs) {
-        response.slotStatus += slotValues[parameterName].heardAs;
-        response[parameterName]=slotValues[parameterName].heardAs ;
-    } else {
-        response.slotStatus += parameterName + ' empty ';
-        response[parameterName]=null
-    }
-    if (slotValues[parameterName].ERstatus === 'ER_SUCCESS_MATCH') {
-       
-        if(slotValues[parameterName].resolved !== slotValues[parameterName].heardAs) {
-            response.slotStatus += slotValues[parameterName].resolved; 
-            response[parameterName]=slotValues[parameterName].resolved; 
-        } 
-    }
-    if (slotValues[parameterName].ERstatus === 'ER_SUCCESS_NO_MATCH') {
-        response.slotStatus += 'which did not match any slot value. ';
-        response[parameterName]=null
-    }
-
-    if( (slotValues[parameterName].ERstatus === 'ER_SUCCESS_NO_MATCH') ||  (!slotValues[parameterName].heardAs) ) {
-      var options = '';
-      switch (parameterName){
-        case 'property':
-          options = sayArray(getExampleSlotValues(intentName,'property'), 'or');
-          break;
-        case 'superlative':
-          options = sayArray(getExampleSlotValues(intentName,'superlative'), 'or');
-          break;
-        default:
-           options = sayArray(getExampleSlotValues(intentName,'entity'), 'or');
-      }
-
-      response.slotStatus += 'A few valid values are, ' + options;
+    response.slotStatus += slotValues[parameterName].heardAs;
+    response[parameterName]=slotValues[parameterName].heardAs ;
+  } else {
+    response.slotStatus += parameterName + ' empty ';
+    response[parameterName]=null
+  }
+  if (slotValues[parameterName].ERstatus === 'ER_SUCCESS_MATCH') {
+     
+      if(slotValues[parameterName].resolved !== slotValues[parameterName].heardAs) {
+          response.slotStatus += slotValues[parameterName].resolved; 
+          response[parameterName]=slotValues[parameterName].resolved; 
+      } 
+  }
+  /*
+  if (slotValues[parameterName].ERstatus === 'ER_SUCCESS_NO_MATCH') {
+      response.slotStatus += 'which did not match any slot value. ';
       response[parameterName]=null
+  }
+
+  if( (slotValues[parameterName].ERstatus === 'ER_SUCCESS_NO_MATCH') ||  (!slotValues[parameterName].heardAs) ) {
+    var options = '';
+    switch (parameterName){
+      case 'property':
+        options = sayArray(getExampleSlotValues(intentName,'property'), 'or');
+        break;
+      case 'superlative':
+        options = sayArray(getExampleSlotValues(intentName,'superlative'), 'or');
+        break;
+      default:
+         options = sayArray(getExampleSlotValues(intentName,'entity'), 'or');
     }
 
-    return response;
+    response.slotStatus += 'A few valid values are, ' + options;
+    response[parameterName]=null
+  }
+  */
+
+  return response;
 }
 
 // Utilities storage last request

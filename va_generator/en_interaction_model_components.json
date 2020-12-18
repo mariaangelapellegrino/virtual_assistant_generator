@@ -36,23 +36,116 @@
 		        }
 		    ],
 		    "samples": [
-		        "what is the {property} of {entity}",
-		        "which is the {property} of {entity}",
-		        "what is the {property} of entity {entity}",
-		        "what is the value of {property} attached to {entity}",
-		        "what is the value of {property} related to {entity}",
-		        "By focusing on {entity} what is its {property}",
-		        "If we focus on {entity} what is its {property}",
-		        "If we talk about {entity} what is its {property}",
-		        "By focusing on {entity} who is its {property}",
-		        "If we focus on {entity} who is its {property}",
-		        "If we talk about {entity} who is its {property}",
+		    	"who is the {property} of {entity}",
+		    	"who was the {property} of {entity}",
 
-		        "when is the {property} of {entity}",
-		        "who is the {property} of {entity}"
-		        
+		    	"what are the {property} of {entity}",
+		    	"what is the {property} of {entity}",
+
+		    	"how {property} is {entity}",
+
+		    	"how many {property} does {entity} have",
+		    	"how much {property} does {entity} have",
+
+		    	"give me the {property} of {entity}",
+
+		    	"which is the {property} of {entity}",
+		    	
+		        "when is the {property} of {entity}"		      
 		    ]
 		},
+
+		"getPropertySubject" : {
+		    "name": "getPropertySubject",
+		    "slots": [
+		        {
+		            "name": "property",
+		            "type": "property"
+		        },
+		        {
+		            "name": "entity",
+		            "type": "entity"
+		        }
+		    ],
+		    "samples": [
+		        "which entity has {entity} as {property}",
+
+		        "what have {entity} as {property}",
+		        "what has {entity} as {property}",
+		        "who has {entity} as {property}",
+
+		        "what has {property} equals to {entity}",
+
+		        "what is {entity} as {property}",
+
+		        "how many entities have {entity} as {property}",
+		        "how many entities have {property} like {entity}",
+
+		        "list everything {property} by {entity}",
+		        "give me everything {property} by {entity}"
+		    ]
+		},
+		
+		"getClassInstances" : {
+		    "name": "getClassInstances",
+		    "slots": [
+		        {
+		            "name": "class",
+		            "type": "entity"
+		        }
+		    ],
+		    "samples": [
+		    	"Give me all types of {class}",
+		    	"how many {class} exist",
+		    	"how many {class} are there"
+		    ]
+		},
+
+		"getPropertySubjectByClass" : {
+		    "name": "getPropertySubjectByClass",
+		    "slots": [
+		        {
+		            "name": "class",
+		            "type": "entity"
+		        },
+		        {
+		            "name": "property",
+		            "type": "property"
+		        },
+		        {
+		            "name": "entity",
+		            "type": "entity"
+		        }
+		    ],
+		    "samples": [
+		        "how many {class} has {property} like {entity}",
+		        "which {class} has {property} like {entity}",
+		        "which {class} has {entity} as {property}",
+		        "which {class} is {property} by {entity}",
+		        "how many {class} has {entity} as {property}",
+
+		        "which {class} has {property} equals to {entity}",
+
+		        "show me a list of {class} that {property} in the {entity}",
+
+		        "which {class} were {property} in {entity}",
+		        "which {class} were {property} on {entity}",
+		        "which {class} were {property} by {entity}",
+
+		        "give me all {class} that were {property} in {entity}",
+		        "give me all {class} that {property} to {entity}",
+		        "give me {class} whose {property} is equals to {entity}",
+		        "give me {class} where {entity} is the {property}",
+
+		        "what {class} does {entity} {property}",
+
+		        "list all the {class} with {property} by {entity}",
+		        		        		      		 		        
+	   		    "how many {class} are {property} the {entity}"        
+
+		    ]
+		},
+
 		"getDescription" : {
 		    "name": "getDescription",
 		    "slots": [
@@ -116,25 +209,6 @@
 		        "which {class} has {property} {symbol} {value}"
 		    ]
 		},
-		"getClassInstances" : {
-		    "name": "getClassInstances",
-		    "slots": [
-		        {
-		            "name": "class",
-		            "type": "entity"
-		        }
-		    ],
-		    "samples": [
-		        "can you list entities belonging to the class {class}",
-		        "can you list instances of {class}",
-		        "what are the instances of {class}",
-		        "provide me examples of {class}",
-		        "list me elements of {class}",
-		        "what are instances of {class}",
-		        "how many instances of {class} are there",
-		        "list me instances of {class}"
-		    ]
-		},
 		"getTripleVerification" : {
 		    "name": "getTripleVerification",
 		    "slots": [
@@ -188,30 +262,8 @@
 		        }                        
 		    ],
 		    "samples": [
-		        "what is the {entity} with {superlative} {property}"                    ] 
-		},
-		"getPropertySubjectByClass" : {
-		    "name": "getPropertySubjectByClass",
-		    "slots": [
-		        {
-		            "name": "class",
-		            "type": "entity"
-		        },
-		        {
-		            "name": "property",
-		            "type": "property"
-		        },
-		        {
-		            "name": "entity",
-		            "type": "entity"
-		        }
-		    ],
-		    "samples": [
-		        "how many {class} has {property} like {entity}",
-		        "which {class} has {property} like {entity}",
-		        "which {class} has {entity} as {property}",
-		        "how many {class} has {entity} as {property}"
-		    ]
+		        "what is the {entity} with {superlative} {property}"                    
+		    ] 
 		},
 		"getImg" : {
 		    "name": "getImg",
@@ -227,27 +279,8 @@
 		        "show me a {entity}",
 		        "show me {entity}"
 		    ]
-		},
-		"getPropertySubject" : {
-		    "name": "getPropertySubject",
-		    "slots": [
-		        {
-		            "name": "property",
-		            "type": "property"
-		        },
-		        {
-		            "name": "entity",
-		            "type": "entity"
-		        }
-		    ],
-		    "samples": [
-		        "which entity has {entity} as {property}",
-		        "what have {entity} as {property}",
-		        "what has {entity} as {property}",
-		        "how many entities have {entity} as {property}",
-		        "how many entities have {property} like {entity}"
-		    ]
 		}
+		
 	},
 	"slots" : {
 		"superlative" : {
