@@ -7,7 +7,6 @@ The effort is strictly related to the provision of queriable entities and predic
 
 We provide the generator as a command-line tool and as [API](https://pypi.org/project/virtual-assistant-generator/).
 
-
 The generator is maintained by the [ISISLab](https://www.isislab.it/) of the University of Salerno.
 
 ## Generator structure and extension points
@@ -23,7 +22,11 @@ Once validated the configuration file, the Alexa skills components (the JSON int
 
 Due to the modularity of the implementation, the extensions point are:
 1. the supported languages (by affecting the instance of Interaction Model Generator and by providing the interaction model components according to the desired language);
-2. the Vocal Assistant (by providing a dedicated implementation of the Abstract Interaction Model and Abstract Back-end).
+2. the Virtual Assistant Provider (by providing a dedicated implementation of the Abstract Interaction Model and Abstract Back-end);
+3. the supported intents;
+4. the linking approach by affecting the *back_end/custom_function.js* script.
+
+Users can also rely on the automatic configured skill, by exploiting the *Configuration Generator* component.
 
 ## Repository structure
 
@@ -39,13 +42,14 @@ Due to the modularity of the implementation, the extensions point are:
         - **custom_functions.js** contains the functions that the user may need to modify to personalize the entities and properties look-up (for instance, by exploiting API instead on pre-defined dictionaries),
         - **package-lock.json** and **package.json** to manage Node.js packages,
         - **node_modules** folder, containing all the required Node.js packages,
-    - **conf.json** an exemplerary configuration file,    
-    - **main.py** that starts the VA extension generation according to the configuration file.
+- **conf.json** an exemplerary configuration file,
+- **main.py** that starts the VA extension generation according to the configuration file,
+- **generator\_configuration.py** module to automatically create the generator configuration starting from a SPARQL endpoint,
 
 - **use cases** contains 
     - the configuration file and the Alexa skill components (interaction model and back end) for DBpedia and Wikidata and general-purpose Knowledge Graphs (KGs), the UNESCO Thesaurus, the WarSampo and WordNet as special-purpose KGs.
       Each skill is provided in an individual folder.
-    - the evaluation of the Wikidata and DBpedia Alexa skills against QLAD-7 and QALD-9 (respectively). We report the used datasets, the skill replies, the code used to compare gold standard and actual results, and the achieved results.
+    - the evaluation of the Wikidata and DBpedia Alexa skills against QALD-7 and QALD-9 (respectively). 
     
 - **SPARQL_endpoint_analysis** contains 
     - **analysis_queries.md** the used SPARQL queries to retrieve classes, properties and resources from KGs,
@@ -64,11 +68,10 @@ The implemented intents, an example of provided utterance and the queried triple
 | getPropertyObject                                    | What is the {p} of {e}?           | &lt;e&gt; &lt;p&gt; ?                                                               |
 | getDescription                                       | What/Who is {e}?                  | &lt;e&gt; &lt;definition&gt; ?                                                      |
 | getLocation                                          | Where is {e}?                     | &lt;e&gt; &lt;location&gt; ?                                                        |
-| getImg                                               | Show me &lt;e&gt;                 | &lt;e&gt; &lt;img&gt; ?                                                             |
-| getPropertyObjectByClass                             | Which {c} is the {p} of {e}?      | &lt;e&gt; &lt;p&gt; ?. ? &lt;instanceof&gt; &lt;c&gt;                                           |
+| getImg                                               | Show me &lt;e&gt;                 | &lt;e&gt; &lt;img&gt; ?                                                             |                                         |
 | getPropertySubject                                   | What has {e} as {p}?              | ? &lt;p&gt; &lt;e&gt;                                                               |
-| getClassInstances                                    | What are the instances of {e}?    | ? &lt;instanceof&gt; &lt;e&gt;                                                      |
-| getPropertySubjectByClass                            | Which {c} has {e} as {p}?         | ? &lt;instanceof&gt; &lt;c&gt;.&lt;br&gt;? &lt;p&gt; &lt;e&gt;.                                       |
+| getClassInstances                                    | How many {e} exist?    | ? &lt;instanceof&gt; &lt;e&gt;                                                      |
+| getPropertySubjectByClass                            | Which {c} were {p} by {e}?         | ? &lt;instanceof&gt; &lt;c&gt;.&lt;br&gt;? &lt;p&gt; &lt;e&gt;.                                       |
 | getNumericFilter                                     | What has {p} {symbol} {val}?      | ? &lt;p&gt; ?o. &lt;br&gt; FILTER(?o &lt;symbol&gt; &lt;val&gt;)                        |
 | getNumeriFilterByClass                               | Which {c} has {p} {symbol} {val}? | ? &lt;instanceof&gt; &lt;c&gt;.? &lt;p&gt; ?o. &lt;br&gt; FILTER(?o &lt;symbol&gt; &lt;val&gt;) |
 | getSuperlative                                       | What is the {c} with {sup} {p}?   | ? &lt;p&gt; ?o.&lt;br&gt; ORDER BY (?o).&lt;br&gt; LIMIT 1                |
@@ -98,16 +101,16 @@ LABEL : {
 ### Running details
 
 To generate the Alexa skill, you have:
-- provide the configuration file (e.g., conf.json),
+- provide the configuration file (e.g., conf.json) or generate it by the configuration\_generator module,
 - create an instance of the generator (i.e., AlexaSkillGenerator()),
-- call the generate_personal_assistant function on the generator by providing the configuration file (e.g., generator.generate_personal_assistant("conf.json")).
+- call the generate\_personal\_assistant function on the generator by providing the configuration file (e.g., generator.generate\_personal\_assistant("conf.json")).
 
 ### Results storage
 
 The Alexa skill will be stored on the local path. The generator will create:
-- a folder named as the &lt;INVOCATION_NAME&gt; provided in the configuration file, containing    
-    - generated_interaction_model.json that is the interaction model as expected by the [Alexa Developer Console](https://developer.amazon.com/alexa/console)
-    - a back_end.zip file containing the back end (implemented in JavaScript) that can be directly uploaded on [Amazon AWS](https://aws.amazon.com/).
+- a folder named as the &lt;INVOCATION_NAME&gt; provided in the configuration file, containing
+    - generated\_interaction\_model.json that is the interaction model as expected by the [Alexa Developer Console](https://developer.amazon.com/alexa/console)
+    - a back\_end.zip file containing the back end (implemented in JavaScript) that can be directly uploaded on [Amazon AWS](https://aws.amazon.com/).
 
 ## Dependencies
 The generator is implemented in Python 3.0
@@ -116,4 +119,4 @@ The generator is implemented in Python 3.0
 The code is Open-Source the MIT License applies to the provided source code.
 
 ## Permanent URI
-A permanent version of this repository is provided on [Zenodo](https://zenodo.org/record/3839435).
+A permanent version of this repository is provided on [Zenodo](https://zenodo.org/record/4351211).
