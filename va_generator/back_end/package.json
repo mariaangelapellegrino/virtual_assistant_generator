@@ -18,7 +18,11 @@
     "dbpedia-spotlight": "^0.5.28",
     "gh-got": "^5.0.0",
     "got": "10.4.0",
+    "node-wordnet": "^0.1.12",
     "sync-request": "^6.1.0",
-    "wikibase-sdk": "^7.1.2"
+    "wikibase-sdk": "^7.1.2",
+    "wndb-with-exceptions": "^3.0.2",
+    "wordnet": "^0.1.2",
+    "wordpos": "^2.0.0"
   }
 }

@@ -22,6 +22,8 @@ class custom_functions{
 
         this.endpoint = this.conf_file["endpoint"]
 
+        this.label_predicates = []
+
     }
 
     getLang(){
@@ -71,19 +73,35 @@ class custom_functions{
     extractLabel(url){
         console.log("extractLabel");
         console.log(url);
-        var parts = url.split("/");
-        var localName = parts[parts.length-1];
-        var label = localName
-        if (localName.includes("-")){
-            parts = localName.split("-");
-            label = parts[1];
-        }
-        console.log(label);
+        if(this.isURL(url)){
+            var parts = url.split("/");
+            var localName = parts[parts.length-1];
+            var label = localName
+            if (localName.includes("-")){
+                parts = localName.split("-");
+                label = parts[1];
+            }
+            console.log(label);
+        }else
+            label = url;
          
         return label;
+        
+    }
+
+    isURL(str) {
+      var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+      '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+      return pattern.test(str);
     }
 
     runSelectQuery (sparql){
+        console.log(sparql)
+
         var t0 = new Date().getTime();
         const url = this.endpoint+"?query="+ encodeURIComponent(sparql) +"&format=json";
         //console.log(url)
@@ -97,6 +115,8 @@ class custom_functions{
 
         var b = JSON.parse(res.getBody());
         var result =  b.results.bindings;
+
+        console.log(result)
 
         var t1 = new Date().getTime();
         console.log("Call to runSelectQuery took " + (t1 - t0) + " milliseconds.")
@@ -141,7 +161,39 @@ class custom_functions{
     }
 
     getLabelPredicates(){
-        return this.getProperty("label")
+        if (this.label_predicates.length==0){
+            var prop_labels = this.getProperty("label")
+
+            var most_used_label = null;
+            var most_used_label_count = 0;
+            
+            for (var i=0; i<prop_labels.length; i++){
+                var prop_label = prop_labels[i];
+                var query = "SELECT COUNT(*) as ?count WHERE { ?s " + prop_label + " ?o. }" ;
+
+                const url = this.endpoint+"?query="+ encodeURIComponent(query) +"&format=json";
+
+                var request = require('sync-request');
+                var res = request('GET', url, {
+                    headers: {
+                        'user-agent': 'example-user-agent',
+                    },
+                });
+
+                var b = JSON.parse(res.getBody());
+                var result =  b.results.bindings[0];
+
+                if(result['count']['value']>most_used_label_count){
+                    most_used_label = prop_label;
+                    most_used_label_count = result['count']['value'];
+                }
+
+            }
+            
+            this.label_predicates = [most_used_label]
+        }
+        console.log("label predicates : " + this.label_predicates)
+        return this.label_predicates;           
     }
 }
 
