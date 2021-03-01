@@ -17,13 +17,13 @@ class Validator:
 			'getDescription' : ['description'],
 			'getLocation' : ['location'],
 			'getImg' : ['img'],
-			'getClassInstances' : ['instanceof', 'label'],
+			'getClassInstances' : ['type', 'label'],
 			'getNumericFilter' : ['label'],
-			'getNumericFilterByClass' : ['instanceof'],
+			'getNumericFilterByClass' : ['type'],
 			'getDateFilter' : ['label'],
-			'getDateFilterByClass' : ['instanceof', 'label'],
-			'getPropertySubjectByClass' : ['instanceof', 'label'],
-			'getSuperlative' : ['instanceof', 'label'],
+			'getDateFilterByClass' : ['type', 'label'],
+			'getPropertySubjectByClass' : ['type', 'label'],
+			'getSuperlative' : ['type', 'label'],
 			'getPropertyObject' : ['label'],
 			'getPropertySubject' : ['label']
 		}

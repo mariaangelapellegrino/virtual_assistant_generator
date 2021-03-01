@@ -82,7 +82,9 @@
 		        "how many entities have {property} like {entity}",
 
 		        "list everything {property} by {entity}",
-		        "give me everything {property} by {entity}"
+		        "give me everything {property} by {entity}",
+
+		        "what is {property} by {entity}"
 		    ]
 		},
 		
@@ -155,11 +157,8 @@
 		        }
 		    ],
 		    "samples": [
-		        "who is {entity}",
-		        "what is {entity}",
 		        "can you define {entity}",
 		        "can you provide me the definition of {entity}",
-		        "what is the definition of {entity}",
 		        "how can you define {entity}"
 		    ]
 		},
@@ -227,9 +226,11 @@
 		    ],
 		    "samples": [
 		        "is it true that {subj} has {obj} as {property}",
+		        "is it true that {obj} is the {property} of {subj}",
 		        "can you verify if {subj} has {obj} as {property}",
 		        "{subj} has {obj} as {property}",
-		        "can you check if {subj} has {obj} as {property}"
+		        "can you check if {subj} has {obj} as {property}",
+		        "is {obj} the {property} of {subj}"
 		    ]
 		},
 		"getLocation" : {
@@ -314,7 +315,8 @@
 	                    "value": ">",
 	                    "synonyms" : [
 	                        "more",
-	                        "more than"
+	                        "more than",
+	                        "later than"
 	                    ]
 	                }
 	            },
@@ -323,7 +325,8 @@
 	                    "value": "<",
 	                    "synonyms" : [
 	                        "less",
-	                        "less than"
+	                        "less than",
+	                        "before than"
 	                    ]
 	                }
 	            },

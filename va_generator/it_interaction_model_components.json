@@ -126,8 +126,7 @@
             ],
             "samples": [
                 "puoi definirmi {entity}",
-                "chi e {entity}",
-                "cosa e {entity}"
+                "puoi darmi la definizione di {entity}",
             ]
         },
         "getNumericFilter" : {

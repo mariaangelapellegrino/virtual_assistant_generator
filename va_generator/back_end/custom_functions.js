@@ -125,6 +125,9 @@ class custom_functions{
     }
 
     runAskQuery (sparql){
+
+        console.log(sparql)
+
         var t0 = new Date().getTime();
         const url = this.endpoint+"?query="+ encodeURIComponent(sparql) +"&format=json";
 
@@ -149,7 +152,7 @@ class custom_functions{
     }
 
     getInstancesPredicates (){
-        return this.getProperty("instanceof")
+        return this.getProperty("type")
     }
 
     getImgPredicates (){

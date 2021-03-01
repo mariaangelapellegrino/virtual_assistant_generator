@@ -291,10 +291,10 @@ const getDescription_Handler =  {
       var result_reply = null;
 
       if(resolved_entities){
-        getDescriptionQuery(resolved_entities);
+        result_reply = getDescriptionQuery(resolved_entities);
       } 
       else{
-        getDescriptionByLabelQuery(entity);
+        result_reply = getDescriptionByLabelQuery(entity);
       }
       //verbalization
       var request_verbalization = LanguageManager[intentName+"_request"](lang, entity);
@@ -671,6 +671,9 @@ const getNumericFilterByClass_Handler =  {
         };
         storeLastIntent(intentName, parameters);
 
+        console.log("getNumericFilterByClass_Handler")
+        console.log(reply)
+
         return responseBuilder
             .speak(reply)
             .reprompt(LanguageManager["reprompt_more_questions"](lang))
@@ -1045,7 +1048,7 @@ function getDateFilterQuery(properties, symbol_label, value){
       //store last request parameters
     var parameters = {
       'entity':entities,
-      'property': property,
+      'property': properties,
       'symbol':symbol,
       'value':value
     };
@@ -1073,20 +1076,25 @@ function getNumericFilterByClassQuery(entities, properties, symbol_label, value)
       sparql="SELECT DISTINCT ?result ?label ?property_instance WHERE {"+
       "VALUES ?property_instance {"+instances_predicates_as_string+"} "+
       "VALUES ?property_label {"+label_predicates_as_string+"} "+
-      "?result ?property_instance "+entities[i]+"." + 
-      "?result "+properties[j]+ " ?value." + 
-      "FILTER(?value "+symbol+" "+value+" )" + 
+      "?result ?property_instance "+entities[i]+". " + 
+      "?result "+properties[j]+ " ?value. " + 
+      "FILTER(?value "+symbol+" "+value+" ) " + 
       "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
 
       //run query
       var results = custom_functions.runSelectQuery(sparql)
+
+      console.log("getNumericFilterByClassQuery")
+      console.log(results)
+
       var trimmed_results = trimResults(results);
       if(trimmed_results!=null && trimmed_results.length>0){
         var count = Object.keys(results).length;
 
         //verbalize response
         var response = LanguageManager['results_response'](lang, count, trimmed_results);
-
+        console.log("getNumericFilterByClassQuery")
+        console.log(response)
           //store last request parameters
         var parameters = {
           'entity':entities[i],
@@ -1123,12 +1131,16 @@ function getDateFilterByClassQuery(entities, properties, symbol_label, value){
       "VALUES ?property_instance {"+instances_predicates_as_string+"} "+
       "VALUES ?property_label {"+label_predicates_as_string+"} "+
       "?result ?property_instance "+entities[i]+"." + 
-      "?result "+property+ " ?value." + 
+      "?result "+properties[j]+ " ?value." + 
       "FILTER(year(?value) "+symbol+" "+value+" )" + 
       "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
 
       //run query
       results = custom_functions.runSelectQuery(sparql);
+
+      console.log("getDateFilterByClassQuery")
+      console.log(results)
+
       var trimmed_results = trimResults(results);
       
       if((trimmed_results!=null && trimmed_results.length>0)){
@@ -1140,7 +1152,7 @@ function getDateFilterByClassQuery(entities, properties, symbol_label, value){
           //store last request parameters
         var parameters = {
           'entity':entities[i],
-          'property': property,
+          'property': properties[j],
           'symbol':symbol,
           'value':value
         };
@@ -1374,7 +1386,7 @@ function getTripleVerificationByObjectLabelQuery(subjects, properties, objectLab
   for(var i=0; i<subjects.length; i++){
     for(var k=0; k<properties.length; k++){
         sparql="ASK {"+
-          subjects[i] +" "+properties[k]+" ?object. "
+          subjects[i] +" "+properties[k]+" ?object. " +
           "?object rdfs:label ?objectLabel. FILTER(lang(?objectLabel)='"+lang+"') FILTER(regex(?objectLabel,'^" + objectLabel + "$', 'i'))" + 
           "}";
               
@@ -1541,34 +1553,32 @@ function getTripleVerificationBySubjectAndObjectLabelQuery(subjectLabel, propert
       return response;
     }     
    }
-   for(var i=0; i<subjects.length; i++){
-      for(var k=0; k<properties.length; k++){
-        sparql="ASK {"+
-          subjects[i] +" "+properties[k]+" ?object. "+
-          "?subject "+properties[k]+" ?object. "+
-          "?subject rdfs:label ?subjectLabel. FILTER(lang(?subjectLabel)='"+lang+"') FILTER(regex(?subjectLabel,'" + subjectLabel + "', 'i'))" + 
-          "?object rdfs:label ?objectLabel. FILTER(lang(?objectLabel)='"+lang+"') FILTER(regex(?objectLabel,'" + objectLabel + "', 'i'))" + 
-          "}";
-              
-        //run query
-        result = custom_functions.runAskQuery(sparql);
-              
-        if(result){
-          //verbalize response
-          var response = LanguageManager['boolean_response'](lang, result);
+    for(var k=0; k<properties.length; k++){
+      sparql="ASK {"+
+        "?subject "+properties[k]+" ?object. "+
+        "?subject rdfs:label ?subjectLabel. FILTER(lang(?subjectLabel)='"+lang+"') FILTER(regex(?subjectLabel,'" + subjectLabel + "', 'i'))" + 
+        "?object rdfs:label ?objectLabel. FILTER(lang(?objectLabel)='"+lang+"') FILTER(regex(?objectLabel,'" + objectLabel + "', 'i'))" + 
+        "}";
+            
+      //run query
+      result = custom_functions.runAskQuery(sparql);
+            
+      if(result){
+        //verbalize response
+        var response = LanguageManager['boolean_response'](lang, result);
 
-          //store last request parameters
-          var parameters = {
-            'subject':subjectLabel,
-            'property': properties[k],
-            'object':objectLabel
-          };
+        //store last request parameters
+        var parameters = {
+          'subject':subjectLabel,
+          'property': properties[k],
+          'object':objectLabel
+        };
 
-          storeBackEndLastIntent(parameters, sparql, result, response, true);  
-          return response;
-        } 
-      }    
-    }
+        storeBackEndLastIntent(parameters, sparql, result, response, true);  
+        return response;
+      } 
+    }    
+    
 
   
   //verbalize response
@@ -1576,7 +1586,7 @@ function getTripleVerificationBySubjectAndObjectLabelQuery(subjectLabel, propert
 
   //store last request parameters
   var parameters = {
-    'subject':subjects,
+    'subject':subjectLabel,
     'property': properties,
     'object':objectLabel
   };
@@ -2057,6 +2067,8 @@ function getDescriptionQuery(entities){
         descriptions.push(results[0].description.value);
      
   }
+  console.log("getDescriptionQuery")
+  console.log(descriptions)
 
   //verbalize response
   var response = LanguageManager['getDescription_response'](lang, descriptions);
@@ -2102,6 +2114,9 @@ function getDescriptionByLabelQuery(entityLabel){
     if(results.length>0)
       descriptions.push(results[0].description.value); 
   }
+
+  console.log("getDescriptionByLabelQuery")
+  console.log(descriptions)
 
   //verbalize response
   var response = LanguageManager['getDescription_response'](lang, descriptions);
@@ -2893,6 +2908,22 @@ function en_resolveAsMathSymbol(symbol_label){
     return symbol;
 }
 
+function en_resolveAsMathSymbolLabel(symbol){
+  var symbol_label = "";
+
+  if(symbol==">"){
+      symbol_label= "greater than";
+    }
+    else if(symbol=="<"){
+      symbol_label='lower than';
+    }
+    else if(symbol=="="){
+      symbol_label='equals to';
+    }
+
+    return symbol_label;
+}
+
 function en_resolveAsOrder(superlative){
   var order = null;
   
@@ -2922,6 +2953,22 @@ function it_resolveAsMathSymbol(symbol_label){
     return symbol;
 }
 
+function it_resolveAsMathSymbolLabel(symbol){
+  var symbol_label = "";
+
+  if(symbol==">"){
+      symbol_label='maggiore di';
+    }
+    else if(symbol="<"){
+      symbol_label='minore di';
+    }
+    else if(symbol=="="){
+      symbol_label='uguale a';
+    }
+
+    return symbol_label;
+}
+
 function it_resolveAsOrder(superlative){
   var order = null;
   
@@ -2942,6 +2989,18 @@ LanguageManager.resolveAsMathSymbol = function(current_lang, symbol_label){
     case 'en':
     default:
       return en_resolveAsMathSymbol(symbol_label);
+  }
+
+  return null;
+}
+
+LanguageManager.resolveAsMathSymbolLabel = function(current_lang, symbol){
+  switch(current_lang){
+    case 'it':
+      return it_resolveAsMathSymbolLabel(symbol);
+    case 'en':
+    default:
+      return en_resolveAsMathSymbolLabel(symbol);
   }
 
   return null;
@@ -3009,14 +3068,15 @@ LanguageManager.getLocation_request = function(current_lang, entity){
 
 LanguageManager.getNumericFilterByClass_request = function(current_lang, entity, prop, symbol, value){
   var response; 
+  var symbol_label = LanguageManager.resolveAsMathSymbolLabel(current_lang, symbol);
 
   switch(current_lang){
     case "it":
-      response = 'Sto cercando istanze di '+entity+' con ' + prop +" "+ symbol+" "+ value+". ";
+      response = 'Sto cercando istanze di '+entity+' con ' + prop +" "+ symbol_label+" "+ value+". ";
       break;
     case "en":
     default:
-      response = 'I looked for instances of '+entity+' that have ' + prop +" "+ symbol+" "+ value+". ";
+      response = 'I looked for instances of '+entity+' that have ' + prop +" "+ symbol_label+" "+ value+". ";
       break;
   }
     response = removeSpecialCharacters(response);
@@ -3236,7 +3296,6 @@ LanguageManager.getDescription_response = function(current_lang, descriptions){
         var descriptions_as_string = descriptions.join(" o ");
         response += descriptions_as_string + ".";
       }
-      response = removeSpecialCharacters(response);
       break;
     case "en":
     default:
@@ -3249,10 +3308,11 @@ LanguageManager.getDescription_response = function(current_lang, descriptions){
         var descriptions_as_string = descriptions.join(" or ");
         response += descriptions_as_string + ".";
       }
-      response = removeSpecialCharacters(response);
       break;
   }
-
+  console.log("getDescription_response")
+  console.log(response)
+  response = removeSpecialCharacters(response);
   return response;
 }
 

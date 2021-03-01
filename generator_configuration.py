@@ -7,6 +7,7 @@ import urllib.parse
 from SPARQLWrapper import SPARQLWrapper, JSON
 from urllib.parse import quote
 from py_thesaurus import Thesaurus
+import sys, getopt
 
 WN_NOUN = 'n'
 WN_VERB = 'v'
@@ -15,7 +16,7 @@ WN_ADJECTIVE_SATELLITE = 's'
 WN_ADVERB = 'r'
 
 
-classes = {}
+entities = {}
 properties = {}
 
 
@@ -144,8 +145,9 @@ def contains_special_characters(value):
     return not bool(re.match('^([a-zA-Z]|[ ]|[-])*$',value))
 
 def remove_ambiguities_slot_properties():
-    with open('./augmented_slot_properties.json') as f:
-        properties = json.load(f)
+    global properties
+    #with open('./augmented_slot_properties.json') as f:
+    #    properties = json.load(f)
 
     all_properties_value = list(properties.keys())
 
@@ -160,13 +162,13 @@ def remove_ambiguities_slot_properties():
                     new_synoynms.append(synonym)
             properties[key]['synonyms'] = new_synoynms
 
-    with open("./augmented_slot_properties.json", "w") as write_file:
-        json.dump(properties, write_file, indent=4)
+    #with open("./augmented_slot_properties.json", "w") as write_file:
+    #    json.dump(properties, write_file, indent=4)
 
 def augment_slot_properties():
-
-    with open('./cleaned_slot_properties.json') as f:
-        properties = json.load(f)
+    global properties
+    #with open('./cleaned_slot_properties.json') as f:
+    #    properties = json.load(f)
 
     for key in properties:
         # nouns to verbs
@@ -237,12 +239,13 @@ def augment_slot_properties():
         if extended_synonyms:
             properties[key]["synonyms"] = extended_synonyms
 
-    with open("./augmented_slot_properties.json", "w") as write_file:
-        json.dump(properties, write_file, indent=4)
+    #with open("./augmented_slot_properties.json", "w") as write_file:
+    #    json.dump(properties, write_file, indent=4)
 
 def clean_slot_properties():
-    with open('./slot_properties.json') as f:
-        properties = json.load(f)
+    global properties
+    #with open('./slot_properties.json') as f:
+    #    properties = json.load(f)
 
     cleaned_properties = {}
     for key in properties:
@@ -251,7 +254,7 @@ def clean_slot_properties():
         else:
             new_key = key
 
-        if new_key and not contains_special_characters(new_key):
+        if new_key and len(new_key.strip())>0 and not contains_special_characters(new_key):
             if not new_key in cleaned_properties:
                 cleaned_properties[new_key] = {'urls':[]}
             cleaned_properties[new_key]['urls'] = list(set(cleaned_properties[new_key]['urls'] + properties[key]['urls']))
@@ -261,9 +264,10 @@ def clean_slot_properties():
                 cleaned_properties[new_key]['synonyms'] = list(set(cleaned_properties[new_key]['synonyms'] + properties[key]['synonyms']))
     
 
-    with open("./cleaned_slot_properties.json", "w") as write_file:
-        json.dump(cleaned_properties, write_file, indent=4)
+    #with open("./cleaned_slot_properties.json", "w") as write_file:
+    #    json.dump(cleaned_properties, write_file, indent=4)
 
+    properties = cleaned_properties
 
 
 def augment_slot_entities():
@@ -287,8 +291,9 @@ def augment_slot_entities():
         json.dump(entities, write_file, indent=4)
 
 def clean_slot_entities():
-    with open('./slot_entities.json') as f:
-        entities = json.load(f)
+    global entities
+    #with open('./slot_entities.json') as f:
+    #    entities = json.load(f)
 
     cleaned_entities = {}
     for key in entities:
@@ -297,7 +302,7 @@ def clean_slot_entities():
         else:
             new_key = key
 
-        if new_key and not contains_special_characters(new_key):
+        if new_key and len(new_key.strip())>0 and not contains_special_characters(new_key):
             if not new_key in cleaned_entities:
                 cleaned_entities[new_key] = {'urls':[]}
             cleaned_entities[new_key]['urls'] = list(set(cleaned_entities[new_key]['urls'] + entities[key]['urls']))
@@ -306,9 +311,9 @@ def clean_slot_entities():
                     cleaned_entities[new_key]['synonyms'] = []
                 cleaned_entities[new_key]['synonyms'] = list(set(cleaned_entities[new_key]['synonyms'] + entities[key]['synonyms']))
 
-    with open("./cleaned_slot_entities.json", "w") as write_file:
-        json.dump(cleaned_entities, write_file, indent=4)
- 
+    #with open("./cleaned_slot_entities.json", "w") as write_file:
+    #    json.dump(cleaned_entities, write_file, indent=4)
+    entities = cleaned_entities
 
 def generate_entity_label(slot):
     parts = slot["class"]["value"].split("/")
@@ -324,7 +329,9 @@ def generate_entity_label(slot):
 
     return label
 
-def store_classes(result):
+def store_entities(result):
+    global entities
+
     for slot in result["results"]["bindings"]:
         if "label" not in slot or "value" not in slot["label"] :
             label = generate_entity_label(slot)
@@ -334,10 +341,10 @@ def store_classes(result):
         label = label.lower()
 
         if len(label) < 140:
-            if label not in classes:
-                classes[label] = {"urls" : set()}
+            if label not in entities:
+                entities[label] = {"urls" : set()}
 
-            classes[label]["urls"].add("<"+slot["class"]["value"]+">")
+            entities[label]["urls"].add("<"+slot["class"]["value"]+">")
 
 def query_skosConcepts(sparql_endpoint, defaultGraph = "", lang="en"):
     sparql = SPARQLWrapper(sparql_endpoint, defaultGraph=defaultGraph)
@@ -358,7 +365,7 @@ def query_skosConcepts(sparql_endpoint, defaultGraph = "", lang="en"):
 
     try:
         result = sparql.query().convert()
-        store_classes(result)
+        store_entities(result)
         print("OK skos:concepts query")
     except:
         print("Failed skos:concepts query")
@@ -382,12 +389,11 @@ def query_rdfsClasses(sparql_endpoint, defaultGraph = "", lang="en"):
 
     try:
         result = sparql.query().convert()
-        store_classes(result)
+        store_entities(result)
         print("OK rdfs:classes query")
     except:
         print("Failed rdfs:classes query")
         pass
-
 
 def query_owlClasses(sparql_endpoint, defaultGraph = "", lang="en"):
     sparql = SPARQLWrapper(sparql_endpoint, defaultGraph=defaultGraph)
@@ -407,12 +413,11 @@ def query_owlClasses(sparql_endpoint, defaultGraph = "", lang="en"):
 
     try:
         result = sparql.query().convert()
-        store_classes(result)
+        store_entities(result)
         print("OK owl classes query")
     except:
         print("Failed owl classes query")
         pass
-
 
 def query_usedClasses(sparql_endpoint, defaultGraph = "", lang="en"):
     sparql = SPARQLWrapper(sparql_endpoint, defaultGraph=defaultGraph)
@@ -430,23 +435,25 @@ def query_usedClasses(sparql_endpoint, defaultGraph = "", lang="en"):
     sparql.setReturnFormat(JSON)
     try:
         result = sparql.query().convert()
-        store_classes(result)
-        print("OK Used classes query")
+        store_entities(result)
+        print("OK used classes query")
     except:
         print("Failed used classes query")
         pass
 
-def query_classes(sparql_endpoint, defaultGraph = "", lang="en"):
+def query_entities(sparql_endpoint, defaultGraph = "", lang="en"):
+    global entities
+
     query_usedClasses(sparql_endpoint, defaultGraph=defaultGraph, lang= lang)
     query_skosConcepts(sparql_endpoint,  defaultGraph=defaultGraph, lang= lang)
     query_rdfsClasses(sparql_endpoint,  defaultGraph=defaultGraph, lang= lang)
     query_owlClasses(sparql_endpoint, defaultGraph= defaultGraph, lang= lang)
 
-    for c in classes:
-        classes[c]["urls"] = list(classes[c]["urls"])
+    for e in entities:
+        entities[e]["urls"] = list(entities[e]["urls"])
 
-    with open("./slot_entities.json", "w") as write_file:
-        json.dump(classes, write_file, indent=4)
+    #with open("./slot_entities.json", "w") as write_file:
+    #    json.dump(entities, write_file, indent=4)
 
 
 def generate_property_label(slot):
@@ -464,6 +471,8 @@ def generate_property_label(slot):
     return label
 
 def store_properties(result):
+    global properties
+
     for slot in result["results"]["bindings"]:
         if "label" not in slot or "value" not in slot["label"] :
             label = generate_property_label(slot)
@@ -498,7 +507,7 @@ def query_rdfProperty(sparql_endpoint, defaultGraph = "", lang="en"):
         store_properties(result)
         print("OK rdf:Property query")
     except:
-        print("Failed rdf:Property query")
+        print("failed rdf:Property query")
         pass
 
 def query_owlDatatypeProperties(sparql_endpoint, defaultGraph = "", lang="en"):
@@ -551,6 +560,20 @@ def query_owlObjectProperties(sparql_endpoint, defaultGraph = "", lang="en"):
         print("failed owl:ObjectProperty query")
         pass
 
+def query_usedPropertiesWithoutLabels(sparql_endpoint, defaultGraph = "", lang="en"):
+    sparql = SPARQLWrapper(sparql_endpoint,  defaultGraph=defaultGraph)
+    query = ("SELECT DISTINCT ?p WHERE { ?s ?p ?o. }")
+
+    sparql.setQuery(query)
+    sparql.setReturnFormat(JSON)
+    try:
+        result = sparql.query().convert()
+        store_properties(result)
+        print("OK used property without labels query")
+    except:
+        print("failed used property without labels query")
+        pass
+
 def query_usedProperties(sparql_endpoint, defaultGraph = "", lang="en"):
     sparql = SPARQLWrapper(sparql_endpoint,  defaultGraph=defaultGraph)
 
@@ -561,7 +584,7 @@ def query_usedProperties(sparql_endpoint, defaultGraph = "", lang="en"):
             "?p rdfs:label ?label. "
              "FILTER(LANG(?label)='"+lang+"')" 
         "}" 
-    "}")
+    "} LIMIT 500")
 
     sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
@@ -572,24 +595,15 @@ def query_usedProperties(sparql_endpoint, defaultGraph = "", lang="en"):
     except:
         print("failed used property with labels query")
         
-
-        query = ("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "
-            "SELECT DISTINCT ?p WHERE { ?s ?p ?o. }"
-        )
-
-        sparql.setQuery(query)
-        sparql.setReturnFormat(JSON)
-        try:
-            result = sparql.query().convert()
-            store_properties(result)
-            print("OK used property without labels query")
-        except:
-            print("failed used property without labels query")
-            pass
+        query_usedPropertiesWithoutLabels(sparql_endpoint, defaultGraph, lang)
+        
 
 
 def query_properties(sparql_endpoint, defaultGraph = "", lang="en"):
-    query_usedProperties(sparql_endpoint, defaultGraph=defaultGraph, lang= lang)
+    global properties
+
+    #query_usedProperties(sparql_endpoint, defaultGraph=defaultGraph, lang= lang)
+    query_usedPropertiesWithoutLabels(sparql_endpoint, defaultGraph=defaultGraph, lang=lang)
     query_owlObjectProperties(sparql_endpoint,  defaultGraph=defaultGraph, lang= lang)
     query_owlDatatypeProperties(sparql_endpoint,  defaultGraph=defaultGraph, lang= lang)
     query_rdfProperty(sparql_endpoint, defaultGraph= defaultGraph, lang= lang)
@@ -597,14 +611,14 @@ def query_properties(sparql_endpoint, defaultGraph = "", lang="en"):
     for p in properties:
         properties[p]["urls"] = list(properties[p]["urls"])
 
-    with open("./slot_properties.json", "w") as write_file:
-        json.dump(properties, write_file, indent=4)
+    #with open("./slot_properties.json", "w") as write_file:
+    #    json.dump(properties, write_file, indent=4)
 
-if __name__ == "__main__":
-    endpoint = "http://dbpedia.org/sparql"
-    defaultGraph = "http://dbpedia.org"
-    lang = "en"
-    invocation_name = "my personal assistant"
+def main(argv):
+    endpoint = "" # e.g., "http://dbpedia.org/sparql"
+    defaultGraph = "" # e.g., "http://dbpedia.org"
+    lang = "" #"en" default
+    invocation_name = "" #"my personal assistant" default
     intents = [
         "getAllResultsPreviousQuery",
         "getQueryExplanation",
@@ -622,9 +636,40 @@ if __name__ == "__main__":
     ]
     result_limit = 5
 
-    '''
-    print("Querying classes...")
-    query_classes(endpoint, defaultGraph=defaultGraph, lang=lang)   
+    if len(argv) == 0:
+        print('generator_configuration.py -e SPARQ_endpoint -g default graph [-l lang -i invocation name]')
+        sys.exit(2)
+    try:
+        opts, args = getopt.getopt(argv,"he:g:li",["endpoint=","graph=","lang","invocation_name"])
+    except getopt.GetoptError:
+        print('generator_configuration.py -e SPARQ_endpoint -g default graph [-l lang -i invocation name]')
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == '-h':
+            print('generator_configuration.py -e SPARQ_endpoint -g default graph [-l lang -i invocation name]')
+            sys.exit()
+        elif opt in ("-e", "--endpoint"):
+            endpoint = arg
+        elif opt in ("-g", "--graph"):
+            defaultGraph = arg
+        elif opt in ("-l", "--lang") and (arg == "en" or arg == "it"):
+            lang = arg
+        elif opt in ("-i", "--invocation_name"):
+            invocation_name = arg
+    
+    if lang == "":
+        lang="en"
+    if invocation_name == "":
+        invocation_name = "my personal assistant"
+
+    print('SPARQL endpoint: ', endpoint)
+    print('Graph: ', defaultGraph)
+    print('Lang: ', lang)
+    print('Invocation name: ', invocation_name)
+
+    
+    print("Querying entities...")
+    query_entities(endpoint, defaultGraph=defaultGraph, lang=lang)   
     print("Cleaning class labels...")     
     clean_slot_entities()
     #print("Augmenting class labels...")
@@ -662,14 +707,13 @@ if __name__ == "__main__":
             except:
                 pass
 
-        print(dict_label)
         key_max = max(dict_label, key= lambda x: dict_label[x]) 
         properties["label"]["urls"] = [key_max]
+    
     '''
-
     with open('./cleaned_slot_entities.json') as f:
         entities = json.load(f)
-
+    '''
 
     conf = {
         "invocation_name" : invocation_name,
@@ -683,4 +727,8 @@ if __name__ == "__main__":
 
     with open("./conf.json", "w") as write_file:
         json.dump(conf, write_file, indent=4)
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
+    
 
