@@ -119,4 +119,4 @@ The generator is implemented in Python 3.0
 The code is Open-Source the MIT License applies to the provided source code.
 
 ## Permanent URI
-A permanent version of this repository is provided on [Zenodo](https://zenodo.org/record/4351211).
+A permanent version of this repository is provided on [Zenodo](https://zenodo.org/record/4605951).
