@@ -43,15 +43,15 @@ Users can also rely on the automatic configured skill, by exploiting the *Config
         - **package-lock.json** and **package.json** to manage Node.js packages,
         - **node_modules** folder, containing all the required Node.js packages,
 - **conf.json** an exemplerary configuration file,
-- **main.py** that starts the VA extension generation according to the configuration file,
+- **va-generator.py** that starts the VA extension generation according to the configuration file,
 - **generator\_configuration.py** module to automatically create the generator configuration starting from a SPARQL endpoint,
 
 - **use cases** contains 
-    - the configuration file and the Alexa skill components (interaction model and back end) for DBpedia and Wikidata and general-purpose Knowledge Graphs (KGs), the UNESCO Thesaurus, the WarSampo and WordNet as special-purpose KGs.
+    - the configuration file and the Alexa skill components (interaction model and back end) for DBpedia and Wikidata and general-purpose Knowledge Graphs (KGs), the UNESCO Thesaurus, the WarSampo, the Hungarian museum, DBTune classical, MMM, Natural Features, and WordNet as special-purpose KGs.
       Each skill is provided in an individual folder.
     - the evaluation of the Wikidata and DBpedia Alexa skills against QALD-7 and QALD-9 (respectively). 
     
-- **SPARQL_endpoint_analysis** contains 
+- **VA_readiness_SPARQL_endpoint_analysis** contains 
     - **analysis_queries.md** the used SPARQL queries to retrieve classes, properties and resources from KGs,
     - **conf_generator.md** the code to estimate the SPARQL endpoint readiness in being queried by Vocal Assistants. In calculating the VA_readiness_score, we took into account the coverage of labels, the readability of labels and the uniqueness of URLs attached to the same label,
     - **conf_generator_and_va_readiness_score.ipynb** provides a Jupyter Notebbok to test conf_generator.py on the UNESCO Thesaurus KG,

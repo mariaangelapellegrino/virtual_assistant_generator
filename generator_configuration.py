@@ -101,7 +101,7 @@ def clean_value(value):
     value = value.lower()
 
     value = value.replace("$", "dollar ")
-    value = value.replace("€", "euro ")
+    #value = value.replace("€", "euro ")
     
     temp = ''
     for word in value.split():
@@ -374,8 +374,9 @@ def query_skosConcepts(sparql_endpoint, defaultGraph = "", lang="en"):
 def query_rdfsClasses(sparql_endpoint, defaultGraph = "", lang="en"):
     sparql = SPARQLWrapper(sparql_endpoint, defaultGraph=defaultGraph)
 
-    query = ("SELECT DISTINCT ?class ?label WHERE { "
-        "?class a owl:Class. "
+    query = ("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "
+        "SELECT DISTINCT ?class ?label WHERE { "
+        "?class a rdfs:Class. "
         "OPTIONAL{ "
             "?class rdfs:label ?label. "
              "FILTER(LANG(?label)='"+lang+"')" 
@@ -398,7 +399,9 @@ def query_rdfsClasses(sparql_endpoint, defaultGraph = "", lang="en"):
 def query_owlClasses(sparql_endpoint, defaultGraph = "", lang="en"):
     sparql = SPARQLWrapper(sparql_endpoint, defaultGraph=defaultGraph)
 
-    query = ("SELECT DISTINCT ?class ?label WHERE { "
+    query = ("PREFIX owl: <http://www.w3.org/2002/07/owl#> "
+        "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "
+        "SELECT DISTINCT ?class ?label WHERE { "
         "?class a owl:Class. "
         "OPTIONAL{ "
             "?class rdfs:label ?label. "
@@ -422,7 +425,8 @@ def query_owlClasses(sparql_endpoint, defaultGraph = "", lang="en"):
 def query_usedClasses(sparql_endpoint, defaultGraph = "", lang="en"):
     sparql = SPARQLWrapper(sparql_endpoint, defaultGraph=defaultGraph)
 
-    query = ("SELECT DISTINCT ?class ?label WHERE { "
+    query = ("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "
+        "SELECT DISTINCT ?class ?label WHERE { "
         "[] a ?class. "
         "OPTIONAL{ "
             "?class rdfs:label ?label. "
@@ -490,7 +494,8 @@ def store_properties(result):
 def query_rdfProperty(sparql_endpoint, defaultGraph = "", lang="en"):
     sparql = SPARQLWrapper(sparql_endpoint,  defaultGraph=defaultGraph)
 
-    query = ("PREFIX rdf:  <https://www.w3.org/1999/02/22-rdf-syntax-ns#>"
+    query = ("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "
+        "PREFIX rdf:  <https://www.w3.org/1999/02/22-rdf-syntax-ns#>"
         "SELECT DISTINCT ?p ?label WHERE { "
         "?p rdf:type rdf:Property. "
         "OPTIONAL{ "

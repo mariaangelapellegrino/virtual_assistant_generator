@@ -104,6 +104,7 @@ class custom_functions{
 
         var t0 = new Date().getTime();
         const url = this.endpoint+"?query="+ encodeURIComponent(sparql) +"&format=json";
+        //const url = this.endpoint+"?query="+ encodeURIComponent(sparql) +"&resultFormat=json";
         //console.log(url)
 
         var request = require('sync-request');
@@ -130,6 +131,8 @@ class custom_functions{
 
         var t0 = new Date().getTime();
         const url = this.endpoint+"?query="+ encodeURIComponent(sparql) +"&format=json";
+        //const url = this.endpoint+"?query="+ encodeURIComponent(sparql) +"&resultFormat=json";
+
 
         var request = require('sync-request');
         var res = request('GET', url, {
@@ -167,36 +170,49 @@ class custom_functions{
         if (this.label_predicates.length==0){
             var prop_labels = this.getProperty("label")
 
-            var most_used_label = null;
-            var most_used_label_count = 0;
-            
-            for (var i=0; i<prop_labels.length; i++){
-                var prop_label = prop_labels[i];
-                var query = "SELECT COUNT(*) as ?count WHERE { ?s " + prop_label + " ?o. }" ;
+            console.log("getLabelPredicates " + prop_labels.length)
 
-                const url = this.endpoint+"?query="+ encodeURIComponent(query) +"&format=json";
+            if(prop_labels.length>1){
 
-                var request = require('sync-request');
-                var res = request('GET', url, {
-                    headers: {
-                        'user-agent': 'example-user-agent',
-                    },
-                });
+                var most_used_label = null;
+                var most_used_label_count = 0;
+                
+                for (var i=0; i<prop_labels.length; i++){
+                    var prop_label = prop_labels[i];
+                    var query = "SELECT DISTINCT * WHERE { ?s " + prop_label + " ?o. }" ;
 
-                var b = JSON.parse(res.getBody());
-                var result =  b.results.bindings[0];
+                    const url = this.endpoint+"?query="+ encodeURIComponent(query) +"&format=json";
+                    //const url = this.endpoint+"?query="+ encodeURIComponent(query) +"&resultFormat=json";
 
-                if(result['count']['value']>most_used_label_count){
-                    most_used_label = prop_label;
-                    most_used_label_count = result['count']['value'];
+                    var request = require('sync-request');
+                    try{
+                        var res = request('GET', url, {
+                            headers: {
+                                'user-agent': 'example-user-agent',
+                            },
+                        });
+                    } catch(error){
+                        return [prop_labels[0]]
+                    }
+
+                    var b = JSON.parse(res.getBody());
+                    var result =  b.results.bindings;
+                    console.log("getPropLabel,query result number" + result.length)
+                    if(len(result)>most_used_label_count){
+                        most_used_label = prop_label;
+                        most_used_label_count = result.length;
+                    }
+
                 }
-
+                
+                this.label_predicates = [most_used_label]
             }
-            
-            this.label_predicates = [most_used_label]
+            else{
+                this.label_predicates = prop_labels[0]
+            }
         }
         console.log("label predicates : " + this.label_predicates)
-        return this.label_predicates;           
+        return [this.label_predicates];           
     }
 }
 

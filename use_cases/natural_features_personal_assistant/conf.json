@@ -1,0 +1,5783 @@
+{
+    "invocation_name": "natural features personal assistant",
+    "intents": [
+        "getAllResultsPreviousQuery",
+        "getQueryExplanation",
+        "getFurtherDetails",
+        "getPropertyObject",
+        "getDescription",
+        "getNumericFilter",
+        "getNumericFilterByClass",
+        "getClassInstances",
+        "getTripleVerification",
+        "getLocation",
+        "getSuperlative",
+        "getPropertySubjectByClass",
+        "getPropertySubject"
+    ],
+    "lang": "en",
+    "result_limit": 5,
+    "endpoint": "https://statistics.gov.scot/sparql",
+    "entity": {
+        "observation": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#Observation>"
+            ]
+        },
+        "data structure definition": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#DataStructureDefinition>",
+                "<http://purl.org/linked-data/sdmx#DataStructureDefinition>"
+            ]
+        },
+        "component specification": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#ComponentSpecification>"
+            ]
+        },
+        "collection": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#Collection>"
+            ]
+        },
+        "data set": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#DataSet>"
+            ]
+        },
+        "dataset": {
+            "urls": [
+                "<http://publishmydata.com/def/dataset#Dataset>",
+                "<http://www.w3.org/ns/dcat#Dataset>",
+                "<http://rdfs.org/ns/void#Dataset>"
+            ]
+        },
+        "linked dataset": {
+            "urls": [
+                "<http://publishmydata.com/def/dataset#LinkedDataset>"
+            ]
+        },
+        "class": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#Class>",
+                "<http://www.w3.org/2002/07/owl#Class>"
+            ]
+        },
+        "concept scheme": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx#CodeList>",
+                "<http://www.w3.org/2004/02/skos/core#ConceptScheme>"
+            ]
+        },
+        "concept": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#Concept>",
+                "<http://purl.org/linked-data/sdmx#Concept>"
+            ]
+        },
+        "property": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#Property>",
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>"
+            ]
+        },
+        "object property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#ObjectProperty>"
+            ]
+        },
+        "ontology": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#Ontology>"
+            ]
+        },
+        "annotation property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#AnnotationProperty>"
+            ]
+        },
+        "datatype property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#DatatypeProperty>"
+            ]
+        },
+        "transitive property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#TransitiveProperty>"
+            ]
+        },
+        "symmetric property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#SymmetricProperty>"
+            ]
+        },
+        "functional property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#FunctionalProperty>"
+            ]
+        },
+        "list": {
+            "urls": [
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#List>"
+            ]
+        },
+        "dimension property": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#DimensionProperty>"
+            ]
+        },
+        "coded property": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#CodedProperty>"
+            ]
+        },
+        "code list for frequency - codelist class": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx/2009/code#Freq>"
+            ]
+        },
+        "code list for sex - codelist class": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx/2009/code#Sex>"
+            ]
+        },
+        "community order type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/CommunityOrderType>"
+            ]
+        },
+        "indicator": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Indicator(businessBirthsDeathsAndSurvivalRates)>",
+                "<http://statistics.gov.scot/def/dimension/Indicator(shes)>",
+                "<http://statistics.gov.scot/def/dimension/Indicator(roadVehicles)>",
+                "<http://statistics.gov.scot/def/dimension/Indicator(roadNetworkTraffic)>",
+                "<http://statistics.gov.scot/def/dimension/Indicator(councilStock)>",
+                "<http://statistics.gov.scot/def/dimension/Indicator(measlesMumpsRubella)>",
+                "<http://statistics.gov.scot/def/dimension/Indicator(publicTransport)>",
+                "<http://statistics.gov.scot/def/dimension/Indicator(incomeAndPovertyModelledEstimates)>",
+                "<http://statistics.gov.scot/def/dimension/Indicator(dtpPolHibUptake)>",
+                "<http://statistics.gov.scot/def/dimension/Indicator(localAuthorityHousing)>",
+                "<http://statistics.gov.scot/def/dimension/Indicator(municipalWaste)>",
+                "<http://statistics.gov.scot/def/dimension/Indicator(dwellings)>",
+                "<http://statistics.gov.scot/def/dimension/Indicator(waste)>",
+                "<http://statistics.gov.scot/def/dimension/Indicator(abs)>",
+                "<http://statistics.gov.scot/def/dimension/Indicator(lowBirthweight)>",
+                "<http://statistics.gov.scot/def/dimension/Indicator(unemploymentModelBasedEstimates)>",
+                "<http://statistics.gov.scot/def/dimension/Indicator(gps)>",
+                "<http://statistics.gov.scot/def/dimension/Indicator(fire)>",
+                "<http://statistics.gov.scot/def/dimension/Indicator(travelToWork)>",
+                "<http://statistics.gov.scot/def/dimension/Indicator(shs)>"
+            ]
+        },
+        "outcome": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Outcome>"
+            ]
+        },
+        "experiences of crime": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/ExperiencesOfCrime>"
+            ]
+        },
+        "housing sector": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/HousingSector>"
+            ]
+        },
+        "datatype": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#Datatype>"
+            ]
+        },
+        "statistical-geography": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-geography>"
+            ]
+        },
+        "statistical-entity": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-entity>"
+            ]
+        },
+        "type of derelict site": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TypeOfDerelictSite>"
+            ]
+        },
+        "attendance allowance rate": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/AttendanceAllowanceRate>"
+            ]
+        },
+        "energy type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/EnergyType>"
+            ]
+        },
+        "pension credit element": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/PensionCreditElement>"
+            ]
+        },
+        "confidence interval": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/ConfidenceInterval>"
+            ]
+        },
+        "deprecated dataset": {
+            "urls": [
+                "<http://publishmydata.com/def/dataset#DeprecatedDataset>"
+            ]
+        },
+        "duration": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Duration>"
+            ]
+        },
+        "cancer type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/CancerType>"
+            ]
+        },
+        "government organization": {
+            "urls": [
+                "<http://schema.org/GovernmentOrganization>"
+            ]
+        },
+        "residential status": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/ResidentialStatus>"
+            ]
+        },
+        "school type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/SchoolType>"
+            ]
+        },
+        "level of incapacity benefit": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/LevelOfIncapacityBenefit>"
+            ]
+        },
+        "cause of death": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/CauseOfDeath>"
+            ]
+        },
+        "attribute property": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#AttributeProperty>"
+            ]
+        },
+        "mobility component": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/RateOfCare/mobilityComponent>"
+            ]
+        },
+        "type of dwelling": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TypeOfDwelling>"
+            ]
+        },
+        "measure property": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#MeasureProperty>"
+            ]
+        },
+        "council tax band": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/CouncilTaxBand>"
+            ]
+        },
+        "delay": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Delay>"
+            ]
+        },
+        "flood risk area": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/FloodRiskArea>"
+            ]
+        },
+        "dwelling type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/DwellingType>"
+            ]
+        },
+        "thing": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#Thing>"
+            ]
+        },
+        "named individual": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#NamedIndividual>"
+            ]
+        },
+        "reflexive property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#ReflexiveProperty>"
+            ]
+        },
+        "home care client group": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/HomeCareClientGroup>"
+            ]
+        },
+        "stage of infant death": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/StageOfInfantDeath>"
+            ]
+        },
+        "qualification": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Qualification>"
+            ]
+        },
+        "year": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Year>",
+                "<http://www.w3.org/2006/time#Year>"
+            ]
+        },
+        "reason for entitlement": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/ReasonForEntitlement>"
+            ]
+        },
+        "concept role": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx#ConceptRole>"
+            ]
+        },
+        "measure type property": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx#MeasureTypeRole>"
+            ]
+        },
+        "frequency property": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx#FrequencyRole>"
+            ]
+        },
+        "time property": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx#TimeRole>"
+            ]
+        },
+        "primary measure property": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx#PrimaryMeasureRole>"
+            ]
+        },
+        "customer type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/CustomerType>"
+            ]
+        },
+        "simd domain": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/SimdDomain>"
+            ]
+        },
+        "number of rooms": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/NumberOfRooms>"
+            ]
+        },
+        "time period": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TimePeriod>"
+            ]
+        },
+        "disability status": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/DisabilityStatus>"
+            ]
+        },
+        "hours provided": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/HoursProvided>"
+            ]
+        },
+        "folder": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/folder/Folder>"
+            ]
+        },
+        "breastfeeding data collection time": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/BreastfeedingDataCollectionTime>"
+            ]
+        },
+        "area": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/spatial/Area>",
+                "<http://statistics.gov.scot/def/dimension/Area>"
+            ]
+        },
+        "type of tenure": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TypeOfTenure>"
+            ]
+        },
+        "living arrangement": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/LivingArrangement>"
+            ]
+        },
+        "benefit claimed": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/BenefitClaimed>"
+            ]
+        },
+        "drug": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Drug>"
+            ]
+        },
+        "home care provider": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/HomeCareProvider>"
+            ]
+        },
+        "semantic asset": {
+            "urls": [
+                "<http://www.w3.org/ns/adms#SemanticAsset>"
+            ]
+        },
+        "person": {
+            "urls": [
+                "<http://xmlns.com/foaf/0.1/Person>"
+            ]
+        },
+        "semantic distribution": {
+            "urls": [
+                "<http://www.w3.org/ns/adms#SemanticDistribution>"
+            ]
+        },
+        "agent": {
+            "urls": [
+                "<http://purl.org/dc/terms/Agent>"
+            ]
+        },
+        "duration of order": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/DurationOfOrder>"
+            ]
+        },
+        "housing programme": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/HousingProgramme>"
+            ]
+        },
+        "order": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Order>"
+            ]
+        },
+        "working pattern": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/WorkingPattern>"
+            ]
+        },
+        "gender": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Gender>"
+            ]
+        },
+        "secondary school stage": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/SecondarySchoolStage>"
+            ]
+        },
+        "scqf level": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/ScqfLevel>",
+                "<http://statistics.gov.scot/def/code/ScqfLevel>"
+            ]
+        },
+        "number of awards": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/NumberOfAwards>",
+                "<http://statistics.gov.scot/def/code/NumberOfAwards>"
+            ]
+        },
+        "age": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Age>"
+            ]
+        },
+        "population group": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/PopulationGroup>"
+            ]
+        },
+        "school leaver destination": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/SchoolLeaverDestination>"
+            ]
+        },
+        "birth weight": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/BirthWeight>"
+            ]
+        },
+        "crime or offence": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/CrimeOrOffence>"
+            ]
+        },
+        "industry sector": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/IndustrySector(sic07)>",
+                "<http://statistics.gov.scot/def/dimension/IndustrySector>"
+            ]
+        },
+        "admission type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/AdmissionType>"
+            ]
+        },
+        "ethnicity": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Ethnicity>"
+            ]
+        },
+        "employment status": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/EmploymentStatus>"
+            ]
+        },
+        "number of employees": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/NumberOfEmployees>"
+            ]
+        },
+        "weight category": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/WeightCategory>"
+            ]
+        },
+        "type of care home": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TypeOfCareHome>"
+            ]
+        },
+        "main outcome": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/MainOutcome>"
+            ]
+        },
+        "preferred option": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/PreferredOption>"
+            ]
+        },
+        "destination": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Destination>"
+            ]
+        },
+        "method of travel": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/MethodOfTravel>"
+            ]
+        },
+        "hib uptake": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Indicator(dtp/pol/hibUptake)>"
+            ]
+        },
+        "housing costs": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/HousingCosts>"
+            ]
+        },
+        "benefit type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/BenefitType>"
+            ]
+        },
+        "disability living allowance component": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/DisabilityLivingAllowanceComponent>"
+            ]
+        },
+        "weight": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Weight>"
+            ]
+        },
+        "length of claim": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/LengthOfClaim>"
+            ]
+        },
+        "type of space": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TypeOfSpace>"
+            ]
+        },
+        "greenhouse gas source sector": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/GreenhouseGasSourceSector>"
+            ]
+        },
+        "pollutant": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Pollutant>"
+            ]
+        },
+        "limiting long-term physical or mental health condition": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/LimitingLong-termPhysicalOrMentalHealthCondition>"
+            ]
+        },
+        "household type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/HouseholdType>"
+            ]
+        },
+        "provides unpaid care": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/ProvidesUnpaidCare>"
+            ]
+        },
+        "currently smokes cigarettes": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/CurrentlySmokesCigarettes>"
+            ]
+        },
+        "breakdown of scotlands carbon footprint": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/BreakdownOfScotland'sCarbonFootprint>"
+            ]
+        },
+        "self-assessed general health": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Self-assessedGeneralHealth>"
+            ]
+        },
+        "confidence in policing": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/ConfidenceInPolicing>"
+            ]
+        },
+        "policing role": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/PolicingRole>"
+            ]
+        },
+        "perception of local crime rate": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/PerceptionOfLocalCrimeRate>"
+            ]
+        },
+        "personal insolvency": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/PersonalInsolvency>"
+            ]
+        },
+        "ever drank": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/EverDrank>"
+            ]
+        },
+        "last drug use": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/LastDrugUse>"
+            ]
+        },
+        "last alcoholic drink": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/LastAlcoholicDrink>"
+            ]
+        },
+        "smoking behaviour": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/SmokingBehaviour>"
+            ]
+        },
+        "build type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/BuildType>"
+            ]
+        },
+        "order type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/OrderType>"
+            ]
+        },
+        "stage of project": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/StageOfProject>"
+            ]
+        },
+        "type of housing supply": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TypeOfHousingSupply>"
+            ]
+        },
+        "affordable housing supply programme category": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/AffordableHousingSupplyProgrammeCategory>"
+            ]
+        },
+        "form of housing supply": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/FormOfHousingSupply>"
+            ]
+        },
+        "family type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/FamilyType>"
+            ]
+        },
+        "sex": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Sex>"
+            ]
+        },
+        "social work order outcome": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/SocialWorkOrderOutcome>"
+            ]
+        },
+        "new clients assessed for drug treatment": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/NewClientsAssessedForDrugTreatment>"
+            ]
+        },
+        "scottish welfare fund application type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/ScottishWelfareFundApplicationType>"
+            ]
+        },
+        "reason for delay": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/ReasonForDelay>"
+            ]
+        },
+        "gross household income": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/GrossHouseholdIncome>"
+            ]
+        },
+        "level of emotional and behavioural problems": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/LevelOfEmotionalAndBehaviouralProblems>"
+            ]
+        },
+        "deprivation": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Deprivation>"
+            ]
+        },
+        "urban rural classification": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/UrbanRuralClassification>"
+            ]
+        },
+        "victim status": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/VictimStatus>"
+            ]
+        },
+        "council tax collection": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/CouncilTaxCollection>"
+            ]
+        },
+        "simd quintiles": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/SimdQuintiles>"
+            ]
+        },
+        "gdp measurement type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/GdpMeasurementType>"
+            ]
+        },
+        "region of residence": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/RegionOfResidence>"
+            ]
+        },
+        "breakdown of domestic tourism": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/BreakdownOfDomesticTourism>"
+            ]
+        },
+        "marital status": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/MaritalStatus>"
+            ]
+        },
+        "children": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Children>"
+            ]
+        },
+        "access to car": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/AccessToCar>"
+            ]
+        },
+        "social grade": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/SocialGrade>"
+            ]
+        },
+        "type of location visited": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TypeOfLocationVisited>"
+            ]
+        },
+        "tourism activity": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TourismActivity>"
+            ]
+        },
+        "weekend": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Weekday/weekend>"
+            ]
+        },
+        "size of accommodation": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/SizeOfAccommodation>"
+            ]
+        },
+        "tariff": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Tariff>"
+            ]
+        },
+        "location": {
+            "urls": [
+                "<http://purl.org/dc/terms/Location>",
+                "<http://statistics.gov.scot/def/dimension/Location>"
+            ]
+        },
+        "accommodation type and occupancy": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/AccommodationTypeAndOccupancy>"
+            ]
+        },
+        "application type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/ApplicationType>"
+            ]
+        },
+        "accident status": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/AccidentStatus>"
+            ]
+        },
+        "type of fire": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TypeOfFire>"
+            ]
+        },
+        "age of dwelling": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/AgeOfDwelling>"
+            ]
+        },
+        "type of housing list": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TypeOfHousingList>"
+            ]
+        },
+        "normal use of dwelling": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/NormalUseOfDwelling>"
+            ]
+        },
+        "population projection variant": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/PopulationProjectionVariant>"
+            ]
+        },
+        "work status": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/WorkStatus>"
+            ]
+        },
+        "number of children in household": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/NumberOfChildrenInHousehold>"
+            ]
+        },
+        "number of adults in household": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/NumberOfAdultsInHousehold>"
+            ]
+        },
+        "total net annual income": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TotalNetAnnualIncome>"
+            ]
+        },
+        "main income source": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/MainIncomeSource>"
+            ]
+        },
+        "household financial management": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/HouseholdFinancialManagement>"
+            ]
+        },
+        "type of transaction": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TypeOfTransaction>"
+            ]
+        },
+        "total consideration": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TotalConsideration>"
+            ]
+        },
+        "type of property": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TypeOfProperty>"
+            ]
+        },
+        "tax revenues": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TaxRevenues>"
+            ]
+        },
+        "neighbourhood rating": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/NeighbourhoodRating>"
+            ]
+        },
+        "walking distance to nearest greenspace": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/WalkingDistanceToNearestGreenspace>"
+            ]
+        },
+        "community belonging": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/CommunityBelonging>"
+            ]
+        },
+        "local neighbourhood improvement": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/LocalNeighbourhoodImprovement>"
+            ]
+        },
+        "sqa unit": {
+            "urls": [
+                "<http://statistics.gov.scot/def/code/SqaUnit>"
+            ]
+        },
+        "courses": {
+            "urls": [
+                "<http://statistics.gov.scot/def/code/Courses>"
+            ]
+        },
+        "energy consuming sector": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/EnergyConsumingSector>"
+            ]
+        },
+        "product group": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/ProductGroup>"
+            ]
+        },
+        "business estimates": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/BusinessEstimates>"
+            ]
+        },
+        "business demography": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/BusinessDemography>"
+            ]
+        },
+        "type of disrepair": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TypeOfDisrepair>"
+            ]
+        },
+        "number of bedrooms": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/NumberOfBedrooms>"
+            ]
+        },
+        "total": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Total>"
+            ]
+        },
+        "local authority services and performance": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/LocalAuthorityServicesAndPerformance>"
+            ]
+        },
+        "export destination": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/ExportDestination>"
+            ]
+        },
+        "type of letting": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TypeOfLetting>"
+            ]
+        },
+        "randd performer": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/R&dPerformer>"
+            ]
+        },
+        "length of time vacant": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/LengthOfTimeVacant>"
+            ]
+        },
+        "status of vacant dwellings": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/StatusOfVacantDwellings>"
+            ]
+        },
+        "migration type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/MigrationType>"
+            ]
+        },
+        "migration source": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/MigrationSource>"
+            ]
+        },
+        "productivity measure": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/ProductivityMeasure>"
+            ]
+        },
+        "series type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/SeriesType>"
+            ]
+        },
+        "european region": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/EuropeanRegion>"
+            ]
+        },
+        "westminster constituency": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/WestminsterConstituency>"
+            ]
+        },
+        "scottish parliament electoral region": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/ScottishParliamentElectoralRegion>"
+            ]
+        },
+        "interval": {
+            "urls": [
+                "<http://reference.data.gov.uk/def/intervals/Interval>"
+            ]
+        },
+        "time interval": {
+            "urls": [
+                "<http://www.w3.org/2006/time#Interval>"
+            ]
+        },
+        "time instant": {
+            "urls": [
+                "<http://www.w3.org/2006/time#Instant>"
+            ]
+        },
+        "statistical unit": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx/2009/concept#statUnit>"
+            ]
+        },
+        "unit of measure": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx/2009/concept#unitMeasure>"
+            ]
+        },
+        "restriction": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#Restriction>"
+            ]
+        },
+        "all disjoint classes": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#AllDisjointClasses>"
+            ]
+        },
+        "metadata property": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx#MetadataProperty>"
+            ]
+        },
+        "code list for confidentiality status - codelist class": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx/2009/code#ConfStatus>"
+            ]
+        },
+        "code list for decimals - codelist class": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx/2009/code#Decimals>"
+            ]
+        },
+        "observation status - codelist class": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx/2009/code#ObsStatus>"
+            ]
+        },
+        "code list for the time format as written in the sdmx-edi and sdmx-ml messages - codelist class": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx/2009/code#TimeFormat>"
+            ]
+        },
+        "code list for the unit multiplier - codelist class": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx/2009/code#UnitMult>"
+            ]
+        },
+        "vocabulary": {
+            "urls": [
+                "<http://purl.org/vocommons/voaf#Vocabulary>"
+            ]
+        },
+        "agent class": {
+            "urls": [
+                "<http://purl.org/dc/terms/AgentClass>"
+            ]
+        },
+        "vocabulary encoding scheme": {
+            "urls": [
+                "<http://purl.org/dc/dcam/VocabularyEncodingScheme>"
+            ]
+        },
+        "ontology property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#OntologyProperty>"
+            ]
+        },
+        "sdmx statistical subject-matter domains - concept class": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx/2009/subject#SubjectMatterDomain>"
+            ]
+        },
+        "postcode unit": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/postcode/PostcodeUnit>"
+            ]
+        },
+        "temporal unit": {
+            "urls": [
+                "<http://www.w3.org/2006/time#TemporalUnit>"
+            ]
+        },
+        "day of week": {
+            "urls": [
+                "<http://www.w3.org/2006/time#DayOfWeek>"
+            ]
+        },
+        "comparator": {
+            "urls": [
+                "<http://statistics.gov.scot/def/code/Comparator>"
+            ]
+        },
+        "establishment group": {
+            "urls": [
+                "<http://statistics.gov.scot/def/education/EstablishmentGroup>"
+            ]
+        },
+        "establishment": {
+            "urls": [
+                "<http://statistics.gov.scot/def/education/Establishment>"
+            ]
+        },
+        "attainment distribution": {
+            "urls": [
+                "<http://statistics.gov.scot/def/code/AttainmentDistribution>"
+            ]
+        },
+        "reference feature property": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/foi/ReferenceFeatureProperty>"
+            ]
+        },
+        "property price": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/PropertyPrice>"
+            ]
+        },
+        "feature": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/foi/Feature>"
+            ]
+        },
+        "area collection": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/foi/AreaCollection>",
+                "<http://publishmydata.com/def/ontology/spatial/AreaCollection>"
+            ]
+        },
+        "geometry": {
+            "urls": [
+                "<http://www.opengis.net/ont/geosparql#Geometry>"
+            ]
+        },
+        "org collection": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/foi/OrgCollection>"
+            ]
+        },
+        "fuel poverty": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/FuelPoverty>"
+            ]
+        },
+        "file dataset": {
+            "urls": [
+                "<http://publishmydata.com/def/dataset#FileDataset>"
+            ]
+        },
+        "feeling safe walking alone after dark": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/FeelingSafeWalkingAloneAfterDark>"
+            ]
+        },
+        "alcohol condition": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/AlcoholCondition>"
+            ]
+        },
+        "alcohol related hospital activity": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/AlcoholRelatedHospitalActivity>"
+            ]
+        },
+        "type of hospital": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TypeOfHospital>"
+            ]
+        },
+        "region of ownership": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/RegionOfOwnership>"
+            ]
+        },
+        "legal status": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/LegalStatus>"
+            ]
+        },
+        "early learning and childcare service": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/EarlyLearningAndChildcareService>"
+            ]
+        },
+        "country of ownership": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/CountryOfOwnership>"
+            ]
+        },
+        "waste management": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/WasteManagement>"
+            ]
+        },
+        "waste category": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/WasteCategory>"
+            ]
+        },
+        "distance to nearest green or blue space": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/DistanceToNearestGreenOrBlueSpace>"
+            ]
+        },
+        "feeling safe": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/FeelingSafe>"
+            ]
+        },
+        "involvement with people in the neighbourhood": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/InvolvementWithPeopleInTheNeighbourhood>"
+            ]
+        },
+        "scottish landfill tax indicators": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/ScottishLandfillTaxIndicators>"
+            ]
+        },
+        "carers allowance supplement indicators": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Carer'sAllowanceSupplementIndicators>"
+            ]
+        },
+        "first and subsequent births": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/FirstAndSubsequentBirths>"
+            ]
+        },
+        "best start grant indicator": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/BestStartGrantIndicator>"
+            ]
+        },
+        "vaccination uptake": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/VaccinationUptake>"
+            ]
+        },
+        "scottish health survey indicator": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/ScottishHealthSurveyIndicator>"
+            ]
+        },
+        "care home sector": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/CareHomeSector>"
+            ]
+        },
+        "reason": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Reason>"
+            ]
+        },
+        "stage of complaints process": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/StageOfComplaintsProcess>"
+            ]
+        },
+        "health characteristic of residents": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/HealthCharacteristicOfResidents>"
+            ]
+        },
+        "feedback reason": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/FeedbackReason>"
+            ]
+        },
+        "feedback outcome": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/FeedbackOutcome>"
+            ]
+        },
+        "admissions discharges and deaths": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Admissions,DischargesAndDeaths>"
+            ]
+        },
+        "age of residents": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/AgeOfResidents>"
+            ]
+        },
+        "type of care home stay": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TypeOfCareHomeStay>"
+            ]
+        },
+        "length of care home stay": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/LengthOfCareHomeStay>"
+            ]
+        },
+        "care home stay complete": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/CareHomeStayComplete>"
+            ]
+        },
+        "source of funding": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/SourceOfFunding>"
+            ]
+        },
+        "gross average weekly charge category": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/GrossAverageWeeklyChargeCategory>"
+            ]
+        },
+        "main client group in care home": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/MainClientGroupInCareHome>"
+            ]
+        },
+        "simd health indicator": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/SimdHealthIndicator>"
+            ]
+        },
+        "simd housing indicator": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/SimdHousingIndicator>"
+            ]
+        },
+        "payment type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/PaymentType>"
+            ]
+        },
+        "innovation activity": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/InnovationActivity>"
+            ]
+        },
+        "randd expenditure indicators": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/R&dExpenditureIndicators>"
+            ]
+        },
+        "business enterprise research and development indicators": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/BusinessEnterpriseResearchAndDevelopmentIndicators>"
+            ]
+        },
+        "simd education indicator": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/SimdEducationIndicator>"
+            ]
+        },
+        "level of satisfaction": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/LevelOfSatisfaction>"
+            ]
+        },
+        "local service": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/LocalService>"
+            ]
+        },
+        "tax credit type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/TaxCreditType>"
+            ]
+        },
+        "funeral support payment indicator": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/FuneralSupportPaymentIndicator>"
+            ]
+        },
+        "young carer grant indicator": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/YoungCarerGrantIndicator>"
+            ]
+        },
+        "location of death": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/LocationOfDeath>"
+            ]
+        },
+        "variable": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Variable>"
+            ]
+        },
+        "religion": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Religion>"
+            ]
+        },
+        "sexual orientation": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/SexualOrientation>"
+            ]
+        },
+        "transgender": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Transgender>"
+            ]
+        },
+        "causeofdeath": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Causeofdeath>"
+            ]
+        },
+        "locationofdeath": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Locationofdeath>"
+            ]
+        },
+        "national communication categories": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/NationalCommunicationCategories>"
+            ]
+        },
+        "supplier name": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/SupplierName>"
+            ]
+        },
+        "resource": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#Resource>"
+            ]
+        },
+        "code list for currency - codelist class": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx/2009/code#Currency>"
+            ]
+        },
+        "literal": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#Literal>"
+            ]
+        },
+        "container": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#Container>"
+            ]
+        },
+        "container membership property": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#ContainerMembershipProperty>"
+            ]
+        },
+        "benefit": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Benefit>"
+            ]
+        },
+        "count property": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx#CountRole>"
+            ]
+        },
+        "entity property": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx#EntityRole>"
+            ]
+        },
+        "non-observation time property": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx#NonObsTimeRole>"
+            ]
+        },
+        "identity property": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx#IdentityRole>"
+            ]
+        },
+        "attachable": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#Attachable>"
+            ]
+        },
+        "component set": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#ComponentSet>"
+            ]
+        },
+        "component property": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#ComponentProperty>"
+            ]
+        },
+        "observation group": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#ObservationGroup>"
+            ]
+        },
+        "slice": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#Slice>"
+            ]
+        },
+        "slice key": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#SliceKey>"
+            ]
+        },
+        "hierarchical code list": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#HierarchicalCodeList>"
+            ]
+        },
+        "statement": {
+            "urls": [
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement>"
+            ]
+        },
+        "bag": {
+            "urls": [
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag>"
+            ]
+        },
+        "seq": {
+            "urls": [
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq>"
+            ]
+        },
+        "alt": {
+            "urls": [
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#Alt>"
+            ]
+        },
+        "file format": {
+            "urls": [
+                "<http://purl.org/dc/terms/FileFormat>"
+            ]
+        },
+        "linkset": {
+            "urls": [
+                "<http://rdfs.org/ns/void#Linkset>"
+            ]
+        },
+        "technical feature": {
+            "urls": [
+                "<http://rdfs.org/ns/void#TechnicalFeature>"
+            ]
+        },
+        "dataset description": {
+            "urls": [
+                "<http://rdfs.org/ns/void#DatasetDescription>"
+            ]
+        },
+        "variant population projection": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/VariantPopulationProjection>"
+            ]
+        },
+        "current status": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/CurrentStatus>"
+            ]
+        },
+        "migration": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/Migration>"
+            ]
+        },
+        "accommodation type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/AccommodationType>"
+            ]
+        },
+        "code list for providing values to concepts such as reference area and or or counterpart area - codelist class": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx/2009/code#Area>"
+            ]
+        },
+        "catalog": {
+            "urls": [
+                "<http://www.w3.org/ns/dcat#Catalog>"
+            ]
+        },
+        "catalog record": {
+            "urls": [
+                "<http://www.w3.org/ns/dcat#CatalogRecord>"
+            ]
+        },
+        "distribution": {
+            "urls": [
+                "<http://www.w3.org/ns/dcat#Distribution>"
+            ]
+        },
+        "media type or extent": {
+            "urls": [
+                "<http://purl.org/dc/terms/MediaTypeOrExtent>"
+            ]
+        },
+        "feed": {
+            "urls": [
+                "<http://www.w3.org/ns/dcat#Feed>"
+            ]
+        },
+        "web service": {
+            "urls": [
+                "<http://www.w3.org/ns/dcat#WebService>"
+            ]
+        },
+        "download": {
+            "urls": [
+                "<http://www.w3.org/ns/dcat#Download>"
+            ]
+        },
+        "license document": {
+            "urls": [
+                "<http://purl.org/dc/terms/LicenseDocument>"
+            ]
+        },
+        "media type": {
+            "urls": [
+                "<http://purl.org/dc/terms/MediaType>"
+            ]
+        },
+        "size or duration": {
+            "urls": [
+                "<http://purl.org/dc/terms/SizeOrDuration>"
+            ]
+        },
+        "rights statement": {
+            "urls": [
+                "<http://purl.org/dc/terms/RightsStatement>"
+            ]
+        },
+        "linguistic system": {
+            "urls": [
+                "<http://purl.org/dc/terms/LinguisticSystem>"
+            ]
+        },
+        "location period or jurisdiction": {
+            "urls": [
+                "<http://purl.org/dc/terms/LocationPeriodOrJurisdiction>"
+            ]
+        },
+        "physical medium": {
+            "urls": [
+                "<http://purl.org/dc/terms/PhysicalMedium>"
+            ]
+        },
+        "physical resource": {
+            "urls": [
+                "<http://purl.org/dc/terms/PhysicalResource>"
+            ]
+        },
+        "standard": {
+            "urls": [
+                "<http://purl.org/dc/terms/Standard>"
+            ]
+        },
+        "period of time": {
+            "urls": [
+                "<http://purl.org/dc/terms/PeriodOfTime>"
+            ]
+        },
+        "bibliographic resource": {
+            "urls": [
+                "<http://purl.org/dc/terms/BibliographicResource>"
+            ]
+        },
+        "provenance statement": {
+            "urls": [
+                "<http://purl.org/dc/terms/ProvenanceStatement>"
+            ]
+        },
+        "method of instruction": {
+            "urls": [
+                "<http://purl.org/dc/terms/MethodOfInstruction>"
+            ]
+        },
+        "method of accrual": {
+            "urls": [
+                "<http://purl.org/dc/terms/MethodOfAccrual>"
+            ]
+        },
+        "frequency": {
+            "urls": [
+                "<http://purl.org/dc/terms/Frequency>"
+            ]
+        },
+        "policy": {
+            "urls": [
+                "<http://purl.org/dc/terms/Policy>"
+            ]
+        },
+        "jurisdiction": {
+            "urls": [
+                "<http://purl.org/dc/terms/Jurisdiction>"
+            ]
+        },
+        "all different": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#AllDifferent>"
+            ]
+        },
+        "all disjoint properties": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#AllDisjointProperties>"
+            ]
+        },
+        "annotation": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#Annotation>"
+            ]
+        },
+        "asymmetric property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#AsymmetricProperty>"
+            ]
+        },
+        "axiom": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#Axiom>"
+            ]
+        },
+        "data range": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#DataRange>"
+            ]
+        },
+        "deprecated class": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#DeprecatedClass>"
+            ]
+        },
+        "deprecated property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#DeprecatedProperty>"
+            ]
+        },
+        "inverse functional property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#InverseFunctionalProperty>"
+            ]
+        },
+        "irreflexive property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#IrreflexiveProperty>"
+            ]
+        },
+        "negative property assertion": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#NegativePropertyAssertion>"
+            ]
+        },
+        "attachment": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/attachment/Attachment>"
+            ]
+        },
+        "spatial thing": {
+            "urls": [
+                "<http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing>"
+            ]
+        },
+        "point": {
+            "urls": [
+                "<http://www.w3.org/2003/01/geo/wgs84_pos#Point>"
+            ]
+        },
+        "department": {
+            "urls": [
+                "<http://statistics.gov.scot/def/education/Department>"
+            ]
+        },
+        "feature collection": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/foi/FeatureCollection>"
+            ]
+        },
+        "feeling safe when alone at home": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/FeelingSafeWhenAloneAtHome>"
+            ]
+        },
+        "size of family": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/SizeOfFamily>"
+            ]
+        },
+        "to delete": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/ToDelete>"
+            ]
+        },
+        "application channel": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/ApplicationChannel>"
+            ]
+        },
+        "ordered collection": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#OrderedCollection>"
+            ]
+        },
+        "constituency": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/Constituency>"
+            ]
+        },
+        "civil voting area": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/CivilVotingArea>"
+            ]
+        },
+        "greater london authority assembly constituency": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/GreaterLondonAuthorityAssemblyConstituency>"
+            ]
+        },
+        "scottish parliament constituency": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/ScottishParliamentConstituency>"
+            ]
+        },
+        "welsh assembly constituency": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/WelshAssemblyConstituency>"
+            ]
+        },
+        "greater london authority": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/GreaterLondonAuthority>"
+            ]
+        },
+        "civil administrative area": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/CivilAdministrativeArea>"
+            ]
+        },
+        "welsh assembly electoral region": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/WelshAssemblyElectoralRegion>"
+            ]
+        },
+        "county": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/County>"
+            ]
+        },
+        "district": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/District>"
+            ]
+        },
+        "london borough": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/LondonBorough>"
+            ]
+        },
+        "metropolitan district": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/MetropolitanDistrict>"
+            ]
+        },
+        "unitary authority": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/UnitaryAuthority>"
+            ]
+        },
+        "civil parish": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/CivilParish>"
+            ]
+        },
+        "community": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/Community>"
+            ]
+        },
+        "unitary authority electoral division": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/UnitaryAuthorityElectoralDivision>"
+            ]
+        },
+        "ward": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/Ward>"
+            ]
+        },
+        "borough": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/Borough>"
+            ]
+        },
+        "abstract geometry": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/geometry/AbstractGeometry>"
+            ]
+        },
+        "county electoral division": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/CountyElectoralDivision>"
+            ]
+        },
+        "district ward": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/DistrictWard>"
+            ]
+        },
+        "london borough ward": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/LondonBoroughWard>"
+            ]
+        },
+        "metropolitan district ward": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/MetropolitanDistrictWard>"
+            ]
+        },
+        "unitary authority ward": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/UnitaryAuthorityWard>"
+            ]
+        },
+        "nothing": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#Nothing>"
+            ]
+        },
+        "statistical- geography": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-geography#Statistical-Geography>"
+            ]
+        },
+        "statistical- entity": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-entity#Statistical-Entity>"
+            ]
+        },
+        "recoding change": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/RecodingChange>"
+            ]
+        },
+        "change event": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/ChangeEvent>"
+            ]
+        },
+        "bounded area": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/BoundedArea>"
+            ]
+        },
+        "boundary change": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/BoundaryChange>"
+            ]
+        },
+        "temporal relation": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/TemporalRelation>"
+            ]
+        },
+        "temporal entity": {
+            "urls": [
+                "<http://www.w3.org/2006/time#TemporalEntity>"
+            ]
+        },
+        "date-time description": {
+            "urls": [
+                "<http://www.w3.org/2006/time#DateTimeDescription>"
+            ]
+        },
+        "generalized date time description": {
+            "urls": [
+                "<http://www.w3.org/2006/time#GeneralDateTimeDescription>"
+            ]
+        },
+        "temporal reference system": {
+            "urls": [
+                "<http://www.w3.org/2006/time#TRS>"
+            ]
+        },
+        "time zone": {
+            "urls": [
+                "<http://www.w3.org/2006/timezone#TimeZone>"
+            ]
+        },
+        "date-time interval": {
+            "urls": [
+                "<http://www.w3.org/2006/time#DateTimeInterval>"
+            ]
+        },
+        "proper interval": {
+            "urls": [
+                "<http://www.w3.org/2006/time#ProperInterval>"
+            ]
+        },
+        "temporal duration": {
+            "urls": [
+                "<http://www.w3.org/2006/time#Duration>"
+            ]
+        },
+        "duration description": {
+            "urls": [
+                "<http://www.w3.org/2006/time#DurationDescription>"
+            ]
+        },
+        "generalized duration description": {
+            "urls": [
+                "<http://www.w3.org/2006/time#GeneralDurationDescription>"
+            ]
+        },
+        "temporal position": {
+            "urls": [
+                "<http://www.w3.org/2006/time#TimePosition>"
+            ]
+        },
+        "establishment or establishment group": {
+            "urls": [
+                "<http://statistics.gov.scot/def/education/EstablishmentOrEstablishmentGroup>"
+            ]
+        }
+    },
+    "property": {
+        "type": {
+            "urls": [
+                "<http://purl.org/dc/terms/type>",
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>"
+            ],
+            "synonyms": [
+                "typifies",
+                "types",
+                "typing",
+                "typed",
+                "typify",
+                "typified",
+                "typifying",
+                "typic"
+            ]
+        },
+        "count": {
+            "urls": [
+                "<http://statistics.gov.scot/def/measure-properties/count>"
+            ],
+            "synonyms": [
+                "tallied",
+                "tallies",
+                "numerates",
+                "enumerated",
+                "counted",
+                "tally",
+                "numerated",
+                "enumerate",
+                "counts",
+                "counting",
+                "enumerating",
+                "tallying",
+                "numerating",
+                "enumerates",
+                "numerate"
+            ]
+        },
+        "ref area": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx/2009/dimension#refArea>"
+            ]
+        },
+        "unit measure": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure>"
+            ]
+        },
+        "ref period": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx/2009/dimension#refPeriod>"
+            ]
+        },
+        "measure type": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#measureType>"
+            ]
+        },
+        "data set": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#dataSet>"
+            ]
+        },
+        "gender": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/gender>"
+            ],
+            "synonyms": [
+                "sexing",
+                "sexes",
+                "sexual",
+                "sexed"
+            ]
+        },
+        "secondary school stage": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/secondarySchoolStage>"
+            ]
+        },
+        "scqf level": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/scqfLevel>"
+            ]
+        },
+        "number of awards": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/numberOfAwards>"
+            ]
+        },
+        "structure": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#structure>"
+            ],
+            "synonyms": [
+                "structures",
+                "structured",
+                "structuring"
+            ]
+        },
+        "component": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#componentProperty>",
+                "<http://purl.org/linked-data/cube#component>"
+            ],
+            "synonyms": [
+                "constituting",
+                "factorize",
+                "constitutes",
+                "composes",
+                "factorizes",
+                "elementary",
+                "factorizing",
+                "composed",
+                "composing",
+                "constitute",
+                "compose",
+                "partial",
+                "factorized",
+                "constituted"
+            ]
+        },
+        "dimension": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#dimension>"
+            ],
+            "synonyms": [
+                "dimensions",
+                "dimensioned",
+                "dimensioning"
+            ]
+        },
+        "order": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/order>",
+                "<http://purl.org/linked-data/cube#order>"
+            ],
+            "synonyms": [
+                "orders",
+                "decree",
+                "club",
+                "clubby",
+                "decreeing",
+                "clubbing",
+                "orderly",
+                "ordering",
+                "clubbed",
+                "decreed",
+                "ordered",
+                "clubs",
+                "decrees"
+            ]
+        },
+        "code list": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#codeList>"
+            ]
+        },
+        "measure": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#measure>"
+            ],
+            "synonyms": [
+                "metrical",
+                "mensurate",
+                "measuring",
+                "standardises",
+                "standardising",
+                "measures",
+                "amounted",
+                "amounts",
+                "measured",
+                "criterial",
+                "standardised",
+                "standardize",
+                "criterional",
+                "standardizing",
+                "amounting",
+                "standardizes",
+                "standardized",
+                "standardise",
+                "amount"
+            ]
+        },
+        "attribute": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#attribute>"
+            ]
+        },
+        "ratio": {
+            "urls": [
+                "<http://statistics.gov.scot/def/measure-properties/ratio>"
+            ]
+        },
+        "member": {
+            "urls": [
+                "<http://xmlns.com/foaf/0.1/member>",
+                "<http://www.w3.org/2004/02/skos/core#member>"
+            ],
+            "synonyms": [
+                "phallic",
+                "penial"
+            ]
+        },
+        "age": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/age>"
+            ],
+            "synonyms": [
+                "ages",
+                "aging",
+                "aged"
+            ]
+        },
+        "label": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#label>"
+            ],
+            "synonyms": [
+                "labeled",
+                "labelled",
+                "labels",
+                "labeling"
+            ]
+        },
+        "title": {
+            "urls": [
+                "<http://dublincore.org/documents/dcmi-terms/title>",
+                "<http://purl.org/dc/elements/1.1/title>",
+                "<http://purl.org/dc/terms/title>"
+            ],
+            "synonyms": [
+                "titular",
+                "titlest",
+                "titles",
+                "claims",
+                "titulary",
+                "titled",
+                "titling",
+                "claimed",
+                "claim",
+                "titler",
+                "claiming"
+            ]
+        },
+        "comment": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#comment>"
+            ],
+            "synonyms": [
+                "commentating",
+                "gossiping",
+                "commenting",
+                "commented",
+                "remarked",
+                "gossip",
+                "commentated",
+                "remarking",
+                "remarks",
+                "gossips",
+                "gossiped",
+                "comments",
+                "remark",
+                "commentates",
+                "commentate"
+            ]
+        },
+        "contact email": {
+            "urls": [
+                "<http://publishmydata.com/def/cube/contactEmail>",
+                "<http://publishmydata.com/def/dataset#contactEmail>"
+            ]
+        },
+        "graph": {
+            "urls": [
+                "<http://publishmydata.com/def/dataset#graph>"
+            ],
+            "synonyms": [
+                "graphing",
+                "graphical",
+                "graphed",
+                "graphs"
+            ]
+        },
+        "issued": {
+            "urls": [
+                "<http://purl.org/dc/terms/issued>"
+            ]
+        },
+        "modified": {
+            "urls": [
+                "<http://dublincore.org/documents/dcmi-terms/modified>",
+                "<http://purl.org/dc/terms/modified>"
+            ]
+        },
+        "license": {
+            "urls": [
+                "<http://purl.org/dc/terms/license>"
+            ],
+            "synonyms": [
+                "licensing",
+                "licencing",
+                "licensed",
+                "permitting",
+                "licenced",
+                "licentious",
+                "licenses",
+                "permit",
+                "permitted",
+                "licences",
+                "licence",
+                "permits"
+            ]
+        },
+        "creator": {
+            "urls": [
+                "<http://purl.org/dc/terms/creator>",
+                "<http://purl.org/dc/elements/1.1/creator>"
+            ],
+            "synonyms": [
+                "creates",
+                "create",
+                "almighty",
+                "creating"
+            ]
+        },
+        "publisher": {
+            "urls": [
+                "<http://purl.org/dc/terms/publisher>"
+            ],
+            "synonyms": [
+                "publishing",
+                "publishes",
+                "publish",
+                "published"
+            ]
+        },
+        "references": {
+            "urls": [
+                "<http://purl.org/dc/terms/references>",
+                "<http://dublincore.org/documents/dcmi-terms/references>"
+            ],
+            "synonyms": [
+                "denote",
+                "cite",
+                "referring",
+                "consulting",
+                "acknowledged",
+                "denotes",
+                "characterised",
+                "characterises",
+                "characterise",
+                "extensional",
+                "crediting",
+                "citing",
+                "mentions",
+                "addresses",
+                "cites",
+                "sources",
+                "consults",
+                "cited",
+                "credits",
+                "credit",
+                "referential",
+                "sourced",
+                "referenced",
+                "address",
+                "referencing",
+                "mentioning",
+                "referred",
+                "referent",
+                "characterising",
+                "acknowledges",
+                "mentioned",
+                "consulted",
+                "addressing",
+                "refers",
+                "addressed",
+                "reference",
+                "consult",
+                "mention",
+                "denoting",
+                "acknowledge",
+                "credited",
+                "denoted",
+                "sourcing",
+                "acknowledging",
+                "refer"
+            ]
+        },
+        "sparql endpoint": {
+            "urls": [
+                "<http://rdfs.org/ns/void#sparqlEndpoint>"
+            ]
+        },
+        "theme": {
+            "urls": [
+                "<http://www.w3.org/ns/dcat#theme>",
+                "<http://statistics.data.gov.uk/def/statistical-entity#theme>"
+            ],
+            "synonyms": [
+                "stemmed",
+                "stem",
+                "stemming",
+                "stems",
+                "topical",
+                "thematic"
+            ]
+        },
+        "in folder": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/folder/inFolder>"
+            ]
+        },
+        "description": {
+            "urls": [
+                "<http://purl.org/dc/terms/description>",
+                "<http://purl.org/dc/elements/1.1/description>"
+            ],
+            "synonyms": [
+                "describes",
+                "describing",
+                "describe",
+                "described"
+            ]
+        },
+        "relevance": {
+            "urls": [
+                "<http://statistics.gov.scot/def/statistical-quality/relevance>"
+            ],
+            "synonyms": [
+                "relevant"
+            ]
+        },
+        "accuracy-and-reliability": {
+            "urls": [
+                "<http://statistics.gov.scot/def/statistical-quality/accuracy-and-reliability>"
+            ]
+        },
+        "timeliness-and-punctuality": {
+            "urls": [
+                "<http://statistics.gov.scot/def/statistical-quality/timeliness-and-punctuality>"
+            ]
+        },
+        "accessibility-and-clarity": {
+            "urls": [
+                "<http://statistics.gov.scot/def/statistical-quality/accessibility-and-clarity>"
+            ]
+        },
+        "comparability-and-coherence": {
+            "urls": [
+                "<http://statistics.gov.scot/def/statistical-quality/comparability-and-coherence>"
+            ]
+        },
+        "confidentiality": {
+            "urls": [
+                "<http://statistics.gov.scot/def/statistical-quality/confidentiality>"
+            ],
+            "synonyms": [
+                "confidential"
+            ]
+        },
+        "quality-management": {
+            "urls": [
+                "<http://statistics.gov.scot/def/statistical-quality/quality-management>"
+            ]
+        },
+        "revisions": {
+            "urls": [
+                "<http://statistics.gov.scot/def/statistical-quality/revisions>"
+            ],
+            "synonyms": [
+                "rewrite",
+                "revise",
+                "rewrote",
+                "revised",
+                "rewriting",
+                "revising",
+                "rewritten",
+                "rewrites",
+                "revises"
+            ]
+        },
+        "next update due": {
+            "urls": [
+                "<http://publishmydata.com/def/dataset#nextUpdateDue>"
+            ]
+        },
+        "indicator": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/indicator(roadVehicles)>",
+                "<http://statistics.gov.scot/def/dimension/indicator(incomeAndPovertyModelledEstimates)>",
+                "<http://statistics.gov.scot/def/dimension/indicator(dwellings)>",
+                "<http://statistics.gov.scot/def/dimension/indicator(shes)>",
+                "<http://statistics.gov.scot/def/dimension/indicator(municipalWaste)>",
+                "<http://statistics.gov.scot/def/dimension/indicator(abs)>",
+                "<http://statistics.gov.scot/def/dimension/indicator(businessBirthsDeathsAndSurvivalRates)>",
+                "<http://statistics.gov.scot/def/dimension/indicator(publicTransport)>",
+                "<http://statistics.gov.scot/def/dimension/indicator(roadNetworkTraffic)>",
+                "<http://statistics.gov.scot/def/dimension/indicator(localAuthorityHousing)>",
+                "<http://statistics.gov.scot/def/dimension/indicator(travelToWork)>"
+            ],
+            "synonyms": [
+                "indicating",
+                "indicates",
+                "indicated",
+                "indicate"
+            ]
+        },
+        "is defined by": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#isDefinedBy>"
+            ]
+        },
+        "definition": {
+            "urls": [
+		"<http://purl.org/dc/terms/description>",
+                "<http://www.w3.org/2004/02/skos/core#definition>"
+            ],
+            "synonyms": [
+                "defining",
+                "defines",
+                "defined",
+                "define"
+            ]
+        },
+        "scope note": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#scopeNote>"
+            ]
+        },
+        "disjoint with": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#disjointWith>"
+            ]
+        },
+        "range": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#range>"
+            ],
+            "synonyms": [
+                "ranges",
+                "scopal",
+                "reaching",
+                "reach",
+                "reached",
+                "ranged",
+                "compassing",
+                "reaches",
+                "ranging",
+                "compasses",
+                "compass",
+                "rangy",
+                "compassed"
+            ]
+        },
+        "domain": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#domain>"
+            ]
+        },
+        "contributor": {
+            "urls": [
+                "<http://purl.org/dc/elements/1.1/contributor>",
+                "<http://dublincore.org/documents/dcmi-terms/contributor>",
+                "<http://purl.org/dc/terms/contributor>"
+            ],
+            "synonyms": [
+                "contribute",
+                "subscribing",
+                "subscribes",
+                "contributing",
+                "contributes",
+                "subscribed",
+                "subscribe",
+                "contributed"
+            ]
+        },
+        "see also": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#seeAlso>"
+            ]
+        },
+        "sub property of": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#subPropertyOf>"
+            ]
+        },
+        "note": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#note>"
+            ],
+            "synonyms": [
+                "noted",
+                "annotates",
+                "preeminent",
+                "annotating",
+                "annotated",
+                "notes",
+                "eminent",
+                "tonic",
+                "annotate",
+                "noting"
+            ]
+        },
+        "example": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#example>"
+            ],
+            "synonyms": [
+                "instantiated",
+                "model",
+                "instantiate",
+                "instantiating",
+                "modelest",
+                "illustrates",
+                "exemplify",
+                "exemplary",
+                "illustrating",
+                "instance",
+                "modeler",
+                "exemplifying",
+                "modeling",
+                "instantiates",
+                "instanced",
+                "exemplifies",
+                "modeled",
+                "instancing",
+                "models",
+                "illustrate",
+                "exemplified",
+                "illustrated",
+                "instances"
+            ]
+        },
+        "has top concept": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#hasTopConcept>"
+            ]
+        },
+        "inverse of": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#inverseOf>"
+            ]
+        },
+        "top concept of": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#topConceptOf>"
+            ]
+        },
+        "in scheme": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#inScheme>"
+            ]
+        },
+        "pref label": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#prefLabel>"
+            ]
+        },
+        "sub class of": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#subClassOf>"
+            ]
+        },
+        "notation": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#notation>"
+            ],
+            "synonyms": [
+                "notates",
+                "notate",
+                "notated",
+                "notating"
+            ]
+        },
+        "change note": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#changeNote>"
+            ]
+        },
+        "broader": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#broader>"
+            ]
+        },
+        "union of": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#unionOf>"
+            ]
+        },
+        "first": {
+            "urls": [
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#first>"
+            ],
+            "synonyms": [
+                "starts",
+                "started",
+                "start",
+                "starting",
+                "kick off"
+            ]
+        },
+        "rest": {
+            "urls": [
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>"
+            ],
+            "synonyms": [
+                "repose",
+                "reposed",
+                "reposes",
+                "relax",
+                "remainders",
+                "residuary",
+                "relaxing",
+                "remaindering",
+                "relaxes",
+                "reposing",
+                "residual",
+                "rests",
+                "remain",
+                "remaindered",
+                "remainder",
+                "remaining",
+                "rested",
+                "remained",
+                "resting",
+                "relaxed",
+                "remains"
+            ]
+        },
+        "concept": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#concept>"
+            ],
+            "synonyms": [
+                "conceptualises",
+                "conceives",
+                "conceptual",
+                "conceive",
+                "conceptualising",
+                "conceptualised",
+                "conceptualizes",
+                "conceptualized",
+                "conceiving",
+                "conceived",
+                "conceptualizing",
+                "conceptualise",
+                "conceptional",
+                "conceptualize"
+            ]
+        },
+        "median": {
+            "urls": [
+                "<http://statistics.gov.scot/def/measure-properties/median>"
+            ]
+        },
+        "population group": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/populationGroup>"
+            ]
+        },
+        "lower-quartile": {
+            "urls": [
+                "<http://statistics.gov.scot/def/measure-properties/lower-quartile>"
+            ]
+        },
+        "mean": {
+            "urls": [
+                "<http://statistics.gov.scot/def/measure-properties/mean>"
+            ]
+        },
+        "upper-quartile": {
+            "urls": [
+                "<http://statistics.gov.scot/def/measure-properties/upper-quartile>"
+            ]
+        },
+        "school leaver destination": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/schoolLeaverDestination>"
+            ]
+        },
+        "birth weight": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/birthWeight>"
+            ]
+        },
+        "confidence interval": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/confidenceInterval>"
+            ]
+        },
+        "crime or offence": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/crimeOrOffence>"
+            ]
+        },
+        "home care provider": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/homeCareProvider>"
+            ]
+        },
+        "hours provided": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/hoursProvided>"
+            ]
+        },
+        "outcome": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/outcome>"
+            ],
+            "synonyms": [
+                "effecting",
+                "eventuating",
+                "results",
+                "resultant",
+                "consequent",
+                "result",
+                "resulting",
+                "resulted",
+                "effectuates",
+                "eventuates",
+                "effectuate",
+                "effect",
+                "eventuate",
+                "effectuated",
+                "effectuating",
+                "eventuated",
+                "effects",
+                "effected"
+            ]
+        },
+        "housing sector": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/housingSector>"
+            ]
+        },
+        "stage of infant death": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/stageOfInfantDeath>"
+            ]
+        },
+        "same as": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#sameAs>"
+            ]
+        },
+        "code": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-entity#code>",
+                "<http://publishmydata.com/def/ontology/foi/code>"
+            ],
+            "synonyms": [
+                "codified",
+                "coded",
+                "coding",
+                "codifies",
+                "codify",
+                "codifying",
+                "codes"
+            ]
+        },
+        "status": {
+            "urls": [
+                "<http://purl.org/dc/terms/status>",
+                "<http://statistics.gov.scot/def/education/status>",
+                "<http://statistics.data.gov.uk/def/statistical-geography#status>",
+                "<http://statistics.data.gov.uk/def/statistical-entity#status>",
+                "<http://www.w3.org/ns/adms#status>"
+            ],
+            "synonyms": [
+                "conditioned",
+                "conditioning",
+                "conditions",
+                "condition"
+            ]
+        },
+        "operativedate": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/operativedate>"
+            ]
+        },
+        "parentcode": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-geography#parentcode>"
+            ]
+        },
+        "terminateddate": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/terminateddate>"
+            ]
+        },
+        "health-board-area": {
+            "urls": [
+                "<http://statistics.gov.scot/def/hierarchy/best-fit#health-board-area>"
+            ]
+        },
+        "council-area": {
+            "urls": [
+                "<http://statistics.gov.scot/def/hierarchy/best-fit#council-area>"
+            ]
+        },
+        "community-health-partnership": {
+            "urls": [
+                "<http://statistics.gov.scot/def/hierarchy/best-fit#community-health-partnership>"
+            ]
+        },
+        "electoral-ward": {
+            "urls": [
+                "<http://statistics.gov.scot/def/hierarchy/best-fit#electoral-ward>"
+            ]
+        },
+        "intermediate-zone": {
+            "urls": [
+                "<http://statistics.gov.scot/def/hierarchy/best-fit#intermediate-zone>"
+            ]
+        },
+        "country": {
+            "urls": [
+                "<http://statistics.gov.scot/def/hierarchy/best-fit#country>"
+            ],
+            "synonyms": [
+                "areal"
+            ]
+        },
+        "scottish-parliamentary-constituency": {
+            "urls": [
+                "<http://statistics.gov.scot/def/hierarchy/best-fit#scottish-parliamentary-constituency>"
+            ]
+        },
+        "officialname": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-geography#officialname>"
+            ]
+        },
+        "originating change order": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/originatingChangeOrder>"
+            ]
+        },
+        "terminating change order": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/terminatingChangeOrder>"
+            ]
+        },
+        "is replaced by": {
+            "urls": [
+                "<http://purl.org/dc/terms/isReplacedBy>"
+            ]
+        },
+        "name": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-entity#name>",
+                "<http://xmlns.com/foaf/0.1/name>"
+            ],
+            "synonyms": [
+                "names",
+                "naming",
+                "named"
+            ]
+        },
+        "abbreviation": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-entity#abbreviation>"
+            ],
+            "synonyms": [
+                "abbreviates",
+                "abbreviating",
+                "abbreviated",
+                "abbreviate"
+            ]
+        },
+        "coverage": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-entity#coverage>"
+            ],
+            "synonyms": [
+                "cover",
+                "report",
+                "reports",
+                "covered",
+                "reported",
+                "covers",
+                "covering",
+                "reporting"
+            ]
+        },
+        "liveinstances": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-entity#liveinstances>"
+            ]
+        },
+        "archivedinstances": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-entity#archivedinstances>"
+            ]
+        },
+        "firstcode": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-entity#firstcode>"
+            ]
+        },
+        "lastcode": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-entity#lastcode>"
+            ]
+        },
+        "relatedentity": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-entity#relatedentity>"
+            ]
+        },
+        "owner": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-entity#owner>"
+            ],
+            "synonyms": [
+                "own",
+                "possessed",
+                "ownest",
+                "owned",
+                "proprietary",
+                "possess",
+                "possessing",
+                "possesses",
+                "owns",
+                "owning"
+            ]
+        },
+        "reservedcode": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-entity#reservedcode>"
+            ]
+        },
+        "introduced": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-entity#introduced>"
+            ]
+        },
+        "residential status": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/residentialStatus>"
+            ]
+        },
+        "industry sector": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/industrySector(sic07)>"
+            ]
+        },
+        "rank": {
+            "urls": [
+                "<http://statistics.gov.scot/def/measure-properties/rank>"
+            ],
+            "synonyms": [
+                "rankest",
+                "ranks",
+                "ranker",
+                "ranked",
+                "ranking"
+            ]
+        },
+        "simd domain": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/simdDomain>"
+            ]
+        },
+        "quintile": {
+            "urls": [
+                "<http://statistics.gov.scot/def/measure-properties/quintile>"
+            ]
+        },
+        "decile": {
+            "urls": [
+                "<http://statistics.gov.scot/def/measure-properties/decile>"
+            ]
+        },
+        "vigintile": {
+            "urls": [
+                "<http://statistics.gov.scot/def/measure-properties/vigintile>"
+            ]
+        },
+        "admission type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/admissionType>"
+            ]
+        },
+        "school type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/schoolType>"
+            ]
+        },
+        "ethnicity": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/ethnicity>"
+            ],
+            "synonyms": [
+                "ethnic"
+            ]
+        },
+        "benefit claimed": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/benefitClaimed>"
+            ]
+        },
+        "employment status": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/employmentStatus>"
+            ]
+        },
+        "community order type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/communityOrderType>"
+            ]
+        },
+        "number of employees": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/numberOfEmployees>"
+            ]
+        },
+        "weight category": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/weightCategory>"
+            ]
+        },
+        "home care client group": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/homeCareClientGroup>"
+            ]
+        },
+        "type of care home": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/typeOfCareHome>"
+            ]
+        },
+        "cause of death": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/causeOfDeath>"
+            ]
+        },
+        "year": {
+            "urls": [
+                "<http://www.w3.org/2006/time#year>",
+                "<http://statistics.gov.scot/def/dimension/year>"
+            ],
+            "synonyms": [
+                "yearly"
+            ]
+        },
+        "has numerator": {
+            "urls": [
+                "<http://publishmydata.com/def/cube/hasNumerator>"
+            ]
+        },
+        "numerator value": {
+            "urls": [
+                "<http://publishmydata.com/def/cube/numeratorValue>"
+            ]
+        },
+        "has denominator": {
+            "urls": [
+                "<http://publishmydata.com/def/cube/hasDenominator>"
+            ]
+        },
+        "denominator value": {
+            "urls": [
+                "<http://publishmydata.com/def/cube/denominatorValue>"
+            ]
+        },
+        "multiplier value": {
+            "urls": [
+                "<http://publishmydata.com/def/cube/multiplierValue>"
+            ]
+        },
+        "main outcome": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/mainOutcome>"
+            ]
+        },
+        "preferred option": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/preferredOption>"
+            ]
+        },
+        "destination": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/destination>"
+            ],
+            "synonyms": [
+                "terminated",
+                "destine",
+                "terminate",
+                "terminating",
+                "destining",
+                "destines",
+                "terminates",
+                "destined"
+            ]
+        },
+        "method of travel": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/methodOfTravel>"
+            ]
+        },
+        "percent": {
+            "urls": [
+                "<http://statistics.gov.scot/def/measure-properties/percent>"
+            ]
+        },
+        "index": {
+            "urls": [
+                "<http://statistics.gov.scot/def/measure-properties/index>"
+            ],
+            "synonyms": [
+                "indexes",
+                "indexed",
+                "exponential",
+                "indexing",
+                "indexical"
+            ]
+        },
+        "q-on-q-year-ago": {
+            "urls": [
+                "<http://statistics.gov.scot/def/measure-properties/q-on-q-year-ago>"
+            ]
+        },
+        "q-on-q": {
+            "urls": [
+                "<http://statistics.gov.scot/def/measure-properties/q-on-q>"
+            ]
+        },
+        "score": {
+            "urls": [
+                "<http://statistics.gov.scot/def/measure-properties/score>"
+            ],
+            "synonyms": [
+                "grudges",
+                "scotches",
+                "grades",
+                "scotchest",
+                "scotching",
+                "grade",
+                "scoring",
+                "gradest",
+                "graded",
+                "grading",
+                "grudging",
+                "scores",
+                "scorest",
+                "grader",
+                "grudge",
+                "scored",
+                "grudged",
+                "scotched",
+                "scorer",
+                "scotcher",
+                "scotch"
+            ]
+        },
+        "annual-growth-rate": {
+            "urls": [
+                "<http://statistics.gov.scot/def/measure-properties/annual-growth-rate>"
+            ]
+        },
+        "percentage-points": {
+            "urls": [
+                "<http://statistics.gov.scot/def/measure-properties/percentage-points>"
+            ]
+        },
+        "sort priority": {
+            "urls": [
+                "<http://www.w3.org/ns/ui#sortPriority>"
+            ]
+        },
+        "cancer type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/cancerType>"
+            ]
+        },
+        "area": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/area>"
+            ],
+            "synonyms": []
+        },
+        "living arrangement": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/livingArrangement>"
+            ]
+        },
+        "delay": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/delay>"
+            ],
+            "synonyms": [
+                "delayed",
+                "holding",
+                "waiting",
+                "wait",
+                "delaying",
+                "holds",
+                "waited",
+                "waits",
+                "hold up",
+                "delays",
+                "hold",
+                "held"
+            ]
+        },
+        "imports": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#imports>"
+            ],
+            "synonyms": [
+                "imported",
+                "meanest",
+                "implicating",
+                "momentous",
+                "signifies",
+                "meaner",
+                "imply",
+                "consequential",
+                "import",
+                "signifying",
+                "meant",
+                "implicates",
+                "implies",
+                "significant",
+                "meaning",
+                "implied",
+                "signify",
+                "implying",
+                "implicate",
+                "means",
+                "implicated",
+                "signified",
+                "importing"
+            ]
+        },
+        "date": {
+            "urls": [
+                "<http://purl.org/dc/elements/1.1/date>",
+                "<http://www.w3.org/2001/XMLSchema#date>"
+            ],
+            "synonyms": [
+                "escorting",
+                "dated",
+                "escorts",
+                "dates",
+                "escort",
+                "escorted",
+                "dating"
+            ]
+        },
+        "deprecated": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#deprecated>"
+            ]
+        },
+        "within": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/spatialrelations/within>",
+                "<http://publishmydata.com/def/ontology/foi/within>"
+            ]
+        },
+        "contains": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/spatialrelations/contains>"
+            ]
+        },
+        "equivalent property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#equivalentProperty>"
+            ]
+        },
+        "property chain axiom": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#propertyChainAxiom>"
+            ]
+        },
+        "equals": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/spatialrelations/equals>"
+            ],
+            "synonyms": [
+                "equaling",
+                "equates",
+                "matches",
+                "equating",
+                "matched",
+                "equalled",
+                "matching",
+                "equated",
+                "equalest",
+                "equaler",
+                "match",
+                "equate"
+            ]
+        },
+        "touches": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/spatialrelations/touches>"
+            ],
+            "synonyms": [
+                "feels",
+                "feel",
+                "felt",
+                "touch",
+                "touched",
+                "touching",
+                "feeling"
+            ]
+        },
+        "easting": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/spatialrelations/easting>"
+            ]
+        },
+        "northing": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/spatialrelations/northing>"
+            ]
+        },
+        "time period": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/timePeriod>"
+            ]
+        },
+        "type of derelict site": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/typeOfDerelictSite>"
+            ]
+        },
+        "pension credit element": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/pensionCreditElement>"
+            ]
+        },
+        "version info": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#versionInfo>"
+            ]
+        },
+        "created": {
+            "urls": [
+                "<http://purl.org/dc/terms/created>",
+                "<http://dublincore.org/documents/dcmi-terms/created>"
+            ]
+        },
+        "source": {
+            "urls": [
+                "<http://dublincore.org/documents/dcmi-terms/source>"
+            ],
+            "synonyms": [
+                "roottest",
+                "originating",
+                "originated",
+                "generates",
+                "rooting",
+                "germinates",
+                "rooter",
+                "germinal",
+                "generate",
+                "germinating",
+                "root",
+                "germinate",
+                "originates",
+                "informs",
+                "auctorial",
+                "generating",
+                "originate",
+                "roots",
+                "germinated",
+                "informing",
+                "informed",
+                "inform",
+                "rooted",
+                "generated"
+            ]
+        },
+        "mbox": {
+            "urls": [
+                "<http://xmlns.com/foaf/0.1/mbox>"
+            ]
+        },
+        "breastfeeding data collection time": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/breastfeedingDataCollectionTime>"
+            ]
+        },
+        "working pattern": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/workingPattern>"
+            ]
+        },
+        "duration of order": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/durationOfOrder>"
+            ]
+        },
+        "hib uptake": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/indicator(dtp/pol/hibUptake)>"
+            ]
+        },
+        "housing costs": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/housingCosts>"
+            ]
+        },
+        "equivalent class": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#equivalentClass>"
+            ]
+        },
+        "boolean": {
+            "urls": [
+                "<http://www.w3.org/2001/XMLSchema#boolean>"
+            ]
+        },
+        "parent folder": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/folder/parentFolder>"
+            ]
+        },
+        "in tree": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/folder/inTree>"
+            ]
+        },
+        "has tree": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/folder/hasTree>"
+            ]
+        },
+        "default tree": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/folder/defaultTree>"
+            ]
+        },
+        "benefit type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/benefitType>"
+            ]
+        },
+        "dwelling type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/dwellingType>"
+            ]
+        },
+        "duration": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/duration>"
+            ],
+            "synonyms": [
+                "lengthy",
+                "continuant",
+                "continues",
+                "continue",
+                "continued",
+                "continuing"
+            ]
+        },
+        "type of dwelling": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/typeOfDwelling>"
+            ]
+        },
+        "council tax band": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/councilTaxBand>"
+            ]
+        },
+        "number of rooms": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/numberOfRooms>"
+            ]
+        },
+        "attendance allowance rate": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/attendanceAllowanceRate>"
+            ]
+        },
+        "preferred namespace uri": {
+            "urls": [
+                "<http://purl.org/vocab/vann/preferredNamespaceUri>"
+            ]
+        },
+        "preferred namespace prefix": {
+            "urls": [
+                "<http://purl.org/vocab/vann/preferredNamespacePrefix>"
+            ]
+        },
+        "homepage": {
+            "urls": [
+                "<http://xmlns.com/foaf/0.1/homepage>"
+            ]
+        },
+        "part of": {
+            "urls": [
+                "<http://purl.org/dc/terms/partOf>"
+            ]
+        },
+        "file format": {
+            "urls": [
+                "<http://purl.org/dc/terms/FileFormat>"
+            ]
+        },
+        "access url": {
+            "urls": [
+                "<http://www.w3.org/ns/dcat#accessURL>",
+                "<http://www.w3.org/ns/adms#accessURL>"
+            ]
+        },
+        "qualification": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/qualification>"
+            ],
+            "synonyms": [
+                "qualify",
+                "made",
+                "make",
+                "qualified",
+                "makes",
+                "making",
+                "qualifying",
+                "qualifies"
+            ]
+        },
+        "disability living allowance component": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/disabilityLivingAllowanceComponent>"
+            ]
+        },
+        "mobility component": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/rateOfCare/mobilityComponent>"
+            ]
+        },
+        "disability status": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/disabilityStatus>"
+            ]
+        },
+        "type of tenure": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/typeOfTenure>"
+            ]
+        },
+        "flood risk area": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/floodRiskArea>"
+            ]
+        },
+        "energy type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/energyType>"
+            ]
+        },
+        "greenhouse gas source sector": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/greenhouseGasSourceSector>"
+            ]
+        },
+        "pollutant": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/pollutant>"
+            ],
+            "synonyms": [
+                "polluted",
+                "polluting",
+                "pollutes",
+                "pollute"
+            ]
+        },
+        "limiting long-term physical or mental health condition": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/limitingLong-termPhysicalOrMentalHealthCondition>"
+            ]
+        },
+        "household type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/householdType>"
+            ]
+        },
+        "provides unpaid care": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/providesUnpaidCare>"
+            ]
+        },
+        "currently smokes cigarettes": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/currentlySmokesCigarettes>"
+            ]
+        },
+        "breakdown of scotlands carbon footprint": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/breakdownOfScotland'sCarbonFootprint>"
+            ]
+        },
+        "self-assessed general health": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/self-assessedGeneralHealth>"
+            ]
+        },
+        "confidence in policing": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/confidenceInPolicing>"
+            ]
+        },
+        "policing role": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/policingRole>"
+            ]
+        },
+        "perception of local crime rate": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/perceptionOfLocalCrimeRate>"
+            ]
+        },
+        "personal insolvency": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/personalInsolvency>"
+            ]
+        },
+        "ever drank": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/everDrank>"
+            ]
+        },
+        "last drug use": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/lastDrugUse>"
+            ]
+        },
+        "last alcoholic drink": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/lastAlcoholicDrink>"
+            ]
+        },
+        "smoking behaviour": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/smokingBehaviour>"
+            ]
+        },
+        "build type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/buildType>"
+            ]
+        },
+        "order type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/orderType>"
+            ]
+        },
+        "stage of project": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/stageOfProject>"
+            ]
+        },
+        "type of housing supply": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/typeOfHousingSupply>"
+            ]
+        },
+        "affordable housing supply programme category": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/affordableHousingSupplyProgrammeCategory>"
+            ]
+        },
+        "form of housing supply": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/formOfHousingSupply>"
+            ]
+        },
+        "family type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/familyType>"
+            ]
+        },
+        "sex": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/sex>"
+            ],
+            "synonyms": [
+                "sexy"
+            ]
+        },
+        "social work order outcome": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/socialWorkOrderOutcome>"
+            ]
+        },
+        "new clients assessed for drug treatment": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/newClientsAssessedForDrugTreatment>"
+            ]
+        },
+        "scottish welfare fund application type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/scottishWelfareFundApplicationType>"
+            ]
+        },
+        "reason for delay": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/reasonForDelay>"
+            ]
+        },
+        "gross household income": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/grossHouseholdIncome>"
+            ]
+        },
+        "level of emotional and behavioural problems": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/levelOfEmotionalAndBehaviouralProblems>"
+            ]
+        },
+        "deprivation": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/deprivation>"
+            ],
+            "synonyms": [
+                "wanted",
+                "needy",
+                "deprived",
+                "depriving",
+                "deprives",
+                "want",
+                "wants",
+                "wanting",
+                "deprive"
+            ]
+        },
+        "urban rural classification": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/urbanRuralClassification>"
+            ]
+        },
+        "victim status": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/victimStatus>"
+            ]
+        },
+        "council tax collection": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/councilTaxCollection>"
+            ]
+        },
+        "simd quintiles": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/simdQuintiles>"
+            ]
+        },
+        "region of residence": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/regionOfResidence>"
+            ]
+        },
+        "breakdown of domestic tourism": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/breakdownOfDomesticTourism>"
+            ]
+        },
+        "marital status": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/maritalStatus>"
+            ]
+        },
+        "children": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/children>"
+            ],
+            "synonyms": [
+                "childly"
+            ]
+        },
+        "access to car": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/accessToCar>"
+            ]
+        },
+        "social grade": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/socialGrade>"
+            ]
+        },
+        "type of location visited": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/typeOfLocationVisited>"
+            ]
+        },
+        "tourism activity": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/tourismActivity>"
+            ]
+        },
+        "weekend": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/weekday/weekend>"
+            ],
+            "synonyms": [
+                "weekending",
+                "weekended",
+                "weekends"
+            ]
+        },
+        "size of accommodation": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/sizeOfAccommodation>"
+            ]
+        },
+        "location": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/location>"
+            ],
+            "synonyms": [
+                "localizes",
+                "localising",
+                "localised",
+                "localise",
+                "emplaces",
+                "locates",
+                "emplacing",
+                "located",
+                "position",
+                "positions",
+                "locating",
+                "localize",
+                "emplaced",
+                "posits",
+                "posited",
+                "positing",
+                "emplace",
+                "localizing",
+                "posit",
+                "localises",
+                "positioned",
+                "localized",
+                "locate",
+                "positioning"
+            ]
+        },
+        "accommodation type and occupancy": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/accommodationTypeAndOccupancy>"
+            ]
+        },
+        "application type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/applicationType>"
+            ]
+        },
+        "accident status": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/accidentStatus>"
+            ]
+        },
+        "type of fire": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/typeOfFire>"
+            ]
+        },
+        "age of dwelling": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/ageOfDwelling>"
+            ]
+        },
+        "type of housing list": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/typeOfHousingList>"
+            ]
+        },
+        "normal use of dwelling": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/normalUseOfDwelling>"
+            ]
+        },
+        "population projection variant": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/populationProjectionVariant>"
+            ]
+        },
+        "work status": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/workStatus>"
+            ]
+        },
+        "number of children in household": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/numberOfChildrenInHousehold>"
+            ]
+        },
+        "number of adults in household": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/numberOfAdultsInHousehold>"
+            ]
+        },
+        "total net annual income": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/totalNetAnnualIncome>"
+            ]
+        },
+        "household financial management": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/householdFinancialManagement>"
+            ]
+        },
+        "main income source": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/mainIncomeSource>"
+            ]
+        },
+        "type of transaction": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/typeOfTransaction>"
+            ]
+        },
+        "total consideration": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/totalConsideration>"
+            ]
+        },
+        "type of property": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/typeOfProperty>"
+            ]
+        },
+        "tax revenues": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/taxRevenues>"
+            ]
+        },
+        "neighbourhood rating": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/neighbourhoodRating>"
+            ]
+        },
+        "walking distance to nearest greenspace": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/walkingDistanceToNearestGreenspace>"
+            ]
+        },
+        "community belonging": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/communityBelonging>"
+            ]
+        },
+        "local neighbourhood improvement": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/localNeighbourhoodImprovement>"
+            ]
+        },
+        "sqa unit": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/sqaUnit>"
+            ]
+        },
+        "courses": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/courses>"
+            ],
+            "synonyms": [
+                "course",
+                "tracks",
+                "trends",
+                "tracked",
+                "courser",
+                "trended",
+                "trend",
+                "tracking",
+                "coursing",
+                "track",
+                "coursed",
+                "coursest",
+                "trending"
+            ]
+        },
+        "energy consuming sector": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/energyConsumingSector>"
+            ]
+        },
+        "product group": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/productGroup>"
+            ]
+        },
+        "business estimates": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/businessEstimates>"
+            ]
+        },
+        "business demography": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/businessDemography>"
+            ]
+        },
+        "number of bedrooms": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/numberOfBedrooms>"
+            ]
+        },
+        "type of disrepair": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/typeOfDisrepair>"
+            ]
+        },
+        "local authority services and performance": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/localAuthorityServicesAndPerformance>"
+            ]
+        },
+        "export destination": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/exportDestination>"
+            ]
+        },
+        "type of letting": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/typeOfLetting>"
+            ]
+        },
+        "randd performer": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/r&dPerformer>"
+            ]
+        },
+        "length of time vacant": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/lengthOfTimeVacant>"
+            ]
+        },
+        "status of vacant dwellings": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/statusOfVacantDwellings>"
+            ]
+        },
+        "migration type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/migrationType>"
+            ]
+        },
+        "migration source": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/migrationSource>"
+            ]
+        },
+        "productivity measure": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/productivityMeasure>"
+            ]
+        },
+        "gss code": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/gssCode>"
+            ]
+        },
+        "has area code": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/hasAreaCode>"
+            ]
+        },
+        "has unit id": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/hasUnitID>"
+            ]
+        },
+        "extent": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/geometry/extent>"
+            ],
+            "synonyms": [
+                "extended",
+                "extends",
+                "extending",
+                "extend"
+            ]
+        },
+        "point": {
+            "urls": [
+                "<http://www.georss.org/georss/point>"
+            ],
+            "synonyms": [
+                "detailed",
+                "itemizes",
+                "itemizing",
+                "itemises",
+                "itemise",
+                "itemized",
+                "points",
+                "detail",
+                "itemize",
+                "itemising",
+                "detailing",
+                "dotted",
+                "itemised",
+                "dots",
+                "details",
+                "dotting",
+                "dotes",
+                "dot",
+                "doted",
+                "pointed",
+                "pointing"
+            ]
+        },
+        "lat": {
+            "urls": [
+                "<http://www.w3.org/2003/01/geo/wgs84_pos#lat>"
+            ]
+        },
+        "long": {
+            "urls": [
+                "<http://www.w3.org/2003/01/geo/wgs84_pos#long>"
+            ]
+        },
+        "district": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/district>"
+            ],
+            "synonyms": [
+                "districtest",
+                "districter",
+                "territorial",
+                "districts",
+                "districting",
+                "districted"
+            ]
+        },
+        "scottish parliament electoral region": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/scottishParliamentElectoralRegion>"
+            ]
+        },
+        "westminster constituency": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/westminsterConstituency>"
+            ]
+        },
+        "in european region": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/inEuropeanRegion>"
+            ]
+        },
+        "constituency": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/constituency>"
+            ]
+        },
+        "has beginning": {
+            "urls": [
+                "<http://www.w3.org/2006/time#hasBeginning>"
+            ]
+        },
+        "has end": {
+            "urls": [
+                "<http://www.w3.org/2006/time#hasEnd>"
+            ]
+        },
+        "in xsd date time": {
+            "urls": [
+                "<http://www.w3.org/2006/time#inXSDDateTime>"
+            ]
+        },
+        "on property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#onProperty>"
+            ]
+        },
+        "some values from": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#someValuesFrom>"
+            ]
+        },
+        "on class": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#onClass>"
+            ]
+        },
+        "qualified cardinality": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#qualifiedCardinality>"
+            ]
+        },
+        "max qualified cardinality": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#maxQualifiedCardinality>"
+            ]
+        },
+        "on data range": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#onDataRange>"
+            ]
+        },
+        "cardinality": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#cardinality>"
+            ]
+        },
+        "min qualified cardinality": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#minQualifiedCardinality>"
+            ]
+        },
+        "all values from": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#allValuesFrom>"
+            ]
+        },
+        "members": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#members>"
+            ],
+            "synonyms": []
+        },
+        "usage note": {
+            "urls": [
+                "<http://purl.org/vocab/vann/usageNote>"
+            ]
+        },
+        "maker": {
+            "urls": [
+                "<http://xmlns.com/foaf/0.1/maker>"
+            ],
+            "synonyms": [
+                "shaping",
+                "manufactures",
+                "shape",
+                "manufactured",
+                "manufacture",
+                "shaped",
+                "manufacturing",
+                "shapes"
+            ]
+        },
+        "affiliation": {
+            "urls": [
+                "<http://schema.org/affiliation>"
+            ],
+            "synonyms": [
+                "affiliate",
+                "associated",
+                "affiliated",
+                "ties",
+                "tie",
+                "associate",
+                "associating",
+                "affiliating",
+                "associates",
+                "tied",
+                "affiliates",
+                "tying"
+            ]
+        },
+        "has version": {
+            "urls": [
+                "<http://purl.org/dc/terms/hasVersion>"
+            ]
+        },
+        "rights": {
+            "urls": [
+                "<http://purl.org/dc/terms/rights>"
+            ],
+            "synonyms": [
+                "right",
+                "rightest",
+                "righted",
+                "righting",
+                "righter",
+                "rightful"
+            ]
+        },
+        "identifier": {
+            "urls": [
+                "<http://purl.org/dc/terms/identifier>"
+            ]
+        },
+        "is version of": {
+            "urls": [
+                "<http://purl.org/dc/terms/isVersionOf>"
+            ]
+        },
+        "version iri": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#versionIRI>"
+            ]
+        },
+        "namespace transformation": {
+            "urls": [
+                "<http://www.w3.org/2003/g/data-view#namespaceTransformation>"
+            ]
+        },
+        "has value": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#hasValue>"
+            ]
+        },
+        "max cardinality": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#maxCardinality>"
+            ]
+        },
+        "on datatype": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#onDatatype>"
+            ]
+        },
+        "prior version": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#priorVersion>"
+            ]
+        },
+        "with restrictions": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#withRestrictions>"
+            ]
+        },
+        "is primary topic of": {
+            "urls": [
+                "<http://xmlns.com/foaf/0.1/isPrimaryTopicOf>"
+            ]
+        },
+        "pattern": {
+            "urls": [
+                "<http://www.w3.org/2001/XMLSchema#pattern>"
+            ],
+            "synonyms": [
+                "practical",
+                "formularizing",
+                "formularizes",
+                "form",
+                "blueprints",
+                "practice",
+                "design",
+                "designs",
+                "blueprinted",
+                "formularize",
+                "practices",
+                "forms",
+                "practicing",
+                "patterned",
+                "formed",
+                "blueprinting",
+                "formularized",
+                "practiced",
+                "designed",
+                "forming",
+                "blueprint",
+                "designing",
+                "patterning",
+                "patterns"
+            ]
+        },
+        "ref establishment": {
+            "urls": [
+                "<http://statistics.gov.scot/def/education/refEstablishment>"
+            ]
+        },
+        "comparator": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/comparator>"
+            ]
+        },
+        "average-total-tariff-score": {
+            "urls": [
+                "<http://statistics.gov.scot/def/measure-properties/average-total-tariff-score>"
+            ]
+        },
+        "has data marker": {
+            "urls": [
+                "<http://publishmydata.com/def/hasDataMarker>"
+            ]
+        },
+        "attainment distribution": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/attainmentDistribution>"
+            ]
+        },
+        "seed code": {
+            "urls": [
+                "<http://statistics.gov.scot/def/education/seedCode>"
+            ]
+        },
+        "managed by": {
+            "urls": [
+                "<http://statistics.gov.scot/def/education/managedBy>"
+            ]
+        },
+        "included in establishment group": {
+            "urls": [
+                "<http://statistics.gov.scot/def/education/includedInEstablishmentGroup>"
+            ]
+        },
+        "includes establishment": {
+            "urls": [
+                "<http://statistics.gov.scot/def/education/includesEstablishment>"
+            ]
+        },
+        "has department": {
+            "urls": [
+                "<http://statistics.gov.scot/def/education/hasDepartment>"
+            ]
+        },
+        "centre type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/education/centreType>"
+            ]
+        },
+        "open date": {
+            "urls": [
+                "<http://statistics.gov.scot/def/education/openDate>"
+            ]
+        },
+        "close date": {
+            "urls": [
+                "<http://statistics.gov.scot/def/education/closeDate>"
+            ]
+        },
+        "department type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/education/departmentType>"
+            ]
+        },
+        "mothballed date": {
+            "urls": [
+                "<http://statistics.gov.scot/def/education/mothballedDate>"
+            ]
+        },
+        "sub property": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#subProperty>"
+            ]
+        },
+        "display name": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/foi/displayName>"
+            ]
+        },
+        "member of": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/foi/memberOf>"
+            ]
+        },
+        "active": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/foi/active>"
+            ]
+        },
+        "active from": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/foi/activeFrom>"
+            ]
+        },
+        "parent": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/foi/parent>"
+            ],
+            "synonyms": [
+                "parented",
+                "parents",
+                "parenting",
+                "parental"
+            ]
+        },
+        "active to": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/foi/activeTo>"
+            ]
+        },
+        "has geometry": {
+            "urls": [
+                "<http://www.opengis.net/ont/geosparql#hasGeometry>"
+            ]
+        },
+        "singular display name": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/foi/singularDisplayName>"
+            ]
+        },
+        "as wkt": {
+            "urls": [
+                "<http://www.opengis.net/ont/geosparql#asWKT>"
+            ]
+        },
+        "plural display name": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/foi/pluralDisplayName>"
+            ]
+        },
+        "fuel poverty": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/fuelPoverty>"
+            ]
+        },
+        "download url": {
+            "urls": [
+                "<http://publishmydata.com/def/dataset#downloadURL>",
+                "<http://www.w3.org/ns/dcat#downloadURL>"
+            ]
+        },
+        "file name": {
+            "urls": [
+                "<http://publishmydata.com/def/dataset#fileName>"
+            ]
+        },
+        "file extension": {
+            "urls": [
+                "<http://publishmydata.com/def/dataset#fileExtension>"
+            ]
+        },
+        "media type": {
+            "urls": [
+                "<http://publishmydata.com/def/dataset#mediaType>",
+                "<http://www.w3.org/ns/dcat#mediaType>"
+            ]
+        },
+        "byte size": {
+            "urls": [
+                "<http://www.w3.org/ns/dcat#byteSize>",
+                "<http://publishmydata.com/def/dataset#byteSize>"
+            ]
+        },
+        "alcohol condition": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/alcoholCondition>"
+            ]
+        },
+        "alcohol related hospital activity": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/alcoholRelatedHospitalActivity>"
+            ]
+        },
+        "type of hospital": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/typeOfHospital>"
+            ]
+        },
+        "legal status": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/legalStatus>"
+            ]
+        },
+        "region of ownership": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/regionOfOwnership>"
+            ]
+        },
+        "early learning and childcare service": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/earlyLearningAndChildcareService>"
+            ]
+        },
+        "country of ownership": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/countryOfOwnership>"
+            ]
+        },
+        "waste management": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/wasteManagement>"
+            ]
+        },
+        "waste category": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/wasteCategory>"
+            ]
+        },
+        "omit from locations map": {
+            "urls": [
+                "<http://publishmydata.com/def/ontology/foi/omitFromLocationsMap>"
+            ]
+        },
+        "distance to nearest green or blue space": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/distanceToNearestGreenOrBlueSpace>"
+            ]
+        },
+        "feeling safe": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/feelingSafe>"
+            ]
+        },
+        "involvement with people in the neighbourhood": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/involvementWithPeopleInTheNeighbourhood>"
+            ]
+        },
+        "scottish landfill tax indicators": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/scottishLandfillTaxIndicators>"
+            ]
+        },
+        "carers allowance supplement indicators": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/carer'sAllowanceSupplementIndicators>"
+            ]
+        },
+        "best start grant indicator": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/bestStartGrantIndicator>"
+            ]
+        },
+        "vaccination uptake": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/vaccinationUptake>"
+            ]
+        },
+        "scottish health survey indicator": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/scottishHealthSurveyIndicator>"
+            ]
+        },
+        "care home sector": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/careHomeSector>"
+            ]
+        },
+        "reason": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/reason>"
+            ],
+            "synonyms": [
+                "caused",
+                "causing",
+                "grounding",
+                "ground",
+                "causal",
+                "reasoned",
+                "grounds",
+                "reasoning",
+                "grounded",
+                "reasonable",
+                "rational",
+                "causes",
+                "reasons",
+                "cause"
+            ]
+        },
+        "stage of complaints process": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/stageOfComplaintsProcess>"
+            ]
+        },
+        "health characteristic of residents": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/healthCharacteristicOfResidents>"
+            ]
+        },
+        "admissions discharges and deaths": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/admissions,DischargesAndDeaths>"
+            ]
+        },
+        "age of residents": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/ageOfResidents>"
+            ]
+        },
+        "type of care home stay": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/typeOfCareHomeStay>"
+            ]
+        },
+        "length of care home stay": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/lengthOfCareHomeStay>"
+            ]
+        },
+        "care home stay complete": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/careHomeStayComplete>"
+            ]
+        },
+        "source of funding": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/sourceOfFunding>"
+            ]
+        },
+        "gross average weekly charge category": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/grossAverageWeeklyChargeCategory>"
+            ]
+        },
+        "main client group in care home": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/mainClientGroupInCareHome>"
+            ]
+        },
+        "simd health indicator": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/simdHealthIndicator>"
+            ]
+        },
+        "simd housing indicator": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/simdHousingIndicator>"
+            ]
+        },
+        "payment type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/paymentType>"
+            ]
+        },
+        "innovation activity": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/innovationActivity>"
+            ]
+        },
+        "randd expenditure indicators": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/r&dExpenditureIndicators>"
+            ]
+        },
+        "business enterprise research and development indicators": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/businessEnterpriseResearchAndDevelopmentIndicators>"
+            ]
+        },
+        "simd education indicator": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/simdEducationIndicator>"
+            ]
+        },
+        "level of satisfaction": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/levelOfSatisfaction>"
+            ]
+        },
+        "local service": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/localService>"
+            ]
+        },
+        "tax credit type": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/taxCreditType>"
+            ]
+        },
+        "funeral support payment indicator": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/funeralSupportPaymentIndicator>"
+            ]
+        },
+        "young carer grant indicator": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/youngCarerGrantIndicator>"
+            ]
+        },
+        "location of death": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/locationOfDeath>"
+            ]
+        },
+        "variable": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/variable>"
+            ]
+        },
+        "sexual orientation": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/sexualOrientation>"
+            ]
+        },
+        "transgender": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/transgender>"
+            ]
+        },
+        "religion": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/religion>"
+            ],
+            "synonyms": [
+                "religious"
+            ]
+        },
+        "national communication categories": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/nationalCommunicationCategories>"
+            ]
+        },
+        "supplier name": {
+            "urls": [
+                "<http://statistics.gov.scot/def/dimension/supplierName>"
+            ]
+        },
+        "component specification": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#component>"
+            ]
+        },
+        "has member": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#member>"
+            ]
+        },
+        "is top concept in scheme": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#topConceptOf>"
+            ]
+        },
+        "is in scheme": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#inScheme>"
+            ]
+        },
+        "is in semantic relation with": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#semanticRelation>"
+            ]
+        },
+        "has broader": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#broader>"
+            ]
+        },
+        "has broader transitive": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#broaderTransitive>"
+            ]
+        },
+        "has narrower": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#narrower>"
+            ]
+        },
+        "has narrower transitive": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#narrowerTransitive>"
+            ]
+        },
+        "has related": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#related>"
+            ]
+        },
+        "has member list": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#memberList>"
+            ]
+        },
+        "is in mapping relation with": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#mappingRelation>"
+            ]
+        },
+        "has broader match": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#broadMatch>"
+            ]
+        },
+        "has narrower match": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#narrowMatch>"
+            ]
+        },
+        "has related match": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#relatedMatch>"
+            ]
+        },
+        "has exact match": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#exactMatch>"
+            ]
+        },
+        "has close match": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#closeMatch>"
+            ]
+        },
+        "contained by": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/spatialrelations/containedBy>"
+            ]
+        },
+        "top object property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#topObjectProperty>"
+            ]
+        },
+        "equal": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/spatialrelations/equals>"
+            ],
+            "synonyms": []
+        },
+        "disjoint": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/spatialrelations/disjoint>"
+            ]
+        },
+        "one km grid reference": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/spatialrelations/oneKMGridReference>"
+            ]
+        },
+        "overlaps": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/spatialrelations/partiallyOverlaps>"
+            ],
+            "synonyms": [
+                "lap",
+                "lapped",
+                "lapping",
+                "overlapped",
+                "overlap",
+                "laps",
+                "overlapping"
+            ]
+        },
+        "twenty km grid reference": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/spatialrelations/twentyKMGridReference>"
+            ]
+        },
+        "primary measure": {
+            "urls": [
+                "<http://purl.org/linked-data/sdmx#primaryMeasure>"
+            ]
+        },
+        "observation": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#observation>"
+            ],
+            "synonyms": [
+                "watched",
+                "observing",
+                "observed",
+                "watch",
+                "watches",
+                "notices",
+                "watching",
+                "notice",
+                "noticing",
+                "observes",
+                "observant",
+                "observe",
+                "noticed"
+            ]
+        },
+        "observation group": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#observationGroup>"
+            ]
+        },
+        "slice": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#slice>"
+            ],
+            "synonyms": [
+                "piecing",
+                "sliced",
+                "gash",
+                "slicing",
+                "gashed",
+                "slashing",
+                "gashest",
+                "slices",
+                "slash",
+                "slashed",
+                "gasher",
+                "pieces",
+                "slashes",
+                "piece",
+                "gashing",
+                "gashes",
+                "pieced"
+            ]
+        },
+        "measure dimension": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#measureDimension>"
+            ]
+        },
+        "slice structure": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#sliceStructure>"
+            ]
+        },
+        "slice key": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#sliceKey>"
+            ]
+        },
+        "hierarchy root": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#hierarchyRoot>"
+            ]
+        },
+        "parent-child property": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#parentChildProperty>"
+            ]
+        },
+        "county": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/county>"
+            ]
+        },
+        "in county": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/inCounty>"
+            ]
+        },
+        "in district": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/inDistrict>"
+            ]
+        },
+        "in region": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/inRegion>"
+            ]
+        },
+        "parish": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/parish>"
+            ],
+            "synonyms": [
+                "parochial"
+            ]
+        },
+        "ward": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/ward>"
+            ],
+            "synonyms": [
+                "warding",
+                "warded",
+                "wards"
+            ]
+        },
+        "welsh assembly electoral region": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/welshAssemblyElectoralRegion>"
+            ]
+        },
+        "theme taxonomy": {
+            "urls": [
+                "<http://www.w3.org/ns/dcat#themeTaxonomy>"
+            ]
+        },
+        "dataset": {
+            "urls": [
+                "<http://www.w3.org/ns/dcat#dataset>"
+            ]
+        },
+        "record": {
+            "urls": [
+                "<http://www.w3.org/ns/dcat#record>"
+            ],
+            "synonyms": [
+                "recorder",
+                "recordest",
+                "recorded",
+                "records",
+                "recording"
+            ]
+        },
+        "contact point": {
+            "urls": [
+                "<http://www.w3.org/ns/dcat#contactPoint>"
+            ]
+        },
+        "distribution": {
+            "urls": [
+                "<http://www.w3.org/ns/dcat#distribution>"
+            ],
+            "synonyms": [
+                "distribute",
+                "distributing",
+                "distributes",
+                "distributed"
+            ]
+        },
+        "landing page": {
+            "urls": [
+                "<http://www.w3.org/ns/dcat#landingPage>"
+            ]
+        },
+        "bottom object property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#bottomObjectProperty>"
+            ]
+        },
+        "recoded to area": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/recodedToArea>"
+            ]
+        },
+        "createdby": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-geography#createdby>"
+            ]
+        },
+        "gsscode": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-geography#gsscode>"
+            ]
+        },
+        "boundary change order": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/boundaryChangeOrder>"
+            ]
+        },
+        "change year": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/changeYear>"
+            ]
+        },
+        "interval": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/interval>"
+            ]
+        },
+        "preceding area": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/precedingArea>"
+            ]
+        },
+        "recoded from area": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/recodedFromArea>"
+            ]
+        },
+        "resulted from": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/resultedFrom>"
+            ]
+        },
+        "resulting area": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/resultingArea>"
+            ]
+        },
+        "succeeding area": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/succeedingArea>"
+            ]
+        },
+        "terminated area": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/terminatedArea>"
+            ]
+        },
+        "was terminated by": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/wasTerminatedBy>"
+            ]
+        },
+        "was changed by": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/wasChangedBy>"
+            ]
+        },
+        "temporal reference system used": {
+            "urls": [
+                "<http://www.w3.org/2006/time#hasTRS>"
+            ]
+        },
+        "temporal unit type": {
+            "urls": [
+                "<http://www.w3.org/2006/time#unitType>"
+            ]
+        },
+        "day of week": {
+            "urls": [
+                "<http://www.w3.org/2006/time#dayOfWeek>"
+            ]
+        },
+        "in time zone": {
+            "urls": [
+                "<http://www.w3.org/2006/time#timeZone>"
+            ]
+        },
+        "after": {
+            "urls": [
+                "<http://www.w3.org/2006/time#after>"
+            ]
+        },
+        "before": {
+            "urls": [
+                "<http://www.w3.org/2006/time#before>"
+            ]
+        },
+        "has date-time description": {
+            "urls": [
+                "<http://www.w3.org/2006/time#hasDateTimeDescription>"
+            ]
+        },
+        "has duration": {
+            "urls": [
+                "<http://www.w3.org/2006/time#hasDuration>"
+            ]
+        },
+        "has duration description": {
+            "urls": [
+                "<http://www.w3.org/2006/time#hasDurationDescription>"
+            ]
+        },
+        "member entity": {
+            "urls": [
+                "<http://www.w3.org/2006/time#hasMember>"
+            ]
+        },
+        "in date-time description": {
+            "urls": [
+                "<http://www.w3.org/2006/time#inDateTime>"
+            ]
+        },
+        "temporal position": {
+            "urls": [
+                "<http://www.w3.org/2006/time#inTimePosition>"
+            ]
+        },
+        "has instant inside": {
+            "urls": [
+                "<http://www.w3.org/2006/time#inside>"
+            ]
+        },
+        "interval after": {
+            "urls": [
+                "<http://www.w3.org/2006/time#intervalAfter>"
+            ]
+        },
+        "interval before": {
+            "urls": [
+                "<http://www.w3.org/2006/time#intervalBefore>"
+            ]
+        },
+        "interval contains": {
+            "urls": [
+                "<http://www.w3.org/2006/time#intervalContains>"
+            ]
+        },
+        "interval during": {
+            "urls": [
+                "<http://www.w3.org/2006/time#intervalDuring>"
+            ]
+        },
+        "interval equals": {
+            "urls": [
+                "<http://www.w3.org/2006/time#intervalEquals>"
+            ]
+        },
+        "interval finished by": {
+            "urls": [
+                "<http://www.w3.org/2006/time#intervalFinishedBy>"
+            ]
+        },
+        "interval finishes": {
+            "urls": [
+                "<http://www.w3.org/2006/time#intervalFinishes>"
+            ]
+        },
+        "interval meets": {
+            "urls": [
+                "<http://www.w3.org/2006/time#intervalMeets>"
+            ]
+        },
+        "interval met by": {
+            "urls": [
+                "<http://www.w3.org/2006/time#intervalMetBy>"
+            ]
+        },
+        "interval overlapped by": {
+            "urls": [
+                "<http://www.w3.org/2006/time#intervalOverlappedBy>"
+            ]
+        },
+        "interval overlaps": {
+            "urls": [
+                "<http://www.w3.org/2006/time#intervalOverlaps>"
+            ]
+        },
+        "interval started by": {
+            "urls": [
+                "<http://www.w3.org/2006/time#intervalStartedBy>"
+            ]
+        },
+        "interval starts": {
+            "urls": [
+                "<http://www.w3.org/2006/time#intervalStarts>"
+            ]
+        },
+        "preferred label": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#prefLabel>"
+            ]
+        },
+        "alternative label": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#altLabel>"
+            ]
+        },
+        "component required": {
+            "urls": [
+                "<http://purl.org/linked-data/cube#componentRequired>"
+            ]
+        },
+        "classes": {
+            "urls": [
+                "<http://rdfs.org/ns/void#classes>"
+            ],
+            "synonyms": [
+                "classifies",
+                "categorical",
+                "categorize",
+                "classest",
+                "categorizing",
+                "categoric",
+                "class",
+                "classing",
+                "classifying",
+                "classify",
+                "classy",
+                "classified",
+                "categorizes",
+                "categorial",
+                "classer",
+                "categorized",
+                "classed"
+            ]
+        },
+        "distinct objects": {
+            "urls": [
+                "<http://rdfs.org/ns/void#distinctObjects>"
+            ]
+        },
+        "distinct subjects": {
+            "urls": [
+                "<http://rdfs.org/ns/void#distinctSubjects>"
+            ]
+        },
+        "documents": {
+            "urls": [
+                "<http://rdfs.org/ns/void#documents>"
+            ],
+            "synonyms": [
+                "document",
+                "documental",
+                "documenting",
+                "documented",
+                "documentary"
+            ]
+        },
+        "entities": {
+            "urls": [
+                "<http://rdfs.org/ns/void#entities>"
+            ]
+        },
+        "properties": {
+            "urls": [
+                "<http://rdfs.org/ns/void#properties>"
+            ],
+            "synonyms": [
+                "belong",
+                "place",
+                "belonged",
+                "places",
+                "belonging",
+                "belongs",
+                "placing",
+                "placed"
+            ]
+        },
+        "triples": {
+            "urls": [
+                "<http://rdfs.org/ns/void#triples>"
+            ],
+            "synonyms": [
+                "tripled",
+                "triple",
+                "tripler",
+                "tripling",
+                "triplest"
+            ]
+        },
+        "uri space": {
+            "urls": [
+                "<http://rdfs.org/ns/void#uriSpace>"
+            ]
+        },
+        "in xsd date-time": {
+            "urls": [
+                "<http://www.w3.org/2006/time#inXSDDateTime>"
+            ]
+        },
+        "has census code": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/hasCensusCode>"
+            ]
+        },
+        "has official name": {
+            "urls": [
+                "<http://data.ordnancesurvey.co.uk/ontology/admingeo/hasOfficialName>"
+            ]
+        },
+        "keyword": {
+            "urls": [
+                "<http://www.w3.org/ns/dcat#keyword>"
+            ]
+        },
+        "bytes": {
+            "urls": [
+                "<http://www.w3.org/ns/dcat#bytes>"
+            ]
+        },
+        "bottom data property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#bottomDataProperty>"
+            ]
+        },
+        "top data property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#topDataProperty>"
+            ]
+        },
+        "alternativelanguagename": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-geography#alternativelanguagename>"
+            ]
+        },
+        "inspireid": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/statistical-geography#inspireid>"
+            ]
+        },
+        "change order title": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/changeOrderTitle>"
+            ]
+        },
+        "standard code": {
+            "urls": [
+                "<http://statistics.data.gov.uk/def/boundary-change/standardCode>"
+            ]
+        },
+        "day": {
+            "urls": [
+                "<http://www.w3.org/2006/time#day>"
+            ],
+            "synonyms": [
+                "daily"
+            ]
+        },
+        "month": {
+            "urls": [
+                "<http://www.w3.org/2006/time#month>"
+            ],
+            "synonyms": [
+                "monthly"
+            ]
+        },
+        "day of year": {
+            "urls": [
+                "<http://www.w3.org/2006/time#dayOfYear>"
+            ]
+        },
+        "hour": {
+            "urls": [
+                "<http://www.w3.org/2006/time#hour>"
+            ],
+            "synonyms": [
+                "horary",
+                "hourly"
+            ]
+        },
+        "minute": {
+            "urls": [
+                "<http://www.w3.org/2006/time#minute>"
+            ],
+            "synonyms": [
+                "momentaneous",
+                "momentary",
+                "instantaneous"
+            ]
+        },
+        "second": {
+            "urls": [
+                "<http://www.w3.org/2006/time#second>"
+            ],
+            "synonyms": [
+                "seconding",
+                "indorsed",
+                "seconded",
+                "seconder",
+                "indorses",
+                "indorse",
+                "indorsing",
+                "secondest"
+            ]
+        },
+        "week": {
+            "urls": [
+                "<http://www.w3.org/2006/time#week>"
+            ],
+            "synonyms": [
+                "weekly",
+                "hebdomadal",
+                "hebdomadary"
+            ]
+        },
+        "numeric value of temporal duration": {
+            "urls": [
+                "<http://www.w3.org/2006/time#numericDuration>"
+            ]
+        },
+        "days": {
+            "urls": [
+                "<http://www.w3.org/2006/time#days>"
+            ],
+            "synonyms": []
+        },
+        "hours": {
+            "urls": [
+                "<http://www.w3.org/2006/time#hours>"
+            ],
+            "synonyms": []
+        },
+        "minutes": {
+            "urls": [
+                "<http://www.w3.org/2006/time#minutes>"
+            ],
+            "synonyms": []
+        },
+        "months": {
+            "urls": [
+                "<http://www.w3.org/2006/time#months>"
+            ],
+            "synonyms": []
+        },
+        "seconds": {
+            "urls": [
+                "<http://www.w3.org/2006/time#seconds>"
+            ],
+            "synonyms": []
+        },
+        "weeks": {
+            "urls": [
+                "<http://www.w3.org/2006/time#weeks>"
+            ],
+            "synonyms": []
+        },
+        "years": {
+            "urls": [
+                "<http://www.w3.org/2006/time#years>"
+            ],
+            "synonyms": []
+        },
+        "numeric value of temporal position": {
+            "urls": [
+                "<http://www.w3.org/2006/time#numericPosition>"
+            ]
+        },
+        "name of temporal position": {
+            "urls": [
+                "<http://www.w3.org/2006/time#nominalPosition>"
+            ]
+        },
+        "has xsd date-time": {
+            "urls": [
+                "<http://www.w3.org/2006/time#xsdDateTime>"
+            ]
+        }
+    }
+}

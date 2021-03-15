@@ -1252,10 +1252,13 @@ function getPropertyObjectByLabelQuery(entityLabel, properties){
   // perfect matching
   for(var j=0; j<properties.length; j++){
     //create query
-    sparql="SELECT DISTINCT ?result ?label WHERE {"+
+    sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "+
+      "SELECT DISTINCT ?result ?label WHERE {"+
       "VALUES ?property_label {"+label_predicates_as_string+"} "+
       "?entity  "+properties[j]+" ?result. " + 
-      "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'^" + entityLabel + "$', 'i'))" + 
+      "?entity ?property_label ?labelEntity.  " + 
+      //"FILTER(regex(?labelEntity,'^" + entityLabel + "$', 'i'))" + 
+      "FILTER(lcase(?labelEntity)=lcase('"+entityLabel+"')) "+
       "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
 
       console.log(sparql)
@@ -1286,10 +1289,13 @@ function getPropertyObjectByLabelQuery(entityLabel, properties){
   //relaxed query
   for(var j=0; j<properties.length; j++){
     //create query
-    sparql="SELECT ?result ?label WHERE {"+
+    sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "+
+      "SELECT ?result ?label WHERE {"+
       "VALUES ?property_label {"+label_predicates_as_string+"} "+
       "?entity  "+properties[j]+" ?result. " + 
-      "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'" + entityLabel + "', 'i'))" + 
+      "?entity ?property_label ?labelEntity. " +
+      //" FILTER(regex(?labelEntity,'" + entityLabel + "', 'i'))" +
+      "FILTER(contains(lcase(?labelEntity),lcase('"+entityLabel+"'))) "+ 
       "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
 
       console.log(sparql)
@@ -1383,11 +1389,18 @@ function getTripleVerificationByObjectLabelQuery(subjects, properties, objectLab
   var sparql = '';
   var result = null;
 
+  var label_predicates = custom_functions.getLabelPredicates();
+  var label_predicates_as_string = label_predicates.join(" ");
+
+
   for(var i=0; i<subjects.length; i++){
     for(var k=0; k<properties.length; k++){
         sparql="ASK {"+
+          "VALUES ?property_label {"+label_predicates_as_string+"} "+
           subjects[i] +" "+properties[k]+" ?object. " +
-          "?object rdfs:label ?objectLabel. FILTER(lang(?objectLabel)='"+lang+"') FILTER(regex(?objectLabel,'^" + objectLabel + "$', 'i'))" + 
+          "?object ?property_label ?objectLabel."+
+          //"FILTER(regex(?objectLabel,'^" + objectLabel + "$', 'i'))" + 
+          "FILTER(lcase(?objectLabel)=lcase('"+objectLabel+"')) "+
           "}";
               
         //run query
@@ -1411,8 +1424,11 @@ function getTripleVerificationByObjectLabelQuery(subjects, properties, objectLab
           for(var i=0; i<subjects.length; i++){
             for(var k=0; k<properties.length; k++){
               sparql="ASK {"+
+              "VALUES ?property_label {"+label_predicates_as_string+"} "+
                 subjects[i] +" "+properties[k]+" ?object. " +
-                "?object rdfs:label ?objectLabel. FILTER(lang(?objectLabel)='"+lang+"') FILTER(regex(?objectLabel,'" + objectLabel + "', 'i'))" + 
+                "?object ?property_label ?objectLabel. "+
+                //"FILTER(regex(?objectLabel,'" + objectLabel + "', 'i'))" + 
+                "FILTER(contains(lcase(?objectLabel),lcase('"+objectLabel+"'))) "+
                 "}";
                     
               //run query
@@ -1456,11 +1472,17 @@ function getTripleVerificationBySubjectLabelQuery(subjectLabel, properties, obje
   var sparql = '';
   var result = null;
 
+  var label_predicates = custom_functions.getLabelPredicates();
+  var label_predicates_as_string = label_predicates.join(" ");
+
   for(var k=0; k<properties.length; k++){
       for(var i=0; i<objects.length; i++){
         sparql="ASK {"+
+        "VALUES ?property_label {"+label_predicates_as_string+"} "+
           "?subject "+properties[k]+" " + objects[i] + ". "+
-          "?subject rdfs:label ?subjectLabel. FILTER(lang(?subjectLabel)='"+lang+"') FILTER(regex(?subjectLabel,'^" + subjectLabel + "$', 'i'))" + 
+          "?subject ?property_label ?subjectLabel."+
+          //" FILTER(regex(?subjectLabel,'^" + subjectLabel + "$', 'i'))" + 
+          "FILTER(lcase(?subjectLabel)=lcase('"+subjectLabel+"')) "+
           "}";
               
         //run query
@@ -1486,8 +1508,11 @@ function getTripleVerificationBySubjectLabelQuery(subjectLabel, properties, obje
     for(var i=0; i<subjects.length; i++){
       for(var k=0; k<properties.length; k++){
         sparql="ASK {"+
+        "VALUES ?property_label {"+label_predicates_as_string+"} "+
           "?subject "+properties[k]+" " + objects[i] + ". "+
-          "?subject rdfs:label ?subjectLabel. FILTER(lang(?subjectLabel)='"+lang+"') FILTER(regex(?subjectLabel,'" + subjectLabel + "', 'i'))" + 
+          "?subject ?property_label ?subjectLabel. "+
+          //" FILTER(regex(?subjectLabel,'" + subjectLabel + "', 'i'))" + 
+          "FILTER(contains(lcase(?subjectLabel),lcase('"+subjectLabel+"'))) "+
           "}";
               
         //run query
@@ -1528,11 +1553,19 @@ function getTripleVerificationBySubjectAndObjectLabelQuery(subjectLabel, propert
   var sparql = '';
   var result = null;
 
+  var label_predicates = custom_functions.getLabelPredicates();
+  var label_predicates_as_string = label_predicates.join(" ");
+
   for(var k=0; k<properties.length; k++){
     sparql="ASK {"+
+    "VALUES ?property_label {"+label_predicates_as_string+"} "+
       "?subject "+properties[k]+" ?object. "+
-      "?subject rdfs:label ?subjectLabel. FILTER(lang(?subjectLabel)='"+lang+"') FILTER(regex(?subjectLabel,'^" + subjectLabel + "$', 'i'))" + 
-      "?object rdfs:label ?objectLabel. FILTER(lang(?objectLabel)='"+lang+"') FILTER(regex(?objectLabel,'^" + objectLabel + "$', 'i'))" + 
+      "?subject ?property_label ?subjectLabel. "+
+      //" FILTER(regex(?subjectLabel,'^" + subjectLabel + "$', 'i'))" + 
+      "FILTER(lcase(?subjectLabel)=lcase('"+subjectLabel+"')) "+
+      "?object ?property_label ?objectLabel. "+
+      //" FILTER(regex(?objectLabel,'^" + objectLabel + "$', 'i'))" + 
+      "FILTER(lcase(?objectLabel)=lcase('"+objectLabel+"')) "+
       "}";
           
     //run query
@@ -1555,9 +1588,14 @@ function getTripleVerificationBySubjectAndObjectLabelQuery(subjectLabel, propert
    }
     for(var k=0; k<properties.length; k++){
       sparql="ASK {"+
+      "VALUES ?property_label {"+label_predicates_as_string+"} "+
         "?subject "+properties[k]+" ?object. "+
-        "?subject rdfs:label ?subjectLabel. FILTER(lang(?subjectLabel)='"+lang+"') FILTER(regex(?subjectLabel,'" + subjectLabel + "', 'i'))" + 
-        "?object rdfs:label ?objectLabel. FILTER(lang(?objectLabel)='"+lang+"') FILTER(regex(?objectLabel,'" + objectLabel + "', 'i'))" + 
+        "?subject ?property_label ?subjectLabel. "+
+        //" FILTER(regex(?subjectLabel,'" + subjectLabel + "', 'i'))" + 
+        "FILTER(contains(lcase(?subjectLabel),lcase('"+subjectLabel+"'))) "+
+        "?object ?property_label ?objectLabel. "+
+        //" FILTER(regex(?objectLabel,'" + objectLabel + "', 'i'))" + 
+        "FILTER(contains(lcase(?objectLabel),lcase('"+objectLabel+"'))) "+
         "}";
             
       //run query
@@ -1606,7 +1644,9 @@ function getPropertySubjectLabelQuery(entityLabel, properties){
     sparql="SELECT ?result ?label WHERE {"+
       "VALUES ?property_label {"+label_predicates_as_string+"} "+
       "?result "+properties[j]+" ?entity. "+
-      "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'^" + entityLabel + "$', 'i'))" + 
+      "?entity ?property_label ?labelEntity.  "+
+      //"FILTER(regex(?labelEntity,'^" + entityLabel + "$', 'i'))" + 
+      "FILTER(lcase(?labelEntity)=lcase('"+entityLabel+"')) "+
       "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
 
     //run query
@@ -1637,7 +1677,9 @@ function getPropertySubjectLabelQuery(entityLabel, properties){
     sparql="SELECT ?result ?label WHERE {"+
       "VALUES ?property_label {"+label_predicates_as_string+"} "+
       "?result "+properties[j]+" ?entity. "+
-      "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'" + entityLabel + "', 'i'))" + 
+      "?entity ?property_label ?labelEntity. "+
+      //" FILTER(regex(?labelEntity,'" + entityLabel + "', 'i'))" + 
+      "FILTER(contains(lcase(?labelEntity),lcase('"+entityLabel+"'))) "+
       "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
 
     //run query
@@ -1800,7 +1842,9 @@ function getPropertySubjectByClassAndEntityLabelQuery(classes, properties, entit
       "VALUES ?property_label {"+label_predicates_as_string+"} "+
       "?result ?property_instance "+classes[i]+"; " + 
                properties[j]+" ?entity. "+
-      "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'^" + entityLabel + "$', 'i'))" + 
+      "?entity ?property_label ?labelEntity. "+
+      //" FILTER(regex(?labelEntity,'^" + entityLabel + "$', 'i'))" + 
+      "FILTER(lcase(?labelEntity)=lcase('"+entityLabel+"')) "+
       "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
 
       //run query
@@ -1834,7 +1878,9 @@ function getPropertySubjectByClassAndEntityLabelQuery(classes, properties, entit
       "VALUES ?property_label {"+label_predicates_as_string+"} "+
       "?result ?property_instance "+classes[i]+"; " + 
                properties[j]+" ?entity. "+
-      "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'" + entityLabel + "', 'i'))" + 
+      "?entity ?property_label ?labelEntity. "+
+      //" FILTER(regex(?labelEntity,'" + entityLabel + "', 'i'))" + 
+      "FILTER(contains(lcase(?labelEntity),lcase('"+entityLabel+"'))) "+
       "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}";
 
       //run query
@@ -1986,11 +2032,18 @@ function getImgByLabelQuery(entityLabel){
   var img_predicates = custom_functions.getImgPredicates();
   var img_predicates_as_string = img_predicates.join(" ");
 
+  var label_predicates = custom_functions.getLabelPredicates();
+  var label_predicates_as_string = label_predicates.join(" ");
+
   //create query
   sparql="SELECT ?result ?label ?property_img WHERE { " + 
     "VALUES ?property_img {"+img_predicates_as_string+"} "+
+    "VALUES ?property_label {"+label_predicates_as_string+"} "+
     "?entity ?property_img ?result." +
-    "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'^" + entityLabel + "$', 'i'))}"  ;
+    "?entity ?property_label ?labelEntity. "+
+    //" FILTER(regex(?labelEntity,'^" + entityLabel + "$', 'i'))"+
+    "FILTER(lcase(?labelEntity)=lcase('"+entityLabel+"')) "+
+    "}"  ;
 
 
   var results = custom_functions.runSelectQuery(sparql);
@@ -2013,8 +2066,12 @@ function getImgByLabelQuery(entityLabel){
 
   sparql="SELECT ?result ?label ?property_img WHERE { " + 
     "VALUES ?property_img {"+img_predicates_as_string+"} "+
+    "VALUES ?property_label {"+label_predicates_as_string+"} "+
     "?entity ?property_img ?result." +
-    "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'" + entityLabel + "', 'i'))}"  ;
+    "?entity ?property_label ?labelEntity. "+
+    //" FILTER(regex(?labelEntity,'" + entityLabel + "', 'i'))"+
+    "FILTER(contains(lcase(?labelEntity),lcase('"+entityLabel+"'))) "+
+    " }"  ;
 
 
   var results = custom_functions.runSelectQuery(sparql);
@@ -2092,22 +2149,33 @@ function getDescriptionByLabelQuery(entityLabel){
   var descriptions = [];
 
   var description_predicates = custom_functions.getDescriptionPredicates();
-  var description_predicates_as_string = description_predicates.join(" ");       
+  var description_predicates_as_string = description_predicates.join(" ");    
+
+  var label_predicates = custom_functions.getLabelPredicates();
+  var label_predicates_as_string = label_predicates.join(" ");
 
   sparql="SELECT ?description WHERE {"+
     "VALUES ?property_description {"+description_predicates_as_string+"} "+
+    "VALUES ?property_label {"+label_predicates_as_string+"} "+
     "?entity ?property_description ?description. "+
-    "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'^" + entityLabel + "$', 'i'))" + 
-    "OPTIONAL{FILTER(lang(?description)='"+lang+"')}}";
+    "?entity ?property_label ?labelEntity. "+
+    //" FILTER(regex(?labelEntity,'^" + entityLabel + "$', 'i'))" + 
+    "FILTER(lcase(?labelEntity)=lcase('"+entityLabel+"')) "+
+    "OPTIONAL{FILTER(lang(?description)='"+lang+"')}"+
+    " }";
 
   var results = custom_functions.runSelectQuery(sparql);
   if(results.length>0)
     descriptions.push(results[0].description.value); 
   else{
-    sparql="SELECT ?description WHERE {"+
+    sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "+
+    "SELECT ?description WHERE {"+
     "VALUES ?property_description {"+description_predicates_as_string+"} "+
+    "VALUES ?property_label {"+label_predicates_as_string+"} "+
     "?entity ?property_description ?description. "+
-    "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'" + entityLabel + "', 'i'))" + 
+    "?entity ?property_label ?labelEntity. "+
+    //" FILTER(regex(?labelEntity,'" + entityLabel + "', 'i'))" + 
+    "FILTER(contains(lcase(?labelEntity),lcase('"+entityLabel+"'))) "+
     "OPTIONAL{FILTER(lang(?description)='"+lang+"')}}";
 
     var results = custom_functions.runSelectQuery(sparql);
@@ -2246,11 +2314,14 @@ function getLocationByLabelQuery(entityLabel){
   var label_predicates_as_string = label_predicates.join(" ");
 
   //create query
-  sparql="SELECT ?result ?label ?property_location WHERE { " + 
+  sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "+
+    "SELECT ?result ?label ?property_location WHERE { " + 
     "VALUES ?property_location {"+location_predicates_as_string+"} "+
     "VALUES ?property_label {"+label_predicates_as_string+"} "+
     "?entity ?property_location ?result." + 
-    "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'^" + entityLabel + "$', 'i'))" + 
+    "?entity ?property_label ?labelEntity.  " + 
+    //"FILTER(regex(?labelEntity,'^" + entityLabel + "$', 'i'))" + 
+    "FILTER(lcase(?labelEntity)=lcase('"+entityLabel+"')) "+
     "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}" + 
     "ORDER BY DESC(?result)"; 
 
@@ -2274,11 +2345,14 @@ function getLocationByLabelQuery(entityLabel){
       return response; 
     }
 
-  sparql="SELECT ?result ?label ?property_location WHERE { " + 
+  sparql="PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "+
+    "SELECT ?result ?label ?property_location WHERE { " + 
     "VALUES ?property_location {"+location_predicates_as_string+"} "+
     "VALUES ?property_label {"+label_predicates_as_string+"} "+
     "?entity ?property_location ?result." + 
-    "?entity rdfs:label ?labelEntity. FILTER(lang(?labelEntity)='"+lang+"') FILTER(regex(?labelEntity,'" + entityLabel + "', 'i'))" + 
+    "?entity ?property_label ?labelEntity. " +
+    //" FILTER(regex(?labelEntity,'" + entityLabel + "', 'i'))" + 
+    "filter(contains(lcase(?labelEntity),"+entityLabel+")) "+
     "OPTIONAL{?result ?property_label ?label. FILTER(lang(?label)='"+lang+"')}}" + 
     "ORDER BY DESC(?result)"; 
 

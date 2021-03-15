@@ -1,0 +1,2681 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "hungarian museum personal assistant",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.MoreIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateSettingsIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NextIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PageUpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PageDownIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PreviousIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollRightIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollDownIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollLeftIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollUpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "getAllResultsPreviousQuery",
+                    "samples": [
+                        "can you repeat the previous reply",
+                        "can you list the results of the previous query",
+                        "give me all the results"
+                    ]
+                },
+                {
+                    "name": "getQueryExplanation",
+                    "samples": [
+                        "why did you reply in this way",
+                        "can you explain me your reasoning approach",
+                        "why did you say that"
+                    ]
+                },
+                {
+                    "name": "getFurtherDetails",
+                    "samples": [
+                        "can you provide me further details",
+                        "give me further details"
+                    ]
+                },
+                {
+                    "name": "getPropertyObject",
+                    "slots": [
+                        {
+                            "name": "property",
+                            "type": "property"
+                        },
+                        {
+                            "name": "entity",
+                            "type": "entity"
+                        }
+                    ],
+                    "samples": [
+                        "who is the {property} of {entity}",
+                        "who was the {property} of {entity}",
+                        "what are the {property} of {entity}",
+                        "what is the {property} of {entity}",
+                        "how {property} is {entity}",
+                        "how many {property} does {entity} have",
+                        "how much {property} does {entity} have",
+                        "give me the {property} of {entity}",
+                        "which is the {property} of {entity}",
+                        "when is the {property} of {entity}"
+                    ]
+                },
+                {
+                    "name": "getNumericFilter",
+                    "slots": [
+                        {
+                            "name": "property",
+                            "type": "property"
+                        },
+                        {
+                            "name": "symbol",
+                            "type": "symbol"
+                        },
+                        {
+                            "name": "value",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "which entity has {property} {symbol} {value}",
+                        "what entity has {property} {symbol} {value}",
+                        "what does it have {property} {symbol} {value}"
+                    ]
+                },
+                {
+                    "name": "getNumericFilterByClass",
+                    "slots": [
+                        {
+                            "name": "class",
+                            "type": "entity"
+                        },
+                        {
+                            "name": "property",
+                            "type": "property"
+                        },
+                        {
+                            "name": "symbol",
+                            "type": "symbol"
+                        },
+                        {
+                            "name": "value",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "which {class} has {property} {symbol} {value}"
+                    ]
+                },
+                {
+                    "name": "getClassInstances",
+                    "slots": [
+                        {
+                            "name": "class",
+                            "type": "entity"
+                        }
+                    ],
+                    "samples": [
+                        "Give me all {class}",
+                        "how many {class} exist",
+                        "how many {class} are there"
+                    ]
+                },
+                {
+                    "name": "getTripleVerification",
+                    "slots": [
+                        {
+                            "name": "subj",
+                            "type": "entity"
+                        },
+                        {
+                            "name": "property",
+                            "type": "property"
+                        },
+                        {
+                            "name": "obj",
+                            "type": "entity"
+                        }
+                    ],
+                    "samples": [
+                        "is it true that {subj} has {obj} as {property}",
+                        "is it true that {obj} is the {property} of {subj}",
+                        "can you verify if {subj} has {obj} as {property}",
+                        "can you check if {subj} has {obj} as {property}"
+                    ]
+                },
+                {
+                    "name": "getSuperlative",
+                    "slots": [
+                        {
+                            "name": "entity",
+                            "type": "entity"
+                        },
+                        {
+                            "name": "property",
+                            "type": "property"
+                        },
+                        {
+                            "name": "superlative",
+                            "type": "superlative"
+                        }
+                    ],
+                    "samples": [
+                        "what is the {entity} with {superlative} {property}"
+                    ]
+                },
+                {
+                    "name": "getPropertySubjectByClass",
+                    "slots": [
+                        {
+                            "name": "class",
+                            "type": "entity"
+                        },
+                        {
+                            "name": "property",
+                            "type": "property"
+                        },
+                        {
+                            "name": "entity",
+                            "type": "entity"
+                        }
+                    ],
+                    "samples": [
+                        "how many {class} has {property} like {entity}",
+                        "which {class} has {property} like {entity}",
+                        "which {class} has {entity} as {property}",
+                        "which {class} is {property} by {entity}",
+                        "how many {class} has {entity} as {property}",
+                        "which {class} has {property} equals to {entity}",
+                        "show me a list of {class} that {property} in the {entity}",
+                        "which {class} were {property} in {entity}",
+                        "which {class} were {property} on {entity}",
+                        "which {class} were {property} by {entity}",
+                        "give me all {class} that were {property} in {entity}",
+                        "give me all {class} that {property} to {entity}",
+                        "give me {class} whose {property} is equals to {entity}",
+                        "give me {class} where {entity} is the {property}",
+                        "what {class} does {entity} {property}",
+                        "list all the {class} with {property} by {entity}",
+                        "how many {class} are {property} the {entity}"
+                    ]
+                },
+                {
+                    "name": "getPropertySubject",
+                    "slots": [
+                        {
+                            "name": "property",
+                            "type": "property"
+                        },
+                        {
+                            "name": "entity",
+                            "type": "entity"
+                        }
+                    ],
+                    "samples": [
+                        "which entity has {entity} as {property}",
+                        "what have {entity} as {property}",
+                        "what has {entity} as {property}",
+                        "who has {entity} as {property}",
+                        "what has {property} equals to {entity}",
+                        "what is {entity} as {property}",
+                        "how many entities have {entity} as {property}",
+                        "how many entities have {property} like {entity}",
+                        "list everything {property} by {entity}",
+                        "give me everything {property} by {entity}",
+                        "what is {property} by {entity}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "entity",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "quad map format"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "quad storage"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "array-of- quad map"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "quad map"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "array-of- quad map format"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "quad map value"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "array-of- quad map a table"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "array-of- quad map column"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "quad map column"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "quad map f text"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "quad map a table"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "array-of-string"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "property"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "class"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "service"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "annotation property"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "ontology"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "ontology property"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "datatype property"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "named individual"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "concept"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "concept scheme"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "marc country"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "marc language"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "authority"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "language"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "resource"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "geographic"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "deprecated authority"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "mads collection"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "marc geographic area"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "object property"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "transitive property"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "symmetric property"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "functional property"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "inverse functional property"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "business entity"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "offering"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "location of sales or service provisioning"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "actual product or services instance"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "product or service some instance placeholder"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "price specification"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "type and quantity node"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "product or services some instances placeholder"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "manufacturer"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "mads scheme"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "person"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "work"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "voice"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "internet"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "record info"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "variant"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "topic"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "restriction"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "all different"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "deprecated class"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "deprecated property"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "data range"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "all disjoint classes"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "all disjoint properties"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "annotation"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "asymmetric property"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "axiom"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "irreflexive property"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "negative property assertion"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "reflexive property"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "download location"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "component archive"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "price unit type"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "product family"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "product category"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "product format"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "product format category"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "product"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "opsys"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "dbms engine"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "vendor category family"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "vendor category"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "vendors"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "opsys family"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "dbms family"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "opsys type"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "processor mode"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "processor"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "processor family"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "product release"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "component"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "component mode"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "component type"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "component category"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "component archive type"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "price unit incremental discount"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "download protocol"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "download partner"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "product benefit"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "product benefit category"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "product feature category"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "product feature"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "product family feature"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "product format feature"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "product category feature"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "product release feature"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "license type"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "price type"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "general discount"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "incremental discount"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "license model"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "place"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "corporate body"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "name"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "identifier"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "individual work"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "complex work"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "container work"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "aggregation work"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "serial work"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "publication work"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "performance work"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "recording work"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "self-contained expression"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "expression fragment"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "publication expression"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "performance plan"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "recording"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "work conception"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "expression creation"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "recording event"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "expression"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "publication event"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "performance"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "carrier production event"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "reproduction event"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "manifestation product type"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "identifier assignment"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "representative manifestation assignment"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "representative expression assignment"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "identifier rule"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "bibliographic agency"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "manifestation singleton"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "item"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "object"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "event"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "thing"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "nothing"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "property",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "type",
+                                "synonyms": [
+                                    "typified",
+                                    "typifies",
+                                    "typify",
+                                    "typing",
+                                    "typed",
+                                    "typic",
+                                    "typifying",
+                                    "types"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "version",
+                                "synonyms": [
+                                    "varies",
+                                    "translate",
+                                    "interpreting",
+                                    "translated",
+                                    "interpret",
+                                    "interpreted",
+                                    "interprets",
+                                    "translating",
+                                    "varied",
+                                    "vary",
+                                    "varying",
+                                    "translates",
+                                    "variant"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "load as"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "item",
+                                "synonyms": [
+                                    "detailing",
+                                    "itemizes",
+                                    "detail",
+                                    "itemise",
+                                    "detailed",
+                                    "itemising",
+                                    "itemize",
+                                    "itemised",
+                                    "itemized",
+                                    "details",
+                                    "itemizing",
+                                    "itemises"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is special predicate"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is gc resistant type"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf name"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf short tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf long tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf sqlval tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf bool tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf isref of short tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf isuri of short tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf isblank of short tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf islit of short tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf long of short tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf sqlval of short tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf datatype of short tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf language of short tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf bool of short tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf iid of short tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf uri of short tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf strsqlval of short tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf short of typedsqlval tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf short of sqlval tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf short of long tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf short of uri tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf is bijection"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf maps only null to null"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf is stable"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf is subformat of long"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf is subformat of long when ref"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf cmp func name"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf typemin tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf typemax tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf column count"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf ok for any sqlvalue"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf val range-rvr restrictions"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf uri id offset"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf super formats"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "one"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "two"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "three"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "inherit from"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "no inherit"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "four"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "five"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf existing short of typedsqlval tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf existing short of sqlval tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf existing short of long tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf existing short of uri tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf is subformat of long when eq to sql"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf wrap distinct"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf sub format for refs"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf isnumeric of short tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf short of nice sqlval tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf dtp of nice sqlval"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf has cheap sqlval"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf datatype tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf language tmpl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf val range-rvr datatype"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmf val range-rvr language"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qm graph map"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qm subject map"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qm predicate map"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qm object map"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qm table name"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qm matching flags"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmv table name"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmv a tables"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmv columns"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmv format"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmv columns form key"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmvc alias"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmvc column name"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmv f text"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmv geo"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmva alias"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmva table name"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmvft column name"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmvft xml index"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmvft alias"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmvft conds"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qmvft table name"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qs user maps"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qs default map"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "qs matching flags"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "sub property of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "equivalent class"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "equivalent property"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "inverse of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "created"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "modified"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "owner user"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "extent",
+                                "synonyms": [
+                                    "extend",
+                                    "extended",
+                                    "extending",
+                                    "extends"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "label",
+                                "synonyms": [
+                                    "labeling",
+                                    "labelled",
+                                    "labeled",
+                                    "labels"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "first",
+                                "synonyms": [
+                                    "starts",
+                                    "kick off",
+                                    "start",
+                                    "started",
+                                    "starting"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "complement of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "rest",
+                                "synonyms": [
+                                    "resting",
+                                    "remains",
+                                    "remainders",
+                                    "relaxed",
+                                    "residuary",
+                                    "reposed",
+                                    "remaindered",
+                                    "remainder",
+                                    "reposing",
+                                    "remained",
+                                    "residual",
+                                    "rests",
+                                    "remaining",
+                                    "rested",
+                                    "relaxing",
+                                    "relax",
+                                    "remaindering",
+                                    "repose",
+                                    "reposes",
+                                    "relaxes",
+                                    "remain"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "union of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "domain"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "range",
+                                "synonyms": [
+                                    "ranged",
+                                    "reaching",
+                                    "ranging",
+                                    "compasses",
+                                    "reaches",
+                                    "compassing",
+                                    "reach",
+                                    "rangy",
+                                    "reached",
+                                    "compassed",
+                                    "ranges",
+                                    "scopal",
+                                    "compass"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "imports",
+                                "synonyms": [
+                                    "implying",
+                                    "significant",
+                                    "imported",
+                                    "momentous",
+                                    "importing",
+                                    "implicates",
+                                    "meaning",
+                                    "meant",
+                                    "implied",
+                                    "means",
+                                    "signifies",
+                                    "implicated",
+                                    "mean",
+                                    "implies",
+                                    "meaner",
+                                    "implicating",
+                                    "meanest",
+                                    "consequential",
+                                    "signified",
+                                    "signify",
+                                    "implicate",
+                                    "imply",
+                                    "import",
+                                    "signifying"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is defined by"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "comment",
+                                "synonyms": [
+                                    "gossips",
+                                    "comments",
+                                    "commentate",
+                                    "gossip",
+                                    "remarked",
+                                    "commentating",
+                                    "gossiping",
+                                    "remarking",
+                                    "remarks",
+                                    "commentates",
+                                    "gossiped",
+                                    "commentated",
+                                    "remark",
+                                    "commented",
+                                    "commenting"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "version info"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "prior version"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "disjoint with"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "on property"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "some values from"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "min cardinality"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "max cardinality"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "cardinality"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "see also"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "same as"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "sub class of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "endpoint",
+                                "synonyms": [
+                                    "terminated",
+                                    "terminates",
+                                    "terminating",
+                                    "terminate"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "feature",
+                                "synonyms": [
+                                    "features",
+                                    "featured",
+                                    "featuring"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "result format"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "supported language"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "url"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "alt label"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "close match"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "in scheme"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "related"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "scope note"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "authoritative label"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "record content source"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "record change date"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "record change note"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "record status"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "admin metadata"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "code",
+                                "synonyms": [
+                                    "codifies",
+                                    "coding",
+                                    "coded",
+                                    "codify",
+                                    "codes",
+                                    "codifying",
+                                    "codified"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "deprecated label"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has broader authority"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has broader external authority"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has exact external authority"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has mads collection member"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has narrower authority"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has related authority"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has top member of mads scheme"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has variant"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "history note"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is member of mads collection"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is member of mads scheme"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "note",
+                                "synonyms": [
+                                    "annotate",
+                                    "notes",
+                                    "annotating",
+                                    "annotates",
+                                    "tonic",
+                                    "noted",
+                                    "noting",
+                                    "preeminent",
+                                    "annotated",
+                                    "eminent"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "use for"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "use instead"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "variant label"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is top member of mads scheme"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "editorial note"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "namespace transformation"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "version iri"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "notation",
+                                "synonyms": [
+                                    "notated",
+                                    "notating",
+                                    "notates",
+                                    "notate"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "title",
+                                "synonyms": [
+                                    "titler",
+                                    "claim",
+                                    "claimed",
+                                    "titlest",
+                                    "titled",
+                                    "claims",
+                                    "titling",
+                                    "titulary",
+                                    "titles",
+                                    "titular",
+                                    "claiming"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "broader"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "narrower"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "cat name"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "business entity"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "legal name"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "adr"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "street"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "pcode"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "city",
+                                "synonyms": [
+                                    "metropolitan",
+                                    "citifying",
+                                    "citify",
+                                    "citified",
+                                    "citifies"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "country",
+                                "synonyms": [
+                                    "areal"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "tel"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "value",
+                                "synonyms": [
+                                    "evaluated",
+                                    "values",
+                                    "valuating",
+                                    "valuate",
+                                    "valuates",
+                                    "valuing",
+                                    "valued",
+                                    "valuated",
+                                    "evaluates",
+                                    "evaluate",
+                                    "evaluating"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "email",
+                                "synonyms": [
+                                    "emailing",
+                                    "emails",
+                                    "e-mail",
+                                    "emailed"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "offers",
+                                "synonyms": [
+                                    "offering",
+                                    "offer",
+                                    "offered"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "homepage"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "logo"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "maker",
+                                "synonyms": [
+                                    "manufacturing",
+                                    "shapes",
+                                    "manufacture",
+                                    "made",
+                                    "making",
+                                    "makes",
+                                    "manufactures",
+                                    "manufactured",
+                                    "shape",
+                                    "shaping",
+                                    "almighty",
+                                    "make",
+                                    "shaped"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "available at or from"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "includes"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has price specification"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "amount of this good"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has unit of measurement"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "type of good"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "includes object"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has business function"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "valid from"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "valid through"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "eligible regions"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "eligible customer types"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "accepted payment methods"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "available delivery methods"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is described using"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "pref label"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "lat"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "long"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "subject to"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "applies to"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "right held by"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "right on"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "should have type"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "should be type of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "should have dimension"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "should be dimension of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "should consist of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "should be incorporated in"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "should be composed of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "may form part of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "should carry"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "should be carried by"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has member"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is member of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has issuing rule"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is issuing rule of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is realised in"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "realises"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "incorporates"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is incorporated in"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has fragment"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is fragment of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "initiated"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "was initiated by"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "was created by"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "created a realisation of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "was realised through"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is logical successor of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has successor"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "recorded"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "was recorded through"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "was created through"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "performed"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "was performed in"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "produced things of type"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "was produced by"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "used as source material"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "was used by"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "produced"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "reproduced"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "was reproduced by"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is derivative of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has derivative"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is reproduction of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has reproduction"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has representative expression"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is representative expression for"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has representative manifestation product type"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is representative manifestation product type for"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is representative manifestation singleton for"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has representative manifestation singleton"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "carried out by"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "assigned to"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "was assigned by"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "assigned"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "used constituent"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "was used in"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "carriers provided by"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "comprises carriers of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "used rule"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "was the rule used in"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has component"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is component of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "carries",
+                                "synonyms": [
+                                    "carry",
+                                    "carried",
+                                    "carrying"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is carried by"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is example of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has example"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "consists of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "forms part of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "should have number of parts"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "px capture mode"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "px expected frequency"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "px expected regularity"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "px file characteristics"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "px has an alternate"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "px is an alternate to"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "px physical medium"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "px playing speed"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "px reduction ratio"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "px reproduction characteristics"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "px special characteristics"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "px system requirements"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "superlative",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "most",
+                                "synonyms": [
+                                    "maximum",
+                                    "highest"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "less",
+                                "synonyms": [
+                                    "minimum",
+                                    "lowest"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "symbol",
+                    "values": [
+                        {
+                            "name": {
+                                "value": ">",
+                                "synonyms": [
+                                    "more",
+                                    "more than",
+                                    "later than"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "<",
+                                "synonyms": [
+                                    "less",
+                                    "less than",
+                                    "before than"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "=",
+                                "synonyms": [
+                                    "equals",
+                                    "equals to"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

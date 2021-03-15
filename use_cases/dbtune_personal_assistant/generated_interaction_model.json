@@ -1,0 +1,867 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "dbtune personal assistant",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.MoreIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateSettingsIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NextIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PageUpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PageDownIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PreviousIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollRightIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollDownIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollLeftIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollUpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "getAllResultsPreviousQuery",
+                    "samples": [
+                        "can you repeat the previous reply",
+                        "can you list the results of the previous query",
+                        "give me all the results"
+                    ]
+                },
+                {
+                    "name": "getQueryExplanation",
+                    "samples": [
+                        "why did you reply in this way",
+                        "can you explain me your reasoning approach",
+                        "why did you say that"
+                    ]
+                },
+                {
+                    "name": "getFurtherDetails",
+                    "samples": [
+                        "can you provide me further details",
+                        "give me further details"
+                    ]
+                },
+                {
+                    "name": "getPropertyObject",
+                    "slots": [
+                        {
+                            "name": "property",
+                            "type": "property"
+                        },
+                        {
+                            "name": "entity",
+                            "type": "entity"
+                        }
+                    ],
+                    "samples": [
+                        "who is the {property} of {entity}",
+                        "who was the {property} of {entity}",
+                        "what are the {property} of {entity}",
+                        "what is the {property} of {entity}",
+                        "how {property} is {entity}",
+                        "how many {property} does {entity} have",
+                        "how much {property} does {entity} have",
+                        "give me the {property} of {entity}",
+                        "which is the {property} of {entity}",
+                        "when is the {property} of {entity}"
+                    ]
+                },
+                {
+                    "name": "getNumericFilter",
+                    "slots": [
+                        {
+                            "name": "property",
+                            "type": "property"
+                        },
+                        {
+                            "name": "symbol",
+                            "type": "symbol"
+                        },
+                        {
+                            "name": "value",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "which entity has {property} {symbol} {value}",
+                        "what entity has {property} {symbol} {value}",
+                        "what does it have {property} {symbol} {value}"
+                    ]
+                },
+                {
+                    "name": "getNumericFilterByClass",
+                    "slots": [
+                        {
+                            "name": "class",
+                            "type": "entity"
+                        },
+                        {
+                            "name": "property",
+                            "type": "property"
+                        },
+                        {
+                            "name": "symbol",
+                            "type": "symbol"
+                        },
+                        {
+                            "name": "value",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "which {class} has {property} {symbol} {value}"
+                    ]
+                },
+                {
+                    "name": "getClassInstances",
+                    "slots": [
+                        {
+                            "name": "class",
+                            "type": "entity"
+                        }
+                    ],
+                    "samples": [
+                        "Give me all types of {class}",
+                        "how many {class} exist",
+                        "how many {class} are there"
+                    ]
+                },
+                {
+                    "name": "getTripleVerification",
+                    "slots": [
+                        {
+                            "name": "subj",
+                            "type": "entity"
+                        },
+                        {
+                            "name": "property",
+                            "type": "property"
+                        },
+                        {
+                            "name": "obj",
+                            "type": "entity"
+                        }
+                    ],
+                    "samples": [
+                        "is it true that {subj} has {obj} as {property}",
+                        "is it true that {obj} is the {property} of {subj}",
+                        "can you verify if {subj} has {obj} as {property}",
+                        "can you check if {subj} has {obj} as {property}"
+                    ]
+                },
+                {
+                    "name": "getSuperlative",
+                    "slots": [
+                        {
+                            "name": "entity",
+                            "type": "entity"
+                        },
+                        {
+                            "name": "property",
+                            "type": "property"
+                        },
+                        {
+                            "name": "superlative",
+                            "type": "superlative"
+                        }
+                    ],
+                    "samples": [
+                        "what is the {entity} with {superlative} {property}"
+                    ]
+                },
+                {
+                    "name": "getPropertySubjectByClass",
+                    "slots": [
+                        {
+                            "name": "class",
+                            "type": "entity"
+                        },
+                        {
+                            "name": "property",
+                            "type": "property"
+                        },
+                        {
+                            "name": "entity",
+                            "type": "entity"
+                        }
+                    ],
+                    "samples": [
+                        "how many {class} has {property} like {entity}",
+                        "which {class} has {property} like {entity}",
+                        "which {class} has {entity} as {property}",
+                        "which {class} is {property} by {entity}",
+                        "how many {class} has {entity} as {property}",
+                        "which {class} has {property} equals to {entity}",
+                        "show me a list of {class} that {property} in the {entity}",
+                        "which {class} were {property} in {entity}",
+                        "which {class} were {property} on {entity}",
+                        "which {class} were {property} by {entity}",
+                        "give me all {class} that were {property} in {entity}",
+                        "give me all {class} that {property} to {entity}",
+                        "give me {class} whose {property} is equals to {entity}",
+                        "give me {class} where {entity} is the {property}",
+                        "what {class} does {entity} {property}",
+                        "list all the {class} with {property} by {entity}",
+                        "how many {class} are {property} the {entity}"
+                    ]
+                },
+                {
+                    "name": "getPropertySubject",
+                    "slots": [
+                        {
+                            "name": "property",
+                            "type": "property"
+                        },
+                        {
+                            "name": "entity",
+                            "type": "entity"
+                        }
+                    ],
+                    "samples": [
+                        "which entity has {entity} as {property}",
+                        "what have {entity} as {property}",
+                        "what has {entity} as {property}",
+                        "who has {entity} as {property}",
+                        "what has {property} equals to {entity}",
+                        "what is {entity} as {property}",
+                        "how many entities have {entity} as {property}",
+                        "how many entities have {property} like {entity}",
+                        "list everything {property} by {entity}",
+                        "give me everything {property} by {entity}",
+                        "what is {property} by {entity}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "entity",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "composer"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "conductor"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "composition"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "birth"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "death"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "pianist"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "style period"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "class"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "object property"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "musical work"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "document"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "similarity"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "property"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "resource"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "property",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "name",
+                                "synonyms": [
+                                    "named",
+                                    "names",
+                                    "naming"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "type",
+                                "synonyms": [
+                                    "typic",
+                                    "typing",
+                                    "types",
+                                    "typifies",
+                                    "typifying",
+                                    "typified",
+                                    "typed",
+                                    "typify"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "birth",
+                                "synonyms": [
+                                    "be born",
+                                    "parent",
+                                    "parents",
+                                    "birthing",
+                                    "birthed",
+                                    "parenting",
+                                    "parented",
+                                    "nascent",
+                                    "births"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "nationality",
+                                "synonyms": [
+                                    "national"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "alias"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "label"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "page",
+                                "synonyms": [
+                                    "paginated",
+                                    "paginating",
+                                    "paging",
+                                    "paged",
+                                    "pages",
+                                    "paginates",
+                                    "paginate"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "based near"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "death",
+                                "synonyms": [
+                                    "deceasing",
+                                    "ends",
+                                    "deceased",
+                                    "ended",
+                                    "deathly",
+                                    "decease",
+                                    "dice",
+                                    "dying",
+                                    "end",
+                                    "deceases",
+                                    "ending",
+                                    "died",
+                                    "die",
+                                    "dies"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "period",
+                                "synonyms": [
+                                    "pointing",
+                                    "menstruating",
+                                    "menstruates",
+                                    "periodical",
+                                    "flow",
+                                    "catamenial",
+                                    "menstruate",
+                                    "flowing",
+                                    "flowed",
+                                    "points",
+                                    "flows",
+                                    "point",
+                                    "menstruated",
+                                    "pointed"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "same as"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "wikipedia"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "gender",
+                                "synonyms": [
+                                    "sex",
+                                    "sexual",
+                                    "sexed",
+                                    "sexes",
+                                    "sexing"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has influenced"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "influenced by"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "from style period"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "remarks",
+                                "synonyms": [
+                                    "commenting",
+                                    "commentates",
+                                    "commented",
+                                    "remarking",
+                                    "commentated",
+                                    "remark",
+                                    "comments",
+                                    "commentate",
+                                    "commentating",
+                                    "remarked",
+                                    "comment"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "composer",
+                                "synonyms": [
+                                    "compose",
+                                    "composes",
+                                    "composing",
+                                    "composed"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "produced work"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "date",
+                                "synonyms": [
+                                    "escort",
+                                    "escorts",
+                                    "escorting",
+                                    "dating",
+                                    "dated",
+                                    "escorted",
+                                    "dates"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "approximate"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "place",
+                                "synonyms": [
+                                    "positioning",
+                                    "positioned",
+                                    "posts",
+                                    "position",
+                                    "placed",
+                                    "homely",
+                                    "seats",
+                                    "positions",
+                                    "postest",
+                                    "seated",
+                                    "homed",
+                                    "homes",
+                                    "officiates",
+                                    "officiating",
+                                    "seat",
+                                    "homing",
+                                    "post",
+                                    "placing",
+                                    "homer",
+                                    "officiated",
+                                    "poster",
+                                    "home",
+                                    "seating",
+                                    "posting",
+                                    "places",
+                                    "homest",
+                                    "officiate",
+                                    "posted"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "title",
+                                "synonyms": [
+                                    "titulary",
+                                    "claim",
+                                    "titlest",
+                                    "titling",
+                                    "titled",
+                                    "titular",
+                                    "claimed",
+                                    "titler",
+                                    "titles",
+                                    "claims",
+                                    "claiming"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "sub class of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "sub property of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "composed in"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "opus",
+                                "synonyms": []
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has part"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "key",
+                                "synonyms": [
+                                    "tonal",
+                                    "wind",
+                                    "keys",
+                                    "keying",
+                                    "winded",
+                                    "winding",
+                                    "kiest",
+                                    "wound",
+                                    "kier",
+                                    "winds",
+                                    "keyed"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is part of"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "number",
+                                "synonyms": [
+                                    "numbering",
+                                    "issue",
+                                    "acted",
+                                    "figures",
+                                    "figured",
+                                    "acts",
+                                    "acting",
+                                    "figuring",
+                                    "figure",
+                                    "numbered",
+                                    "issuing",
+                                    "numerical",
+                                    "issues",
+                                    "act",
+                                    "numbers",
+                                    "issued"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "catalogue",
+                                "synonyms": [
+                                    "catalog",
+                                    "cataloguing",
+                                    "catalogues",
+                                    "cataloged",
+                                    "cataloging",
+                                    "catalogs",
+                                    "catalogued"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "form",
+                                "synonyms": [
+                                    "pattern",
+                                    "contours",
+                                    "forms",
+                                    "contourrer",
+                                    "forming",
+                                    "anatomic",
+                                    "patterns",
+                                    "contoured",
+                                    "shapes",
+                                    "shaped",
+                                    "signifies",
+                                    "sorted",
+                                    "contourrest",
+                                    "shapely",
+                                    "signified",
+                                    "sorting",
+                                    "contouring",
+                                    "signifying",
+                                    "variant",
+                                    "sort",
+                                    "formed",
+                                    "shaping",
+                                    "signify",
+                                    "shape",
+                                    "anatomical",
+                                    "contour",
+                                    "patterned",
+                                    "sorts",
+                                    "patterning"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "site name"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "primary topic"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "method",
+                                "synonyms": [
+                                    "methodical"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "object",
+                                "synonyms": [
+                                    "target",
+                                    "aims",
+                                    "targets",
+                                    "aimed",
+                                    "targeting",
+                                    "targeted",
+                                    "aiming",
+                                    "objectify",
+                                    "aim",
+                                    "objectified",
+                                    "objectifies",
+                                    "objectifying"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "subject",
+                                "synonyms": [
+                                    "subjecter",
+                                    "subjectest",
+                                    "subjecting",
+                                    "thematic",
+                                    "matters",
+                                    "studying",
+                                    "mattered",
+                                    "subjects",
+                                    "studies",
+                                    "topical",
+                                    "subjected",
+                                    "disciplinary",
+                                    "study",
+                                    "matter",
+                                    "studied",
+                                    "mattering"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "direct sub class of"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "superlative",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "most",
+                                "synonyms": [
+                                    "maximum",
+                                    "highest"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "less",
+                                "synonyms": [
+                                    "minimum",
+                                    "lowest"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "symbol",
+                    "values": [
+                        {
+                            "name": {
+                                "value": ">",
+                                "synonyms": [
+                                    "more",
+                                    "more than",
+                                    "later than"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "<",
+                                "synonyms": [
+                                    "less",
+                                    "less than",
+                                    "before than"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "=",
+                                "synonyms": [
+                                    "equals",
+                                    "equals to"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

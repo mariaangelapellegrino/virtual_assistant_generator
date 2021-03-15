@@ -97,7 +97,7 @@
 		        }
 		    ],
 		    "samples": [
-		    	"Give me all types of {class}",
+		    	"Give me all {class}",
 		    	"how many {class} exist",
 		    	"how many {class} are there"
 		    ]
@@ -228,9 +228,7 @@
 		        "is it true that {subj} has {obj} as {property}",
 		        "is it true that {obj} is the {property} of {subj}",
 		        "can you verify if {subj} has {obj} as {property}",
-		        "{subj} has {obj} as {property}",
-		        "can you check if {subj} has {obj} as {property}",
-		        "is {obj} the {property} of {subj}"
+		        "can you check if {subj} has {obj} as {property}"
 		    ]
 		},
 		"getLocation" : {

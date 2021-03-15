@@ -1,0 +1,543 @@
+{
+    "invocation_name": "dbtune personal assistant",
+    "intents": [
+        "getAllResultsPreviousQuery",
+        "getQueryExplanation",
+        "getFurtherDetails",
+        "getPropertyObject",
+        "getNumericFilter",
+        "getNumericFilterByClass",
+        "getClassInstances",
+        "getTripleVerification",
+        "getSuperlative",
+        "getPropertySubjectByClass",
+        "getPropertySubject"
+    ],
+    "lang": "en",
+    "result_limit": 5,
+    "endpoint": "http://dbtune.org/classical/cliopatria/servlets/evaluateQuery",
+    "entity": {
+        "composer": {
+            "urls": [
+                "<http://dbtune.org/classical/resource/type/Composer>"
+            ]
+        },
+        "conductor": {
+            "urls": [
+                "<http://dbtune.org/classical/resource/type/Conductor>"
+            ]
+        },
+        "composition": {
+            "urls": [
+                "<http://purl.org/ontology/mo/Composition>"
+            ]
+        },
+        "birth": {
+            "urls": [
+                "<http://purl.org/vocab/bio/0.1/Birth>"
+            ]
+        },
+        "death": {
+            "urls": [
+                "<http://purl.org/vocab/bio/0.1/Death>"
+            ]
+        },
+        "pianist": {
+            "urls": [
+                "<http://dbtune.org/classical/resource/type/Pianist>"
+            ]
+        },
+        "style period": {
+            "urls": [
+                "<http://purl.org/ontology/classicalmusicnav#StylePeriod>"
+            ]
+        },
+        "class": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#Class>"
+            ]
+        },
+        "object property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#ObjectProperty>"
+            ]
+        },
+        "musical work": {
+            "urls": [
+                "<http://purl.org/ontology/mo/MusicalWork>"
+            ]
+        },
+        "document": {
+            "urls": [
+                "<http://xmlns.com/foaf/0.1/Document>"
+            ]
+        },
+        "similarity": {
+            "urls": [
+                "<http://purl.org/ontology/similarity/Similarity>"
+            ]
+        },
+        "property": {
+            "urls": [
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>"
+            ]
+        },
+        "resource": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#Resource>"
+            ]
+        }
+    },
+    "property": {
+        "name": {
+            "urls": [
+                "<http://xmlns.com/foaf/0.1/name>"
+            ],
+            "synonyms": [
+                "named",
+                "names",
+                "naming"
+            ]
+        },
+        "type": {
+            "urls": [
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>"
+            ],
+            "synonyms": [
+                "typic",
+                "typing",
+                "types",
+                "typifies",
+                "typifying",
+                "typified",
+                "typed",
+                "typify"
+            ]
+        },
+        "birth": {
+            "urls": [
+                "<http://dbtune.org/classical/resource/vocab/birth>"
+            ],
+            "synonyms": [
+                "be born",
+                "parent",
+                "parents",
+                "birthing",
+                "birthed",
+                "parenting",
+                "parented",
+                "nascent",
+                "births"
+            ]
+        },
+        "nationality": {
+            "urls": [
+                "<http://dbtune.org/classical/resource/vocab/nationality>"
+            ],
+            "synonyms": [
+                "national"
+            ]
+        },
+        "alias": {
+            "urls": [
+                "<http://dbtune.org/musicbrainz/resource/vocab/alias>"
+            ]
+        },
+	"label": {
+            "urls": [
+                "<http://dbtune.org/musicbrainz/resource/vocab/alias>"
+            ]
+        },
+        "page": {
+            "urls": [
+                "<http://xmlns.com/foaf/0.1/page>"
+            ],
+            "synonyms": [
+                "paginated",
+                "paginating",
+                "paging",
+                "paged",
+                "pages",
+                "paginates",
+                "paginate"
+            ]
+        },
+        "based near": {
+            "urls": [
+                "<http://xmlns.com/foaf/0.1/based_near>"
+            ]
+        },
+        "death": {
+            "urls": [
+                "<http://dbtune.org/classical/resource/vocab/death>"
+            ],
+            "synonyms": [
+                "deceasing",
+                "ends",
+                "deceased",
+                "ended",
+                "deathly",
+                "decease",
+                "dice",
+                "dying",
+                "end",
+                "deceases",
+                "ending",
+                "died",
+                "die",
+                "dies"
+            ]
+        },
+        "period": {
+            "urls": [
+                "<http://dbtune.org/classical/resource/vocab/period>"
+            ],
+            "synonyms": [
+                "pointing",
+                "menstruating",
+                "menstruates",
+                "periodical",
+                "flow",
+                "catamenial",
+                "menstruate",
+                "flowing",
+                "flowed",
+                "points",
+                "flows",
+                "point",
+                "menstruated",
+                "pointed"
+            ]
+        },
+        "same as": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#sameAs>"
+            ]
+        },
+        "wikipedia": {
+            "urls": [
+                "<http://purl.org/ontology/mo/wikipedia>"
+            ]
+        },
+        "gender": {
+            "urls": [
+                "<http://dbtune.org/classical/resource/vocab/gender>"
+            ],
+            "synonyms": [
+                "sex",
+                "sexual",
+                "sexed",
+                "sexes",
+                "sexing"
+            ]
+        },
+        "has influenced": {
+            "urls": [
+                "<http://purl.org/ontology/classicalmusicnav#hasInfluenced>"
+            ]
+        },
+        "influenced by": {
+            "urls": [
+                "<http://purl.org/ontology/classicalmusicnav#influencedBy>"
+            ]
+        },
+        "from style period": {
+            "urls": [
+                "<http://purl.org/ontology/classicalmusicnav#from_style_period>"
+            ]
+        },
+        "remarks": {
+            "urls": [
+                "<http://dbtune.org/classical/resource/vocab/remarks>"
+            ],
+            "synonyms": [
+                "commenting",
+                "commentates",
+                "commented",
+                "remarking",
+                "commentated",
+                "remark",
+                "comments",
+                "commentate",
+                "commentating",
+                "remarked",
+                "comment"
+            ]
+        },
+        "composer": {
+            "urls": [
+                "<http://purl.org/ontology/mo/composer>"
+            ],
+            "synonyms": [
+                "compose",
+                "composes",
+                "composing",
+                "composed"
+            ]
+        },
+        "produced work": {
+            "urls": [
+                "<http://purl.org/ontology/mo/produced_work>"
+            ]
+        },
+        "date": {
+            "urls": [
+                "<http://purl.org/vocab/bio/0.1/date>"
+            ],
+            "synonyms": [
+                "escort",
+                "escorts",
+                "escorting",
+                "dating",
+                "dated",
+                "escorted",
+                "dates"
+            ]
+        },
+        "approximate": {
+            "urls": [
+                "<http://dbtune.org/classical/resource/vocab/approximate>"
+            ]
+        },
+        "place": {
+            "urls": [
+                "<http://purl.org/vocab/bio/0.1/place>"
+            ],
+            "synonyms": [
+                "positioning",
+                "positioned",
+                "posts",
+                "position",
+                "placed",
+                "homely",
+                "seats",
+                "positions",
+                "postest",
+                "seated",
+                "homed",
+                "homes",
+                "officiates",
+                "officiating",
+                "seat",
+                "homing",
+                "post",
+                "placing",
+                "homer",
+                "officiated",
+                "poster",
+                "home",
+                "seating",
+                "posting",
+                "places",
+                "homest",
+                "officiate",
+                "posted"
+            ]
+        },
+        "title": {
+            "urls": [
+                "<http://purl.org/dc/elements/1.1/title>"
+            ],
+            "synonyms": [
+                "titulary",
+                "claim",
+                "titlest",
+                "titling",
+                "titled",
+                "titular",
+                "claimed",
+                "titler",
+                "titles",
+                "claims",
+                "claiming"
+            ]
+        },
+        "sub class of": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#subClassOf>"
+            ]
+        },
+        "sub property of": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#subPropertyOf>"
+            ]
+        },
+        "composed in": {
+            "urls": [
+                "<http://purl.org/ontology/mo/composed_in>"
+            ]
+        },
+        "opus": {
+            "urls": [
+                "<http://purl.org/ontology/mo/opus>"
+            ],
+            "synonyms": []
+        },
+        "has part": {
+            "urls": [
+                "<http://purl.org/dc/elements/1.1/hasPart>"
+            ]
+        },
+        "key": {
+            "urls": [
+                "<http://purl.org/ontology/mo/key>"
+            ],
+            "synonyms": [
+                "tonal",
+                "wind",
+                "keys",
+                "keying",
+                "winded",
+                "winding",
+                "kiest",
+                "wound",
+                "kier",
+                "winds",
+                "keyed"
+            ]
+        },
+        "is part of": {
+            "urls": [
+                "<http://purl.org/dc/elements/1.1/isPartOf>"
+            ]
+        },
+        "number": {
+            "urls": [
+                "<http://purl.org/ontology/mo/number>"
+            ],
+            "synonyms": [
+                "numbering",
+                "issue",
+                "acted",
+                "figures",
+                "figured",
+                "acts",
+                "acting",
+                "figuring",
+                "figure",
+                "numbered",
+                "issuing",
+                "numerical",
+                "issues",
+                "act",
+                "numbers",
+                "issued"
+            ]
+        },
+        "catalogue": {
+            "urls": [
+                "<http://purl.org/ontology/mo/catalogue>"
+            ],
+            "synonyms": [
+                "catalog",
+                "cataloguing",
+                "catalogues",
+                "cataloged",
+                "cataloging",
+                "catalogs",
+                "catalogued"
+            ]
+        },
+        "form": {
+            "urls": [
+                "<http://dbtune.org/classical/resource/vocab/form>"
+            ],
+            "synonyms": [
+                "pattern",
+                "contours",
+                "forms",
+                "contourrer",
+                "forming",
+                "anatomic",
+                "patterns",
+                "contoured",
+                "shapes",
+                "shaped",
+                "signifies",
+                "sorted",
+                "contourrest",
+                "shapely",
+                "signified",
+                "sorting",
+                "contouring",
+                "signifying",
+                "variant",
+                "sort",
+                "formed",
+                "shaping",
+                "signify",
+                "shape",
+                "anatomical",
+                "contour",
+                "patterned",
+                "sorts",
+                "patterning"
+            ]
+        },
+        "site name": {
+            "urls": [
+                "<http://dbtune.org/classical/resource/vocab/siteName>"
+            ]
+        },
+        "primary topic": {
+            "urls": [
+                "<http://xmlns.com/foaf/0.1/primaryTopic>"
+            ]
+        },
+        "method": {
+            "urls": [
+                "<http://purl.org/ontology/similarity/method>"
+            ],
+            "synonyms": [
+                "methodical"
+            ]
+        },
+        "object": {
+            "urls": [
+                "<http://purl.org/ontology/similarity/object>"
+            ],
+            "synonyms": [
+                "target",
+                "aims",
+                "targets",
+                "aimed",
+                "targeting",
+                "targeted",
+                "aiming",
+                "objectify",
+                "aim",
+                "objectified",
+                "objectifies",
+                "objectifying"
+            ]
+        },
+        "subject": {
+            "urls": [
+                "<http://purl.org/ontology/similarity/subject>"
+            ],
+            "synonyms": [
+                "subjecter",
+                "subjectest",
+                "subjecting",
+                "thematic",
+                "matters",
+                "studying",
+                "mattered",
+                "subjects",
+                "studies",
+                "topical",
+                "subjected",
+                "disciplinary",
+                "study",
+                "matter",
+                "studied",
+                "mattering"
+            ]
+        },
+        "direct sub class of": {
+            "urls": [
+                "<http://www.openrdf.org/schema/serql#directSubClassOf>"
+            ]
+        }
+    }
+}

@@ -1,0 +1,2420 @@
+{
+    "invocation_name": "hungarian museum personal assistant",
+    "intents": [
+        "getAllResultsPreviousQuery",
+        "getQueryExplanation",
+        "getFurtherDetails",
+        "getPropertyObject",
+        "getNumericFilter",
+        "getNumericFilterByClass",
+        "getClassInstances",
+        "getTripleVerification",
+        "getSuperlative",
+        "getPropertySubjectByClass",
+        "getPropertySubject"
+    ],
+    "lang": "en",
+    "result_limit": 5,
+    "endpoint": "http://data.szepmuveszeti.hu/sparql",
+    "entity": {
+        "quad map format": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat>"
+            ]
+        },
+        "quad storage": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#QuadStorage>"
+            ]
+        },
+        "array-of- quad map": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#array-of-QuadMap>"
+            ]
+        },
+        "quad map": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#QuadMap>"
+            ]
+        },
+        "array-of- quad map format": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#array-of-QuadMapFormat>"
+            ]
+        },
+        "quad map value": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#QuadMapValue>"
+            ]
+        },
+        "array-of- quad map a table": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#array-of-QuadMapATable>"
+            ]
+        },
+        "array-of- quad map column": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#array-of-QuadMapColumn>"
+            ]
+        },
+        "quad map column": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#QuadMapColumn>"
+            ]
+        },
+        "quad map f text": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#QuadMapFText>"
+            ]
+        },
+        "quad map a table": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#QuadMapATable>"
+            ]
+        },
+        "array-of-string": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#array-of-string>"
+            ]
+        },
+        "property": {
+            "urls": [
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>"
+            ]
+        },
+        "class": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#Class>",
+                "<http://www.w3.org/2002/07/&location#Class>",
+                "<http://www.w3.org/2000/01/rdf-schema#Class>",
+                "<&location;#Class>"
+            ]
+        },
+        "service": {
+            "urls": [
+                "<http://www.w3.org/ns/sparql-service-description#Service>"
+            ]
+        },
+        "annotation property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#AnnotationProperty>",
+                "<http://www.w3.org/2002/07/&location#AnnotationProperty>",
+                "<&location;#AnnotationProperty>"
+            ]
+        },
+        "ontology": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#Ontology>",
+                "<http://www.w3.org/2002/07/&location#Ontology>",
+                "<&location;#Ontology>"
+            ]
+        },
+        "ontology property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#OntologyProperty>",
+                "<http://www.w3.org/2002/07/&location#OntologyProperty>",
+                "<&location;#OntologyProperty>"
+            ]
+        },
+        "datatype property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#DatatypeProperty>",
+                "<&location;#DatatypeProperty>",
+                "<http://www.w3.org/2002/07/&location#DatatypeProperty>"
+            ]
+        },
+        "named individual": {
+            "urls": [
+                "<http://www.w3.org/2002/07/&location#NamedIndividual>",
+                "<http://www.w3.org/2002/07/owl#NamedIndividual>"
+            ]
+        },
+        "concept": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F6_Concept>",
+                "<http://www.w3.org/2004/02/skos/core#Concept>"
+            ]
+        },
+        "concept scheme": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#ConceptScheme>"
+            ]
+        },
+        "marc country": {
+            "urls": [
+                "<http://id.loc.gov/vocabulary/countries/MARC_Country>"
+            ]
+        },
+        "marc language": {
+            "urls": [
+                "<http://id.loc.gov/vocabulary/languages/MARC_Language>"
+            ]
+        },
+        "authority": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#Authority>"
+            ]
+        },
+        "language": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#Language>"
+            ]
+        },
+        "resource": {
+            "urls": [
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#Resource>"
+            ]
+        },
+        "geographic": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#Geographic>"
+            ]
+        },
+        "deprecated authority": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#DeprecatedAuthority>"
+            ]
+        },
+        "mads collection": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#MADSCollection>"
+            ]
+        },
+        "marc geographic area": {
+            "urls": [
+                "<http://id.loc.gov/vocabulary/geographicAreas/MARC_GeographicArea>"
+            ]
+        },
+        "object property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/&location#ObjectProperty>",
+                "<&location;#ObjectProperty>",
+                "<http://www.w3.org/2002/07/owl#ObjectProperty>"
+            ]
+        },
+        "transitive property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#TransitiveProperty>",
+                "<http://www.w3.org/2002/07/&location#TransitiveProperty>"
+            ]
+        },
+        "symmetric property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/&location#SymmetricProperty>",
+                "<http://www.w3.org/2002/07/owl#SymmetricProperty>"
+            ]
+        },
+        "functional property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/&location#FunctionalProperty>",
+                "<http://www.w3.org/2002/07/owl#FunctionalProperty>"
+            ]
+        },
+        "inverse functional property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#inverseFunctionalProperty>",
+                "<http://www.w3.org/2002/07/owl#InverseFunctionalProperty>",
+                "<http://www.w3.org/2002/07/&location#InverseFunctionalProperty>"
+            ]
+        },
+        "business entity": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#BusinessEntity>"
+            ]
+        },
+        "offering": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#Offering>"
+            ]
+        },
+        "location of sales or service provisioning": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#LocationOfSalesOrServiceProvisioning>"
+            ]
+        },
+        "actual product or services instance": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#ActualProductOrServicesInstance>"
+            ]
+        },
+        "product or service some instance placeholder": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#ProductOrServiceSomeInstancePlaceholder>"
+            ]
+        },
+        "price specification": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#PriceSpecification>"
+            ]
+        },
+        "type and quantity node": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#TypeAndQuantityNode>"
+            ]
+        },
+        "product or services some instances placeholder": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#ProductOrServicesSomeInstancesPlaceholder>"
+            ]
+        },
+        "manufacturer": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#Manufacturer>"
+            ]
+        },
+        "mads scheme": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#MADSScheme>"
+            ]
+        },
+        "person": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F10_Person>"
+            ]
+        },
+        "work": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F1_Work>",
+                "<http://www.w3.org/2001/vcard-rdf/3.0#work>"
+            ]
+        },
+        "voice": {
+            "urls": [
+                "<http://www.w3.org/2001/vcard-rdf/3.0#voice>"
+            ]
+        },
+        "internet": {
+            "urls": [
+                "<http://www.w3.org/2001/vcard-rdf/3.0#internet>"
+            ]
+        },
+        "record info": {
+            "urls": [
+                "<http://id.loc.gov/ontologies/RecordInfo#RecordInfo>"
+            ]
+        },
+        "variant": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#Variant>"
+            ]
+        },
+        "topic": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#Topic>"
+            ]
+        },
+        "restriction": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#Restriction>",
+                "<http://www.w3.org/2002/07/&location#Restriction>"
+            ]
+        },
+        "all different": {
+            "urls": [
+                "<http://www.w3.org/2002/07/&location#AllDifferent>",
+                "<http://www.w3.org/2002/07/owl#AllDifferent>"
+            ]
+        },
+        "deprecated class": {
+            "urls": [
+                "<http://www.w3.org/2002/07/&location#DeprecatedClass>",
+                "<http://www.w3.org/2002/07/owl#DeprecatedClass>"
+            ]
+        },
+        "deprecated property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#DeprecatedProperty>",
+                "<http://www.w3.org/2002/07/&location#DeprecatedProperty>"
+            ]
+        },
+        "data range": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#DataRange>",
+                "<http://www.w3.org/2002/07/&location#DataRange>"
+            ]
+        },
+        "all disjoint classes": {
+            "urls": [
+                "<http://www.w3.org/2002/07/&location#AllDisjointClasses>"
+            ]
+        },
+        "all disjoint properties": {
+            "urls": [
+                "<http://www.w3.org/2002/07/&location#AllDisjointProperties>"
+            ]
+        },
+        "annotation": {
+            "urls": [
+                "<http://www.w3.org/2002/07/&location#Annotation>"
+            ]
+        },
+        "asymmetric property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/&location#AsymmetricProperty>"
+            ]
+        },
+        "axiom": {
+            "urls": [
+                "<http://www.w3.org/2002/07/&location#Axiom>"
+            ]
+        },
+        "irreflexive property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/&location#IrreflexiveProperty>"
+            ]
+        },
+        "negative property assertion": {
+            "urls": [
+                "<http://www.w3.org/2002/07/&location#NegativePropertyAssertion>"
+            ]
+        },
+        "reflexive property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/&location#ReflexiveProperty>"
+            ]
+        },
+        "download location": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#DownloadLocation>"
+            ]
+        },
+        "component archive": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#ComponentArchive>"
+            ]
+        },
+        "price unit type": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#PriceUnitType>"
+            ]
+        },
+        "product family": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#ProductFamily>"
+            ]
+        },
+        "product category": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#ProductCategory>"
+            ]
+        },
+        "product format": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#ProductFormat>"
+            ]
+        },
+        "product format category": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#ProductFormatCategory>"
+            ]
+        },
+        "product": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#Product>"
+            ]
+        },
+        "opsys": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#Opsys>"
+            ]
+        },
+        "dbms engine": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#DbmsEngine>"
+            ]
+        },
+        "vendor category family": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#VendorCategoryFamily>"
+            ]
+        },
+        "vendor category": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#VendorCategory>"
+            ]
+        },
+        "vendors": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#Vendors>"
+            ]
+        },
+        "opsys family": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#OpsysFamily>"
+            ]
+        },
+        "dbms family": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#DbmsFamily>"
+            ]
+        },
+        "opsys type": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#OpsysType>"
+            ]
+        },
+        "processor mode": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#ProcessorMode>"
+            ]
+        },
+        "processor": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#Processor>"
+            ]
+        },
+        "processor family": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#ProcessorFamily>"
+            ]
+        },
+        "product release": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#ProductRelease>"
+            ]
+        },
+        "component": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#Component>"
+            ]
+        },
+        "component mode": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#ComponentMode>"
+            ]
+        },
+        "component type": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#ComponentType>"
+            ]
+        },
+        "component category": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#ComponentCategory>"
+            ]
+        },
+        "component archive type": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#ComponentArchiveType>"
+            ]
+        },
+        "price unit incremental discount": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#PriceUnitIncrementalDiscount>"
+            ]
+        },
+        "download protocol": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#DownloadProtocol>"
+            ]
+        },
+        "download partner": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#DownloadPartner>"
+            ]
+        },
+        "product benefit": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#ProductBenefit>"
+            ]
+        },
+        "product benefit category": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#ProductBenefitCategory>"
+            ]
+        },
+        "product feature category": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#ProductFeatureCategory>"
+            ]
+        },
+        "product feature": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#ProductFeature>"
+            ]
+        },
+        "product family feature": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#ProductFamilyFeature>"
+            ]
+        },
+        "product format feature": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#ProductFormatFeature>"
+            ]
+        },
+        "product category feature": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#ProductCategoryFeature>"
+            ]
+        },
+        "product release feature": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#ProductReleaseFeature>"
+            ]
+        },
+        "license type": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#LicenseType>"
+            ]
+        },
+        "price type": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#PriceType>"
+            ]
+        },
+        "general discount": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#GeneralDiscount>"
+            ]
+        },
+        "incremental discount": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#IncrementalDiscount>"
+            ]
+        },
+        "license model": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/oplweb#LicenseModel>"
+            ]
+        },
+        "place": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F9_Place>"
+            ]
+        },
+        "corporate body": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F11_Corporate_Body>"
+            ]
+        },
+        "name": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F12_Name>"
+            ]
+        },
+        "identifier": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F13_Identifier>"
+            ]
+        },
+        "individual work": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F14_Individual_Work>"
+            ]
+        },
+        "complex work": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F15_Complex_Work>"
+            ]
+        },
+        "container work": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F16_Container_Work>"
+            ]
+        },
+        "aggregation work": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F17_Aggregation_Work>"
+            ]
+        },
+        "serial work": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F18_Serial_Work>"
+            ]
+        },
+        "publication work": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F19_Publication_Work>"
+            ]
+        },
+        "performance work": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F20_Performance_Work>"
+            ]
+        },
+        "recording work": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F21_Recording_Work>"
+            ]
+        },
+        "self-contained expression": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F22_Self-Contained_Expression>"
+            ]
+        },
+        "expression fragment": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F23_Expression_Fragment>"
+            ]
+        },
+        "publication expression": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F24_Publication_Expression>"
+            ]
+        },
+        "performance plan": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F25_Performance_Plan>"
+            ]
+        },
+        "recording": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F26_Recording>"
+            ]
+        },
+        "work conception": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F27_Work_Conception>"
+            ]
+        },
+        "expression creation": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F28_Expression_Creation>"
+            ]
+        },
+        "recording event": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F29_Recording_Event>"
+            ]
+        },
+        "expression": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F2_Expression>"
+            ]
+        },
+        "publication event": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F30_Publication_Event>"
+            ]
+        },
+        "performance": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F31_Performance>"
+            ]
+        },
+        "carrier production event": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F32_Carrier_Production_Event>"
+            ]
+        },
+        "reproduction event": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F33_Reproduction_Event>"
+            ]
+        },
+        "manifestation product type": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F3_Manifestation_Product_Type>"
+            ]
+        },
+        "identifier assignment": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F40_Identifier_Assignment>"
+            ]
+        },
+        "representative manifestation assignment": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F41_Representative_Manifestation_Assignment>"
+            ]
+        },
+        "representative expression assignment": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F42_Representative_Expression_Assignment>"
+            ]
+        },
+        "identifier rule": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F43_Identifier_Rule>"
+            ]
+        },
+        "bibliographic agency": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F44_Bibliographic_Agency>"
+            ]
+        },
+        "manifestation singleton": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F4_Manifestation_Singleton>"
+            ]
+        },
+        "item": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F5_Item>"
+            ]
+        },
+        "object": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F7_Object>"
+            ]
+        },
+        "event": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/F8_Event>"
+            ]
+        },
+        "thing": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#Thing>"
+            ]
+        },
+        "nothing": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#Nothing>"
+            ]
+        }
+    },
+    "property": {
+        "type": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#type>",
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>"
+            ],
+            "synonyms": [
+                "typified",
+                "typifies",
+                "typify",
+                "typing",
+                "typed",
+                "typic",
+                "typifying",
+                "types"
+            ]
+        },
+        "version": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#version>"
+            ],
+            "synonyms": [
+                "varies",
+                "translate",
+                "interpreting",
+                "translated",
+                "interpret",
+                "interpreted",
+                "interprets",
+                "translating",
+                "varied",
+                "vary",
+                "varying",
+                "translates",
+                "variant"
+            ]
+        },
+        "load as": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#loadAs>"
+            ]
+        },
+        "item": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#item>"
+            ],
+            "synonyms": [
+                "detailing",
+                "itemizes",
+                "detail",
+                "itemise",
+                "detailed",
+                "itemising",
+                "itemize",
+                "itemised",
+                "itemized",
+                "details",
+                "itemizing",
+                "itemises"
+            ]
+        },
+        "is special predicate": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#isSpecialPredicate>"
+            ]
+        },
+        "is gc resistant type": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#isGcResistantType>"
+            ]
+        },
+        "qmf name": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfName>"
+            ]
+        },
+        "qmf short tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfShortTmpl>"
+            ]
+        },
+        "qmf long tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfLongTmpl>"
+            ]
+        },
+        "qmf sqlval tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfSqlvalTmpl>"
+            ]
+        },
+        "qmf bool tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfBoolTmpl>"
+            ]
+        },
+        "qmf isref of short tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfIsrefOfShortTmpl>"
+            ]
+        },
+        "qmf isuri of short tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfIsuriOfShortTmpl>"
+            ]
+        },
+        "qmf isblank of short tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfIsblankOfShortTmpl>"
+            ]
+        },
+        "qmf islit of short tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfIslitOfShortTmpl>"
+            ]
+        },
+        "qmf long of short tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfLongOfShortTmpl>"
+            ]
+        },
+        "qmf sqlval of short tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfSqlvalOfShortTmpl>"
+            ]
+        },
+        "qmf datatype of short tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfDatatypeOfShortTmpl>"
+            ]
+        },
+        "qmf language of short tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfLanguageOfShortTmpl>"
+            ]
+        },
+        "qmf bool of short tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfBoolOfShortTmpl>"
+            ]
+        },
+        "qmf iid of short tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfIidOfShortTmpl>"
+            ]
+        },
+        "qmf uri of short tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfUriOfShortTmpl>"
+            ]
+        },
+        "qmf strsqlval of short tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfStrsqlvalOfShortTmpl>"
+            ]
+        },
+        "qmf short of typedsqlval tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfShortOfTypedsqlvalTmpl>"
+            ]
+        },
+        "qmf short of sqlval tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfShortOfSqlvalTmpl>"
+            ]
+        },
+        "qmf short of long tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfShortOfLongTmpl>"
+            ]
+        },
+        "qmf short of uri tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfShortOfUriTmpl>"
+            ]
+        },
+        "qmf is bijection": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfIsBijection>"
+            ]
+        },
+        "qmf maps only null to null": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfMapsOnlyNullToNull>"
+            ]
+        },
+        "qmf is stable": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfIsStable>"
+            ]
+        },
+        "qmf is subformat of long": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfIsSubformatOfLong>"
+            ]
+        },
+        "qmf is subformat of long when ref": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfIsSubformatOfLongWhenRef>"
+            ]
+        },
+        "qmf cmp func name": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfCmpFuncName>"
+            ]
+        },
+        "qmf typemin tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfTypeminTmpl>"
+            ]
+        },
+        "qmf typemax tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfTypemaxTmpl>"
+            ]
+        },
+        "qmf column count": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfColumnCount>"
+            ]
+        },
+        "qmf ok for any sqlvalue": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfOkForAnySqlvalue>"
+            ]
+        },
+        "qmf val range-rvr restrictions": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfValRange-rvrRestrictions>"
+            ]
+        },
+        "qmf uri id offset": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfUriIdOffset>"
+            ]
+        },
+        "qmf super formats": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfSuperFormats>"
+            ]
+        },
+        "one": {
+            "urls": [
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#_1>"
+            ]
+        },
+        "two": {
+            "urls": [
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#_2>"
+            ]
+        },
+        "three": {
+            "urls": [
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#_3>"
+            ]
+        },
+        "inherit from": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#inheritFrom>"
+            ]
+        },
+        "no inherit": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#noInherit>"
+            ]
+        },
+        "four": {
+            "urls": [
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#_4>"
+            ]
+        },
+        "five": {
+            "urls": [
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#_5>"
+            ]
+        },
+        "qmf existing short of typedsqlval tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfExistingShortOfTypedsqlvalTmpl>"
+            ]
+        },
+        "qmf existing short of sqlval tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfExistingShortOfSqlvalTmpl>"
+            ]
+        },
+        "qmf existing short of long tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfExistingShortOfLongTmpl>"
+            ]
+        },
+        "qmf existing short of uri tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfExistingShortOfUriTmpl>"
+            ]
+        },
+        "qmf is subformat of long when eq to sql": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfIsSubformatOfLongWhenEqToSql>"
+            ]
+        },
+        "qmf wrap distinct": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfWrapDistinct>"
+            ]
+        },
+        "qmf sub format for refs": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfSubFormatForRefs>"
+            ]
+        },
+        "qmf isnumeric of short tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfIsnumericOfShortTmpl>"
+            ]
+        },
+        "qmf short of nice sqlval tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfShortOfNiceSqlvalTmpl>"
+            ]
+        },
+        "qmf dtp of nice sqlval": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfDtpOfNiceSqlval>"
+            ]
+        },
+        "qmf has cheap sqlval": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfHasCheapSqlval>"
+            ]
+        },
+        "qmf datatype tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfDatatypeTmpl>"
+            ]
+        },
+        "qmf language tmpl": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfLanguageTmpl>"
+            ]
+        },
+        "qmf val range-rvr datatype": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfValRange-rvrDatatype>"
+            ]
+        },
+        "qmf val range-rvr language": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmfValRange-rvrLanguage>"
+            ]
+        },
+        "qm graph map": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmGraphMap>"
+            ]
+        },
+        "qm subject map": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmSubjectMap>"
+            ]
+        },
+        "qm predicate map": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmPredicateMap>"
+            ]
+        },
+        "qm object map": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmObjectMap>"
+            ]
+        },
+        "qm table name": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmTableName>"
+            ]
+        },
+        "qm matching flags": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmMatchingFlags>"
+            ]
+        },
+        "qmv table name": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmvTableName>"
+            ]
+        },
+        "qmv a tables": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmvATables>"
+            ]
+        },
+        "qmv columns": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmvColumns>"
+            ]
+        },
+        "qmv format": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmvFormat>"
+            ]
+        },
+        "qmv columns form key": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmvColumnsFormKey>"
+            ]
+        },
+        "qmvc alias": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmvcAlias>"
+            ]
+        },
+        "qmvc column name": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmvcColumnName>"
+            ]
+        },
+        "qmv f text": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmvFText>"
+            ]
+        },
+        "qmv geo": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmvGeo>"
+            ]
+        },
+        "qmva alias": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmvaAlias>"
+            ]
+        },
+        "qmva table name": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmvaTableName>"
+            ]
+        },
+        "qmvft column name": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmvftColumnName>"
+            ]
+        },
+        "qmvft xml index": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmvftXmlIndex>"
+            ]
+        },
+        "qmvft alias": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmvftAlias>"
+            ]
+        },
+        "qmvft conds": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmvftConds>"
+            ]
+        },
+        "qmvft table name": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qmvftTableName>"
+            ]
+        },
+        "qs user maps": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qsUserMaps>"
+            ]
+        },
+        "qs default map": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qsDefaultMap>"
+            ]
+        },
+        "qs matching flags": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#qsMatchingFlags>"
+            ]
+        },
+        "sub property of": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#subPropertyOf>"
+            ]
+        },
+        "equivalent class": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#equivalentClass>"
+            ]
+        },
+        "equivalent property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#equivalentProperty>"
+            ]
+        },
+        "inverse of": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#inverseOf>"
+            ]
+        },
+        "created": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R17_created>",
+                "<http://purl.org/dc/terms/created>",
+                "<http://erlangen-crm.org/efrbroo/R21_created>",
+                "<http://erlangen-crm.org/efrbroo/R24_created>",
+                "<http://erlangen-crm.org/efrbroo/R18_created>"
+            ]
+        },
+        "modified": {
+            "urls": [
+                "<http://purl.org/dc/terms/modified>"
+            ]
+        },
+        "owner user": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/DAV#ownerUser>"
+            ]
+        },
+        "extent": {
+            "urls": [
+                "<http://purl.org/dc/terms/extent>"
+            ],
+            "synonyms": [
+                "extend",
+                "extended",
+                "extending",
+                "extends"
+            ]
+        },
+        "label": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#label>"
+            ],
+            "synonyms": [
+                "labeling",
+                "labelled",
+                "labeled",
+                "labels"
+            ]
+        },
+        "first": {
+            "urls": [
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#first>"
+            ],
+            "synonyms": [
+                "starts",
+                "kick off",
+                "start",
+                "started",
+                "starting"
+            ]
+        },
+        "complement of": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#complementOf>"
+            ]
+        },
+        "rest": {
+            "urls": [
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>"
+            ],
+            "synonyms": [
+                "resting",
+                "remains",
+                "remainders",
+                "relaxed",
+                "residuary",
+                "reposed",
+                "remaindered",
+                "remainder",
+                "reposing",
+                "remained",
+                "residual",
+                "rests",
+                "remaining",
+                "rested",
+                "relaxing",
+                "relax",
+                "remaindering",
+                "repose",
+                "reposes",
+                "relaxes",
+                "remain"
+            ]
+        },
+        "union of": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#unionOf>"
+            ]
+        },
+        "domain": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#domain>"
+            ]
+        },
+        "range": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#range>"
+            ],
+            "synonyms": [
+                "ranged",
+                "reaching",
+                "ranging",
+                "compasses",
+                "reaches",
+                "compassing",
+                "reach",
+                "rangy",
+                "reached",
+                "compassed",
+                "ranges",
+                "scopal",
+                "compass"
+            ]
+        },
+        "imports": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#imports>",
+                "<&location;#imports>"
+            ],
+            "synonyms": [
+                "implying",
+                "significant",
+                "imported",
+                "momentous",
+                "importing",
+                "implicates",
+                "meaning",
+                "meant",
+                "implied",
+                "means",
+                "signifies",
+                "implicated",
+                "mean",
+                "implies",
+                "meaner",
+                "implicating",
+                "meanest",
+                "consequential",
+                "signified",
+                "signify",
+                "implicate",
+                "imply",
+                "import",
+                "signifying"
+            ]
+        },
+        "is defined by": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#isDefinedBy>"
+            ]
+        },
+        "comment": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#comment>"
+            ],
+            "synonyms": [
+                "gossips",
+                "comments",
+                "commentate",
+                "gossip",
+                "remarked",
+                "commentating",
+                "gossiping",
+                "remarking",
+                "remarks",
+                "commentates",
+                "gossiped",
+                "commentated",
+                "remark",
+                "commented",
+                "commenting"
+            ]
+        },
+        "version info": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#versionInfo>",
+                "<&location;#versionInfo>"
+            ]
+        },
+        "prior version": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#priorVersion>"
+            ]
+        },
+        "disjoint with": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#disjointWith>"
+            ]
+        },
+        "on property": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#onProperty>"
+            ]
+        },
+        "some values from": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#someValuesFrom>"
+            ]
+        },
+        "min cardinality": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#minCardinality>"
+            ]
+        },
+        "max cardinality": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#maxCardinality>"
+            ]
+        },
+        "cardinality": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#cardinality>"
+            ]
+        },
+        "see also": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#seeAlso>"
+            ]
+        },
+        "same as": {
+            "urls": [
+                "<http://www.w3.org/2002/07/owl#sameAs>"
+            ]
+        },
+        "sub class of": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#subClassOf>"
+            ]
+        },
+        "endpoint": {
+            "urls": [
+                "<http://www.w3.org/ns/sparql-service-description#endpoint>"
+            ],
+            "synonyms": [
+                "terminated",
+                "terminates",
+                "terminating",
+                "terminate"
+            ]
+        },
+        "feature": {
+            "urls": [
+                "<http://www.w3.org/ns/sparql-service-description#feature>"
+            ],
+            "synonyms": [
+                "features",
+                "featured",
+                "featuring"
+            ]
+        },
+        "result format": {
+            "urls": [
+                "<http://www.w3.org/ns/sparql-service-description#resultFormat>"
+            ]
+        },
+        "supported language": {
+            "urls": [
+                "<http://www.w3.org/ns/sparql-service-description#supportedLanguage>"
+            ]
+        },
+        "url": {
+            "urls": [
+                "<http://www.w3.org/ns/sparql-service-description#url>"
+            ]
+        },
+        "alt label": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#altLabel>"
+            ]
+        },
+        "close match": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#closeMatch>"
+            ]
+        },
+        "in scheme": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#inScheme>"
+            ]
+        },
+        "related": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#related>"
+            ]
+        },
+        "scope note": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#scopeNote>",
+                "<http://www.w3.org/2004/02/skos/core#scopeNote>"
+            ]
+        },
+        "authoritative label": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#authoritativeLabel>"
+            ]
+        },
+        "record content source": {
+            "urls": [
+                "<http://id.loc.gov/ontologies/RecordInfo#recordContentSource>"
+            ]
+        },
+        "record change date": {
+            "urls": [
+                "<http://id.loc.gov/ontologies/RecordInfo#recordChangeDate>"
+            ]
+        },
+        "record change note": {
+            "urls": [
+                "<http://id.loc.gov/ontologies/RecordInfo#recordChangeNote>"
+            ]
+        },
+        "record status": {
+            "urls": [
+                "<http://id.loc.gov/ontologies/RecordInfo#recordStatus>"
+            ]
+        },
+        "admin metadata": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#adminMetadata>"
+            ]
+        },
+        "code": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#code>"
+            ],
+            "synonyms": [
+                "codifies",
+                "coding",
+                "coded",
+                "codify",
+                "codes",
+                "codifying",
+                "codified"
+            ]
+        },
+        "deprecated label": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#deprecatedLabel>"
+            ]
+        },
+        "has broader authority": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#hasBroaderAuthority>"
+            ]
+        },
+        "has broader external authority": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#hasBroaderExternalAuthority>"
+            ]
+        },
+        "has exact external authority": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#hasExactExternalAuthority>"
+            ]
+        },
+        "has mads collection member": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#hasMADSCollectionMember>"
+            ]
+        },
+        "has narrower authority": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#hasNarrowerAuthority>"
+            ]
+        },
+        "has related authority": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#hasRelatedAuthority>"
+            ]
+        },
+        "has top member of mads scheme": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#hasTopMemberOfMADSScheme>"
+            ]
+        },
+        "has variant": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#hasVariant>"
+            ]
+        },
+        "history note": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#historyNote>"
+            ]
+        },
+        "is member of mads collection": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection>"
+            ]
+        },
+        "is member of mads scheme": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme>"
+            ]
+        },
+        "note": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#note>"
+            ],
+            "synonyms": [
+                "annotate",
+                "notes",
+                "annotating",
+                "annotates",
+                "tonic",
+                "noted",
+                "noting",
+                "preeminent",
+                "annotated",
+                "eminent"
+            ]
+        },
+        "use for": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#useFor>"
+            ]
+        },
+        "use instead": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#useInstead>"
+            ]
+        },
+        "variant label": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#variantLabel>"
+            ]
+        },
+        "is top member of mads scheme": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#isTopMemberOfMADSScheme>"
+            ]
+        },
+        "editorial note": {
+            "urls": [
+                "<http://www.loc.gov/mads/rdf/v1#editorialNote>"
+            ]
+        },
+        "namespace transformation": {
+            "urls": [
+                "<http://www.w3.org/2003/g/data-view#namespaceTransformation>"
+            ]
+        },
+        "version iri": {
+            "urls": [
+                "<&location;#versionIRI>"
+            ]
+        },
+        "notation": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#notation>"
+            ],
+            "synonyms": [
+                "notated",
+                "notating",
+                "notates",
+                "notate"
+            ]
+        },
+        "title": {
+            "urls": [
+                "<http://purl.org/dc/elements/1.1/title>"
+            ],
+            "synonyms": [
+                "titler",
+                "claim",
+                "claimed",
+                "titlest",
+                "titled",
+                "claims",
+                "titling",
+                "titulary",
+                "titles",
+                "titular",
+                "claiming"
+            ]
+        },
+        "broader": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#broader>"
+            ]
+        },
+        "narrower": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#narrower>"
+            ]
+        },
+        "cat name": {
+            "urls": [
+                "<http://www.openlinksw.com/schemas/virtrdf#catName>"
+            ]
+        },
+        "business entity": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#BusinessEntity>"
+            ]
+        },
+        "legal name": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#legalName>"
+            ]
+        },
+        "adr": {
+            "urls": [
+                "<http://www.w3.org/2001/vcard-rdf/3.0#ADR>"
+            ]
+        },
+        "street": {
+            "urls": [
+                "<http://www.w3.org/2001/vcard-rdf/3.0#Street>"
+            ]
+        },
+        "pcode": {
+            "urls": [
+                "<http://www.w3.org/2001/vcard-rdf/3.0#Pcode>"
+            ]
+        },
+        "city": {
+            "urls": [
+                "<http://www.w3.org/2001/vcard-rdf/3.0#City>"
+            ],
+            "synonyms": [
+                "metropolitan",
+                "citifying",
+                "citify",
+                "citified",
+                "citifies"
+            ]
+        },
+        "country": {
+            "urls": [
+                "<http://www.w3.org/2001/vcard-rdf/3.0#Country>"
+            ],
+            "synonyms": [
+                "areal"
+            ]
+        },
+        "tel": {
+            "urls": [
+                "<http://www.w3.org/2001/vcard-rdf/3.0#TEL>"
+            ]
+        },
+        "value": {
+            "urls": [
+                "<http://www.w3.org/1999/02/22-rdf-syntax-ns#value>"
+            ],
+            "synonyms": [
+                "evaluated",
+                "values",
+                "valuating",
+                "valuate",
+                "valuates",
+                "valuing",
+                "valued",
+                "valuated",
+                "evaluates",
+                "evaluate",
+                "evaluating"
+            ]
+        },
+        "email": {
+            "urls": [
+                "<http://www.w3.org/2001/vcard-rdf/3.0#EMAIL>"
+            ],
+            "synonyms": [
+                "emailing",
+                "emails",
+                "e-mail",
+                "emailed"
+            ]
+        },
+        "offers": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#offers>"
+            ],
+            "synonyms": [
+                "offering",
+                "offer",
+                "offered"
+            ]
+        },
+        "homepage": {
+            "urls": [
+                "<http://xmlns.com/foaf/0.1/homepage>"
+            ]
+        },
+        "logo": {
+            "urls": [
+                "<http://xmlns.com/foaf/0.1/logo>"
+            ]
+        },
+        "maker": {
+            "urls": [
+                "<http://xmlns.com/foaf/0.1/maker>"
+            ],
+            "synonyms": [
+                "manufacturing",
+                "shapes",
+                "manufacture",
+                "made",
+                "making",
+                "makes",
+                "manufactures",
+                "manufactured",
+                "shape",
+                "shaping",
+                "almighty",
+                "make",
+                "shaped"
+            ]
+        },
+        "available at or from": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#availableAtOrFrom>"
+            ]
+        },
+        "includes": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#includes>"
+            ]
+        },
+        "has price specification": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#hasPriceSpecification>"
+            ]
+        },
+        "amount of this good": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#amountOfThisGood>"
+            ]
+        },
+        "has unit of measurement": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#hasUnitOfMeasurement>"
+            ]
+        },
+        "type of good": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#typeOfGood>"
+            ]
+        },
+        "includes object": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#includesObject>"
+            ]
+        },
+        "has business function": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#hasBusinessFunction>"
+            ]
+        },
+        "valid from": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#validFrom>"
+            ]
+        },
+        "valid through": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#validThrough>"
+            ]
+        },
+        "eligible regions": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#eligibleRegions>"
+            ]
+        },
+        "eligible customer types": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#eligibleCustomerTypes>"
+            ]
+        },
+        "accepted payment methods": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#acceptedPaymentMethods>"
+            ]
+        },
+        "available delivery methods": {
+            "urls": [
+                "<http://purl.org/goodrelations/v1#availableDeliveryMethods>"
+            ]
+        },
+        "is described using": {
+            "urls": [
+                "<http://www.w3.org/2000/01/rdf-schema#isDescribedUsing>"
+            ]
+        },
+        "pref label": {
+            "urls": [
+                "<http://www.w3.org/2004/02/skos/core#prefLabel>"
+            ]
+        },
+        "lat": {
+            "urls": [
+                "<http://www.w3.org/2003/01/geo/wgs84_pos#lat>"
+            ]
+        },
+        "long": {
+            "urls": [
+                "<http://www.w3.org/2003/01/geo/wgs84_pos#long>"
+            ]
+        },
+        "subject to": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/CLP104_subject_to>"
+            ]
+        },
+        "applies to": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/CLP104i_applies_to>"
+            ]
+        },
+        "right held by": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/CLP105_right_held_by>"
+            ]
+        },
+        "right on": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/CLP105i_right_on>"
+            ]
+        },
+        "should have type": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/CLP2_should_have_type>"
+            ]
+        },
+        "should be type of": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/CLP2i_should_be_type_of>"
+            ]
+        },
+        "should have dimension": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/CLP43_should_have_dimension>"
+            ]
+        },
+        "should be dimension of": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/CLP43i_should_be_dimension_of>"
+            ]
+        },
+        "should consist of": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/CLP45_should_consist_of>"
+            ]
+        },
+        "should be incorporated in": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/CLP45i_should_be_incorporated_in>"
+            ]
+        },
+        "should be composed of": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/CLP46_should_be_composed_of>"
+            ]
+        },
+        "may form part of": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/CLP46i_may_form_part_of>"
+            ]
+        },
+        "should carry": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/CLR6_should_carry>"
+            ]
+        },
+        "should be carried by": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/CLR6i_should_be_carried_by>"
+            ]
+        },
+        "has member": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R10_has_member>"
+            ]
+        },
+        "is member of": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R10i_is_member_of>"
+            ]
+        },
+        "has issuing rule": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R11_has_issuing_rule>"
+            ]
+        },
+        "is issuing rule of": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R11i_is_issuing_rule_of>"
+            ]
+        },
+        "is realised in": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R12_is_realised_in>",
+                "<http://erlangen-crm.org/efrbroo/R13_is_realised_in>",
+                "<http://erlangen-crm.org/efrbroo/R9_is_realised_in>",
+                "<http://erlangen-crm.org/efrbroo/R3_is_realised_in>"
+            ]
+        },
+        "realises": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R9i_realises>",
+                "<http://erlangen-crm.org/efrbroo/R3i_realises>",
+                "<http://erlangen-crm.org/efrbroo/R13i_realises>",
+                "<http://erlangen-crm.org/efrbroo/R12i_realises>"
+            ]
+        },
+        "incorporates": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R14_incorporates>"
+            ]
+        },
+        "is incorporated in": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R14i_is_incorporated_in>"
+            ]
+        },
+        "has fragment": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R15_has_fragment>"
+            ]
+        },
+        "is fragment of": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R15i_is_fragment_of>"
+            ]
+        },
+        "initiated": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R16_initiated>"
+            ]
+        },
+        "was initiated by": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R16i_was_initiated_by>"
+            ]
+        },
+        "was created by": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R17i_was_created_by>",
+                "<http://erlangen-crm.org/efrbroo/R18i_was_created_by>"
+            ]
+        },
+        "created a realisation of": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R19_created_a_realisation_of>",
+                "<http://erlangen-crm.org/efrbroo/R23_created_a_realisation_of>",
+                "<http://erlangen-crm.org/efrbroo/R22_created_a_realisation_of>"
+            ]
+        },
+        "was realised through": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R19i_was_realised_through>",
+                "<http://erlangen-crm.org/efrbroo/R23i_was_realised_through>",
+                "<http://erlangen-crm.org/efrbroo/R22i_was_realised_through>"
+            ]
+        },
+        "is logical successor of": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R1_is_logical_successor_of>"
+            ]
+        },
+        "has successor": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R1i_has_successor>"
+            ]
+        },
+        "recorded": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R20_recorded>"
+            ]
+        },
+        "was recorded through": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R20i_was_recorded_through>"
+            ]
+        },
+        "was created through": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R21i_was_created_through>",
+                "<http://erlangen-crm.org/efrbroo/R24i_was_created_through>"
+            ]
+        },
+        "performed": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R25_performed>",
+                "<http://erlangen-crm.org/efrbroo/R44i_performed>",
+                "<http://erlangen-crm.org/efrbroo/R43i_performed>"
+            ]
+        },
+        "was performed in": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R25i_was_performed_in>"
+            ]
+        },
+        "produced things of type": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R26_produced_things_of_type>"
+            ]
+        },
+        "was produced by": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R26i_was_produced_by>",
+                "<http://erlangen-crm.org/efrbroo/R30i_was_produced_by>",
+                "<http://erlangen-crm.org/efrbroo/R28i_was_produced_by>"
+            ]
+        },
+        "used as source material": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R27_used_as_source_material>"
+            ]
+        },
+        "was used by": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R27i_was_used_by>"
+            ]
+        },
+        "produced": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R30_produced>",
+                "<http://erlangen-crm.org/efrbroo/R28_produced>"
+            ]
+        },
+        "reproduced": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R29_reproduced>"
+            ]
+        },
+        "was reproduced by": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R29i_was_reproduced_by>"
+            ]
+        },
+        "is derivative of": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R2_is_derivative_of>"
+            ]
+        },
+        "has derivative": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R2i_has_derivative>"
+            ]
+        },
+        "is reproduction of": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R31_is_reproduction_of>"
+            ]
+        },
+        "has reproduction": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R31i_has_reproduction>"
+            ]
+        },
+        "has representative expression": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R40_has_representative_expression>"
+            ]
+        },
+        "is representative expression for": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R40i_is_representative_expression_for>"
+            ]
+        },
+        "has representative manifestation product type": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R41_has_representative_manifestation_product_type>"
+            ]
+        },
+        "is representative manifestation product type for": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R41i_is_representative_manifestation_product_type_for>"
+            ]
+        },
+        "is representative manifestation singleton for": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R42_is_representative_manifestation_singleton_for>"
+            ]
+        },
+        "has representative manifestation singleton": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R42i_has_representative_manifestation_singleton>"
+            ]
+        },
+        "carried out by": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R44_carried_out_by>",
+                "<http://erlangen-crm.org/efrbroo/R43_carried_out_by>"
+            ]
+        },
+        "assigned to": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R45_assigned_to>",
+                "<http://erlangen-crm.org/efrbroo/R50_assigned_to>",
+                "<http://erlangen-crm.org/efrbroo/R48_assigned_to>"
+            ]
+        },
+        "was assigned by": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R50i_was_assigned_by>",
+                "<http://erlangen-crm.org/efrbroo/R46i_was_assigned_by>",
+                "<http://erlangen-crm.org/efrbroo/R48i_was_assigned_by>",
+                "<http://erlangen-crm.org/efrbroo/R49i_was_assigned_by>",
+                "<http://erlangen-crm.org/efrbroo/R45i_was_assigned_by>",
+                "<http://erlangen-crm.org/efrbroo/R53i_was_assigned_by>",
+                "<http://erlangen-crm.org/efrbroo/R51i_was_assigned_by>"
+            ]
+        },
+        "assigned": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R53_assigned>",
+                "<http://erlangen-crm.org/efrbroo/R51_assigned>",
+                "<http://erlangen-crm.org/efrbroo/R46_assigned>",
+                "<http://erlangen-crm.org/efrbroo/R49_assigned>"
+            ]
+        },
+        "used constituent": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R47_used_constituent>"
+            ]
+        },
+        "was used in": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R47i_was_used_in>"
+            ]
+        },
+        "carriers provided by": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R4_carriers_provided_by>"
+            ]
+        },
+        "comprises carriers of": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R4i_comprises_carriers_of>"
+            ]
+        },
+        "used rule": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R52_used_rule>"
+            ]
+        },
+        "was the rule used in": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R52i_was_the_rule_used_in>"
+            ]
+        },
+        "has component": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R5_has_component>"
+            ]
+        },
+        "is component of": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R5i_is_component_of>"
+            ]
+        },
+        "carries": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R6_carries>"
+            ],
+            "synonyms": [
+                "carry",
+                "carried",
+                "carrying"
+            ]
+        },
+        "is carried by": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R6i_is_carried_by>"
+            ]
+        },
+        "is example of": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R7_is_example_of>"
+            ]
+        },
+        "has example": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R7i_has_example>"
+            ]
+        },
+        "consists of": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R8_consists_of>"
+            ]
+        },
+        "forms part of": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/R8i_forms_part_of>"
+            ]
+        },
+        "should have number of parts": {
+            "urls": [
+                "<http://erlangen-crm.org/efrbroo/CLP57_should_have_number_of_parts>"
+            ]
+        },
+        "px capture mode": {
+            "urls": [
+                "<http://aliada-project.eu/2014/aliada-ontology#PX_capture_mode>"
+            ]
+        },
+        "px expected frequency": {
+            "urls": [
+                "<http://aliada-project.eu/2014/aliada-ontology#PX_expected_frequency>"
+            ]
+        },
+        "px expected regularity": {
+            "urls": [
+                "<http://aliada-project.eu/2014/aliada-ontology#PX_expected_regularity>"
+            ]
+        },
+        "px file characteristics": {
+            "urls": [
+                "<http://aliada-project.eu/2014/aliada-ontology#PX_file_characteristics>"
+            ]
+        },
+        "px has an alternate": {
+            "urls": [
+                "<http://aliada-project.eu/2014/aliada-ontology#PX_has_an_alternate>"
+            ]
+        },
+        "px is an alternate to": {
+            "urls": [
+                "<http://aliada-project.eu/2014/aliada-ontology#PX_is_an_alternate_to>"
+            ]
+        },
+        "px physical medium": {
+            "urls": [
+                "<http://aliada-project.eu/2014/aliada-ontology#PX_physical_medium>"
+            ]
+        },
+        "px playing speed": {
+            "urls": [
+                "<http://aliada-project.eu/2014/aliada-ontology#PX_playing_speed>"
+            ]
+        },
+        "px reduction ratio": {
+            "urls": [
+                "<http://aliada-project.eu/2014/aliada-ontology#PX_reduction_ratio>"
+            ]
+        },
+        "px reproduction characteristics": {
+            "urls": [
+                "<http://aliada-project.eu/2014/aliada-ontology#PX_reproduction_characteristics>"
+            ]
+        },
+        "px special characteristics": {
+            "urls": [
+                "<http://aliada-project.eu/2014/aliada-ontology#PX_special_characteristics>"
+            ]
+        },
+        "px system requirements": {
+            "urls": [
+                "<http://aliada-project.eu/2014/aliada-ontology#PX_system_requirements>"
+            ]
+        }
+    }
+}
