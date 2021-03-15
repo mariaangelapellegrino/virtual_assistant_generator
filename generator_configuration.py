@@ -622,8 +622,8 @@ def query_properties(sparql_endpoint, defaultGraph = "", lang="en"):
 def main(argv):
     endpoint = "" # e.g., "http://dbpedia.org/sparql"
     defaultGraph = "" # e.g., "http://dbpedia.org"
-    lang = "" #"en" default
-    invocation_name = "" #"my personal assistant" default
+    lang = None #"en" default
+    invocation_name = None #"my personal assistant" default
     intents = [
         "getAllResultsPreviousQuery",
         "getQueryExplanation",
@@ -645,7 +645,7 @@ def main(argv):
         print('generator_configuration.py -e SPARQ_endpoint -g default graph [-l lang -i invocation name]')
         sys.exit(2)
     try:
-        opts, args = getopt.getopt(argv,"he:g:li",["endpoint=","graph=","lang","invocation_name"])
+        opts, args = getopt.getopt(argv,"he:g:li:",["endpoint=","graph=","lang","invocation_name"])
     except getopt.GetoptError:
         print('generator_configuration.py -e SPARQ_endpoint -g default graph [-l lang -i invocation name]')
         sys.exit(2)
@@ -662,9 +662,9 @@ def main(argv):
         elif opt in ("-i", "--invocation_name"):
             invocation_name = arg
     
-    if lang == "":
+    if lang is None:
         lang="en"
-    if invocation_name == "":
+    if invocation_name is None:
         invocation_name = "my personal assistant"
 
     print('SPARQL endpoint: ', endpoint)
