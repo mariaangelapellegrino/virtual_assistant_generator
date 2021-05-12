@@ -1,6 +1,7 @@
 # CLASSES
 
 ### used classes queries
+```
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT DISTINCT ?class ?label WHERE { 
@@ -12,8 +13,10 @@ SELECT DISTINCT ?class ?label WHERE {
 		}
 	}
 }
+```
 
 ### owl:Classes
+```
 PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX owl:  <http://www.w3.org/2002/07/owl#>
@@ -27,8 +30,10 @@ SELECT ?s ?label WHERE {
 		}
 	}
 }
+```
 
 ### skos:Concept
+```
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
 
 SELECT ?concept ?label WHERE {
@@ -38,9 +43,11 @@ SELECT ?concept ?label WHERE {
     OPTIONAL{
 		FILTER(lang(?label)="en")
 	}
-} 
+}
+```
 
 ### rdfs:Class
+```
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT DISTINCT ?class ?label WHERE { 
@@ -51,11 +58,13 @@ SELECT DISTINCT ?class ?label WHERE {
 			FILTER(lang(?label)="en")
 		}
 	}
-} 
+}
+```
  
 # PROPERTIES
 
 ### used properties
+```
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT DISTINCT ?p ?label WHERE { 
@@ -66,9 +75,11 @@ SELECT DISTINCT ?p ?label WHERE {
 			FILTER(LANG(?label)="en")
 		}
 	}
-} 
+}
+```
 
 ### owl:datatype properties
+```
 PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX owl:  <http://www.w3.org/2002/07/owl#>
@@ -82,8 +93,10 @@ SELECT ?p ?label WHERE {
 		}
 	}
 }
+```
 
 ### owl:object properties
+```
 PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX owl:  <http://www.w3.org/2002/07/owl#>
@@ -97,8 +110,10 @@ SELECT ?p ?label WHERE {
 		}
 	}
 }
+```
 
 ### rdf:property
+```
 PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 SELECT DISTINCT ?p ?label WHERE { 
@@ -110,10 +125,12 @@ SELECT DISTINCT ?p ?label WHERE {
 		}
 	} 
 }
+```
 
 # RESOURCES
 
 ### triple subjects
+```
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT DISTINCT ?s ?label WHERE { 
 	?s ?p ?o. 
@@ -124,4 +141,4 @@ SELECT DISTINCT ?s ?label WHERE {
 		}
 	}
 } 
-
+```
