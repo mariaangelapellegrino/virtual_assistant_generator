@@ -1,0 +1,41 @@
+# Query for all distinct classes (owl:Class, rdfs:Class 
+# and skos:Concept) and their English labels.
+PREFIX  skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX  owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX  rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT DISTINCT  ?s ?label
+WHERE
+  {   { ?s  rdf:type  owl:Class
+        OPTIONAL
+          { ?s  rdfs:label  ?label
+            OPTIONAL
+              { FILTER ( lang(?label) = "en" ) }
+          }
+      }
+    UNION
+      { ?s  rdf:type  rdfs:Class
+        OPTIONAL
+          { ?s  rdfs:label  ?label
+            OPTIONAL
+              { FILTER ( lang(?label) = "en" ) }
+          }
+      }
+    UNION
+      { ?s  rdf:type  skos:Concept
+        OPTIONAL
+          { ?s  skos:prefLabel  ?label
+            OPTIONAL
+              { FILTER ( lang(?label) = "en" ) }
+          }
+      }
+    UNION
+      { ?s  rdf:type  ?class
+        OPTIONAL
+          { ?class  rdfs:label  ?label
+            OPTIONAL
+              { FILTER ( lang(?label) = "en" ) }
+          }
+      }
+  }
