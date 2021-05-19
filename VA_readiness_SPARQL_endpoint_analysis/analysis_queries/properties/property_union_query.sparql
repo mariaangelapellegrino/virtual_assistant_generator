@@ -1,40 +1,38 @@
-# Query for all distinct classes (owl:Class, rdfs:Class 
-# and skos:Concept) and their English labels.
-# 251,456 entries
+# 1,964 entries
 PREFIX  skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX  rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX  owl:  <http://www.w3.org/2002/07/owl#>
 PREFIX  rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-SELECT DISTINCT  ?s ?label
+SELECT DISTINCT  ?p ?label
 WHERE
-  {   { ?s  rdf:type  owl:Class
+  {   { ?p  rdf:type  rdf:Property
         OPTIONAL
-          { ?s  rdfs:label  ?label
+          { ?p  rdfs:label  ?label
             OPTIONAL
               { FILTER ( lang(?label) = "en" ) }
           }
       }
     UNION
-      { ?s  rdf:type  rdfs:Class
+      { ?s  ?p  ?o
         OPTIONAL
-          { ?s  rdfs:label  ?label
+          { ?p  rdfs:label  ?label
             OPTIONAL
               { FILTER ( lang(?label) = "en" ) }
           }
       }
     UNION
-      { ?s  rdf:type  skos:Concept
+      { ?p  rdf:type  owl:DatatypeProperty
         OPTIONAL
-          { ?s  skos:prefLabel  ?label
+          { ?p  rdfs:label  ?label
             OPTIONAL
               { FILTER ( lang(?label) = "en" ) }
           }
       }
     UNION
-      { ?s  rdf:type  ?class
+      { ?p  rdf:type  owl:ObjectProperty
         OPTIONAL
-          { ?class  rdfs:label  ?label
+          { ?p  rdfs:label  ?label
             OPTIONAL
               { FILTER ( lang(?label) = "en" ) }
           }
