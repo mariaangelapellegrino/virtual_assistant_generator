@@ -9,11 +9,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+import json
 from argparse import ArgumentParser
 from argparse import RawDescriptionHelpFormatter
-from SPARQLWrapper import SPARQLWrapper
-import os
+from SPARQLWrapper import JSON, SPARQLWrapper
 
 program_description = '''
 generate_analysis_queries.py -- a CLI for the generation of analysis queries
@@ -34,34 +33,55 @@ queries = ["./analysis_queries/classes/class_union_query.sparql",
            "./analysis_queries/properties/property_union_query.sparql",
            "./analysis_queries/resources/triple_subjects.sparql"]
 
+
+def setup(name: str):
+    import errno
+    import os
+    try:
+        example_str = './example/{}'
+        os.makedirs(example_str.format(name))
+        os.makedirs(example_str.format(name + '/slot_entities'))
+        os.makedirs(example_str.format(name + '/slot_properties'))
+    except OSError as e:
+        if e.errno != errno.EEXIST:
+            raise
+
+
+def execute_sparql(name: str, sparql_endpoint: str):
+    count = 0
+    target_results = ['classes.json', 'resources.json', 'properties.json']
+    for file in queries:
+        with open(file, 'r') as f:
+            lines = f.readlines()
+            sparql = SPARQLWrapper(sparql_endpoint)
+            sparql.setReturnFormat(JSON)
+            sparql_str = ' '.join([str(elem) for elem in lines])
+            sparql.setQuery(sparql_str)
+            try:
+                results = sparql.query().convert()
+            except Exception as e:
+                print(e)
+        with open('./example/{}'.format(name + '/' + target_results[count]), 'w') as target_file:
+            target_file.write(json.dumps(results, indent=4))
+            target_file.close()
+            count = count + 1
+
+
 def main():
     parser = ArgumentParser(description=program_description,
                             formatter_class=RawDescriptionHelpFormatter)
     parser.add_argument("-n", "--name", dest="name",
-                        help="The name of the example you are running i.e. cor.esipfed.org")
-    parser.add_argument("-s", "--sparql", dest="sparql",
+                        help="The name of the analysis job you are running i.e. cor.esipfed.org")
+    parser.add_argument("-se", "--sparql_endpoint", dest="sparql",
                         help="A SPARQL endpoint to run against i.e. http://cor.esipfed.org/sparql")
 
     # Process arguments
     args = parser.parse_args()
-    name = args.name
-    sparql = args.sparql
-    #setup(name)
-    execute_sparql(name, sparql)
+    experiment_name = args.name
+    sparql_endpoint = args.sparql
+    setup(experiment_name)
+    execute_sparql(experiment_name, sparql_endpoint)
 
 
-# def setup(name):
-
-def execute_sparql(name, sparql):
-    for file in queries:
-        with open(file, 'r') as f:
-            lines = f.readlines()
-
-            sparql = SPARQLWrapper(sparql, returnFormat=SPARQLWrapper.JSON)
-            sparql.setQuery(lines)
-            try:
-                ret = sparql.query()
-            except Exception as e:
-                print(e)
-        with open(file, 'w') as f:
-            #write files to example directory ...
+if __name__ == '__main__':
+    main()
