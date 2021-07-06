@@ -19,10 +19,11 @@ generate_analysis_queries.py -- a CLI for the generation of analysis queries
 
 generate_analysis_queries.py provides a CLI for generating the analysis queries 
 which retrieve all the classes, relations, and resources from a SPARQL 
-endpoint and the related label (if any). In a nutshell, this program collects 
-all the classes and relations we desire to evaluate and stores them as JSON files.
-While the entities (and resources) files are stored in a folder named
-`slot_entities`, relations are stored in a folder named `slot_predicates`.
+endpoint and the related label (if any). In a nutshell, this program acquires
+everything we need to perform a endpoint analysis then stores.
+Entities (and resources) files are stored in a folder named
+`${analysis_job}/slot_entities`, relations are stored in a folder named 
+`${analysis_job}/slot_predicates`.
 
 @author:     Lewis McGibbney
 @license:    Apache License v2
@@ -30,8 +31,10 @@ While the entities (and resources) files are stored in a folder named
 '''
 
 queries = ["./analysis_queries/classes/class_union_query.sparql",
-           "./analysis_queries/properties/property_union_query.sparql",
-           "./analysis_queries/resources/triple_subjects.sparql"]
+           "./analysis_queries/resources/triple_subjects.sparql",
+           "./analysis_queries/properties/property_union_query.sparql"]
+
+directories = ['/slot_entities/', '/slot_properties/']
 
 
 def setup(name: str):
@@ -40,14 +43,14 @@ def setup(name: str):
     try:
         example_str = './example/{}'
         os.makedirs(example_str.format(name))
-        os.makedirs(example_str.format(name + '/slot_entities'))
-        os.makedirs(example_str.format(name + '/slot_properties'))
+        os.makedirs(example_str.format(name + directories[0]))
+        os.makedirs(example_str.format(name + directories[1]))
     except OSError as e:
         if e.errno != errno.EEXIST:
             raise
 
 
-def execute_sparql(name: str, sparql_endpoint: str):
+def execute_sparql_save_results(name: str, sparql_endpoint: str):
     count = 0
     target_results = ['classes.json', 'resources.json', 'properties.json']
     for file in queries:
@@ -61,7 +64,11 @@ def execute_sparql(name: str, sparql_endpoint: str):
                 results = sparql.query().convert()
             except Exception as e:
                 print(e)
-        with open('./example/{}'.format(name + '/' + target_results[count]), 'w') as target_file:
+        if count is not 2:
+            target_file_path = './example/{}'.format(name + '/' + directories[0] + target_results[count])
+        else:
+            target_file_path = './example/{}'.format(name + '/' + directories[1] + target_results[count])
+        with open(target_file_path, 'w') as target_file:
             target_file.write(json.dumps(results, indent=4))
             target_file.close()
             count = count + 1
@@ -80,7 +87,7 @@ def main():
     experiment_name = args.name
     sparql_endpoint = args.sparql
     setup(experiment_name)
-    execute_sparql(experiment_name, sparql_endpoint)
+    execute_sparql_save_results(experiment_name, sparql_endpoint)
 
 
 if __name__ == '__main__':
