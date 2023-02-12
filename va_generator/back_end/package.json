@@ -17,7 +17,7 @@
     "aws-sdk": "^2.692.0",
     "dbpedia-spotlight": "^0.5.28",
     "gh-got": "^5.0.0",
-    "got": "10.4.0",
+    "got": "12.5.3",
     "node-wordnet": "^0.1.12",
     "sync-request": "^6.1.0",
     "wikibase-sdk": "^7.1.2",
